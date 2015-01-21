@@ -9,13 +9,17 @@
 
     <groupId>io.github.gefangshuai</groupId>
     <artifactId>wfinal-core</artifactId>
-    <version>1.0.5</version>
+    <version>${wfinal.version}</version>
     <packaging>jar</packaging>
 
     <name>wfinal-core</name>
     <url>http://maven.apache.org</url>
 
     <properties>
+        <jfinal>1.9</jfinal>
+        <jfinal-ext>3.1.2</jfinal-ext>
+        <jstl>1.2</jstl>
+        <javax.servlet>2.5</javax.servlet>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     </properties>
 
@@ -24,6 +28,12 @@
             <groupId>com.jfinal</groupId>
             <artifactId>jfinal-ext</artifactId>
             <version>${jfinal-ext}</version>
+            <exclusions>
+                <exclusion>
+                    <groupId>com.jfinal</groupId>
+                    <artifactId>jetty-server</artifactId>
+                </exclusion>
+            </exclusions>
         </dependency>
 
         <dependency>
@@ -37,14 +47,9 @@
             <version>26Dec2008</version>
         </dependency>
         <dependency>
-            <groupId>org.apache.commons</groupId>
-            <artifactId>commons-lang3</artifactId>
-            <version>3.3.2</version>
-        </dependency>
-        <dependency>
-            <groupId>commons-io</groupId>
-            <artifactId>commons-io</artifactId>
-            <version>${commons-io}</version>
+            <groupId>com.alibaba</groupId>
+            <artifactId>druid</artifactId>
+            <version>1.0.9</version>
         </dependency>
         <dependency>
             <groupId>jstl</groupId>
@@ -57,10 +62,12 @@
             <version>${javax.servlet}</version>
         </dependency>
         <dependency>
-            <groupId>com.google.code.google-collections</groupId>
-            <artifactId>google-collect</artifactId>
-            <version>snapshot-20080530</version>
+            <groupId>io.github.gefangshuai</groupId>
+            <artifactId>wincn-commons</artifactId>
+            <version>1.1</version>
+            <type>pom</type>
         </dependency>
+
     </dependencies>
     <build>
         <plugins>

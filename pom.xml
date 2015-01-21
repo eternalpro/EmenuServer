@@ -12,15 +12,17 @@
     <name>EMenuServer Maven Webapp</name>
     <url>http://maven.apache.org</url>
     <properties>
-        <jfinal>1.9</jfinal>
-        <jfinal-ext>3.1.2</jfinal-ext>
-        <wfinal.version>1.0.5</wfinal.version>
-        <commons-io>2.4</commons-io>
-        <jstl>1.2</jstl>
-        <javax.servlet>2.5</javax.servlet>
+        <wfinal.version>1.0.6</wfinal.version>
         <java.version>1.7</java.version>
     </properties>
-
+    <dependencies>
+        <dependency>
+            <groupId>junit</groupId>
+            <artifactId>junit</artifactId>
+            <version>4.11</version>
+            <scope>test</scope>
+        </dependency>
+    </dependencies>
     <repositories>
         <repository>
             <id>haoch-maven-snapshot-repository</id>

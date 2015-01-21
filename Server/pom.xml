@@ -8,58 +8,13 @@
         <version>1.0-SNAPSHOT</version>
     </parent>
     <modelVersion>4.0.0</modelVersion>
-
     <artifactId>Server</artifactId>
-
-
-
     <dependencies>
-        <dependency>
-            <groupId>com.jfinal</groupId>
-            <artifactId>jfinal-ext</artifactId>
-            <version>${jfinal-ext}</version>
-            <exclusions>
-                <exclusion>
-                    <groupId>com.jfinal</groupId>
-                    <artifactId>jetty-server</artifactId>
-                </exclusion>
-            </exclusions>
-        </dependency>
-
-        <dependency>
-            <groupId>com.jfinal</groupId>
-            <artifactId>jfinal</artifactId>
-            <version>${jfinal}</version>
-        </dependency>
-        <dependency>
-            <groupId>com.jfinal</groupId>
-            <artifactId>cos</artifactId>
-            <version>26Dec2008</version>
-        </dependency>
-
-        <dependency>
-            <groupId>jstl</groupId>
-            <artifactId>jstl</artifactId>
-            <version>${jstl}</version>
-        </dependency>
-        <dependency>
-            <groupId>javax.servlet</groupId>
-            <artifactId>servlet-api</artifactId>
-            <version>${javax.servlet}</version>
-        </dependency>
 
         <dependency>
             <groupId>net.sourceforge.jexcelapi</groupId>
             <artifactId>jxl</artifactId>
             <version>2.6.12</version>
-        </dependency>
-
-
-        <dependency>
-            <groupId>junit</groupId>
-            <artifactId>junit</artifactId>
-            <version>4.11</version>
-            <scope>test</scope>
         </dependency>
 
         <dependency>
@@ -75,28 +30,9 @@
         </dependency>
 
         <dependency>
-            <groupId>org.yaml</groupId>
-            <artifactId>snakeyaml</artifactId>
-            <version>1.14</version>
-        </dependency>
-
-
-        <dependency>
             <groupId>org.springframework</groupId>
             <artifactId>spring-core</artifactId>
             <version>4.1.1.RELEASE</version>
-        </dependency>
-        <dependency>
-            <groupId>com.alibaba</groupId>
-            <artifactId>druid</artifactId>
-            <version>1.0.9</version>
-        </dependency>
-
-        <dependency>
-            <groupId>io.github.gefangshuai</groupId>
-            <artifactId>wincn-commons</artifactId>
-            <version>1.0</version>
-            <type>pom</type>
         </dependency>
 
         <dependency>
@@ -105,7 +41,6 @@
             <version>${wfinal.version}</version>
         </dependency>
     </dependencies>
-
 
     <build>
         <plugins>
