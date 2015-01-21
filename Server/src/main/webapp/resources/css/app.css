@@ -1,0 +1,41 @@
+.dropdown:hover .dropdown-menu {
+    display: block;
+}
+
+body {
+    font-family: "微软雅黑";
+}
+.sidebar {
+    margin-top: 70px;
+}
+.sidebar .nav-second-level li a {
+    font-size: 16px;
+}
+.navbar-brand {
+    font-size: 28px;
+}
+.nav>li>a {
+    padding: 15px;
+    font-size: 18px;
+    color: #777;
+}
+
+label.error {
+    font-weight: bold;
+    font-size: 12px;
+    color: red;
+    padding: 2px 8px;
+    margin-top: 2px;
+}
+
+footer{
+    background: #1D1F21;
+    color: white;
+}
+table{
+    font-size: 14px;
+}
+.hander {
+    cursor: pointer;
+}
+

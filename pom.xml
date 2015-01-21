@@ -1,0 +1,34 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+    <groupId>com.yuansewenhua</groupId>
+    <artifactId>EMenuServer</artifactId>
+    <packaging>pom</packaging>
+    <version>1.0-SNAPSHOT</version>
+    <modules>
+        <module>Server</module>
+        <module>wfinal-core</module>
+    </modules>
+    <name>EMenuServer Maven Webapp</name>
+    <url>http://maven.apache.org</url>
+    <properties>
+        <jfinal>1.9</jfinal>
+        <jfinal-ext>3.1.2</jfinal-ext>
+        <wfinal.version>1.0.5</wfinal.version>
+        <commons-io>2.4</commons-io>
+        <jstl>1.2</jstl>
+        <javax.servlet>2.5</javax.servlet>
+        <java.version>1.7</java.version>
+    </properties>
+
+    <repositories>
+        <repository>
+            <id>haoch-maven-snapshot-repository</id>
+            <name>haoch-maven-snapshot-repository</name>
+            <url>https://raw.github.com/gefangshuai/maven/master/</url>
+        </repository>
+
+    </repositories>
+
+
+</project>

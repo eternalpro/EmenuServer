@@ -1,0 +1,65 @@
+# the app Serialization
+title: 极智菜单系统
+version: v0.2
+menus:
+  - title: 餐厅概况
+    url: /admin
+    flag: index
+    faIcon: fa fa-dashboard fa-fw
+    roles:
+      - Manager
+  - title: 菜品管理
+    faIcon: fa fa-cutlery fa-fw
+    roles:
+      - Manager
+      - Chef
+    subMenus:
+      - title: 菜品维护
+        url: /admin/foods
+        flag: foods
+        faIcon: fa fa-cutlery fa-fw
+      - title: 菜类维护
+        url: /admin/foods/type
+        flag: foodstype
+        faIcon: fa fa-list fa-fw
+  - title: 酒水管理
+    url: /admin/drinks
+    faIcon: fa fa-beer fa-fw
+    roles:
+      - Manager
+      - Chef
+    subMenus:
+      - title: 酒水维护
+        url: /admin/drinks
+        flag: drinks
+        faIcon: fa fa-beer fa-fw
+      - title: 酒类维护
+        url: /admin/drinks/type
+        flag: drinkstype
+        faIcon: fa fa-list fa-fw
+  - title: 订单管理
+    url: /admin/orders
+    flag: orders
+    faIcon: fa fa-edit fa-fw
+    roles:
+      - Manager
+  - title: 统计查询
+    url: /admin/statistics
+    flag: statistics
+    faIcon: fa fa-bar-chart-o fa-fw
+    roles:
+      - Manager
+  - title: 系统设定
+    flag: settings
+    faIcon: fa fa-wrench fa-fw
+    roles:
+      - Manager
+    subMenus:
+      - title: 用户管理
+        url: /admin/settings/users
+        flag: users
+        faIcon: fa fa-user fa-fw
+      - title: 参数设置
+        url: /admin/settings/systems
+        flag: systems
+        faIcon: fa fa-globe fa-fw
