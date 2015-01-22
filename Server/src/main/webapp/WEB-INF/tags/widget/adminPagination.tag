@@ -1,5 +1,5 @@
 <%@tag pageEncoding="UTF-8" %>
-<%@ include file="../../../taglibs.jsp" %>
+<%@ include file="../../taglibs.jsp" %>
 <%@attribute name="page" type="com.jfinal.plugin.activerecord.Page" required="true"%>
 <div class="col-md-8">
     <nav>

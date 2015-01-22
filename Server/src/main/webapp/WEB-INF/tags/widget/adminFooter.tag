@@ -1,5 +1,5 @@
 <%@tag pageEncoding="UTF-8" %>
-<%@ include file="../../../taglibs.jsp" %>
+<%@ include file="../../taglibs.jsp" %>
 <%@ attribute name="modal" type="java.lang.Boolean" description="是否包含modal" %>
 <%@attribute name="modalclass" type="java.lang.String" required="false" %>
 <footer style="background: #1D1F21">

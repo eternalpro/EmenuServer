@@ -1,5 +1,5 @@
 <%@tag pageEncoding="UTF-8" %>
-<%@ include file="../../../taglibs.jsp" %>
+<%@ include file="../../taglibs.jsp" %>
 <%@ attribute name="title" type="java.lang.String" description="页面标题" %>
 <%@ attribute name="faIcon" type="java.lang.String" description="菜单图标" %>
 <%@ attribute name="menu" type="java.lang.String" description="页面当前菜单" %>

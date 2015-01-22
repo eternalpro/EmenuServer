@@ -1,5 +1,5 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<%@ include file="../../../../../taglibs.jsp" %>
+<%@ include file="../../../../taglibs.jsp" %>
 <layout:adminLayout title="菜类维护" menu="foodstype" faIcon="fa-list" modal="true" paged="false">
 
     <jsp:attribute name="main">

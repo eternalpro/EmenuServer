@@ -1,5 +1,5 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<%@ include file="../../../../../taglibs.jsp" %>
+<%@ include file="../../../../taglibs.jsp" %>
 <layout:adminLayout title="参数管理" menu="systems" faIcon="fa-globe" modal="true" paged="false">
     <jsp:attribute name="css">
         <link rel="stylesheet" href="${ctx}/resources/umeditor/themes/default/css/umeditor.min.css"/>

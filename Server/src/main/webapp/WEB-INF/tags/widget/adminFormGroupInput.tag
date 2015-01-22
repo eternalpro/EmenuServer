@@ -1,5 +1,5 @@
 <%@tag pageEncoding="UTF-8"  %>
-<%@ include file="../../../taglibs.jsp" %>
+<%@ include file="../../taglibs.jsp" %>
 <%@attribute name="inputType" type="java.lang.String" required="true" description="input type 属性" %>
 <%@attribute name="inputId" type="java.lang.String" required="true" description="input id 属性" %>
 <%@attribute name="inputTitle" type="java.lang.String" required="true" description="标题 属性" %>

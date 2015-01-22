@@ -1,5 +1,5 @@
 <%@tag pageEncoding="UTF-8"  %>
-<%@ include file="../../../taglibs.jsp" %>
+<%@ include file="../../taglibs.jsp" %>
 <%@attribute name="paged" type="java.lang.Boolean" required="true"%>
 <!-- jQuery -->
 <script src="${ctx}/resources/js/jquery.js"></script>

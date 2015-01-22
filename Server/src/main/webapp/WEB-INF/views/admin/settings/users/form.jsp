@@ -1,5 +1,5 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<%@ include file="../../../../../taglibs.jsp" %>
+<%@ include file="../../../../taglibs.jsp" %>
 <form role="form" action="${ctx}/admin/settings/users/save" id="userForm" method="post">
     <div class="modal-header">
         <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×

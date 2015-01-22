@@ -1,5 +1,5 @@
 <%@tag pageEncoding="UTF-8"  %>
-<%@ include file="../../../taglibs.jsp" %>
+<%@ include file="../../taglibs.jsp" %>
 <%@attribute name="textareaId" type="java.lang.String" required="true" description="textarea id 属性" %>
 <%@attribute name="textareaTitle" type="java.lang.String" required="true" description="标题 属性" %>
 <%@attribute name="textareaClass" type="java.lang.String" required="true" description="textarea class 属性" %>

@@ -1,5 +1,5 @@
 <%@tag pageEncoding="UTF-8"  %>
-<%@ include file="../../../taglibs.jsp" %>
+<%@ include file="../../taglibs.jsp" %>
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta http-equiv="pragma" content="no-cache" />

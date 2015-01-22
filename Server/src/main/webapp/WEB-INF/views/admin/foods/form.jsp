@@ -1,5 +1,5 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<%@ include file="../../../../taglibs.jsp" %>
+<%@ include file="../../../taglibs.jsp" %>
 <form role="form" action="${ctx}/admin/foods/save" id="foodForm" method="post" enctype="multipart/form-data">
     <div class="modal-header">
         <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×
@@ -29,9 +29,9 @@
                 <widget:adminFormGroupInput inputType="text"
                                             inputId="name"
                                             inputTitle="名称"
-                                            inputClass="form-control {required: true, minlength: 2, maxlength: 10}"
+                                            inputClass="form-control {required: true, minlength: 2, maxlength: 7}"
                                             inputName="food.name"
-                                            inputPlaceholder="输入菜品名称,2~10个字符"
+                                            inputPlaceholder="输入菜品名称,2~7个字符"
                                             inputValue="${food.name}"/>
 
                 <widget:adminFormGroupInput inputType="text"

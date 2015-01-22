@@ -1,5 +1,5 @@
 <%@tag pageEncoding="UTF-8" %>
-<%@ include file="../../../taglibs.jsp" %>
+<%@ include file="../../taglibs.jsp" %>
 <%@attribute name="currentMenu" type="java.lang.String" required="true" %>
 <div class="navbar-default sidebar" role="navigation">
 

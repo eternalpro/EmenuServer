@@ -1,5 +1,5 @@
 <%@tag pageEncoding="UTF-8"  %>
-<%@ include file="../../../taglibs.jsp" %>
+<%@ include file="../../taglibs.jsp" %>
 <!-- Bootstrap Core CSS -->
 <link href="${ctx}/resources/css/bootstrap.min.css" rel="stylesheet">
 
