@@ -1,14 +1,12 @@
-package com.yuansewenhua.net.handler;
+package com.yuansewenhua;
 
-import com.yuansewenhua.MessageObject;
 import org.apache.mina.core.service.IoHandlerAdapter;
 import org.apache.mina.core.session.IoSession;
 
 /**
- * 服务端处理会话
- * Created by fangshuai on 2015-01-23-0023.
+ * Created by fangshuai on 2015-01-24-0024.
  */
-public class ServerHandler extends IoHandlerAdapter {
+public class ClinetHandler extends IoHandlerAdapter {
     @Override
     public void messageSent(IoSession session, Object message) throws Exception {
         System.out.println("messageSent");
@@ -16,9 +14,8 @@ public class ServerHandler extends IoHandlerAdapter {
 
     @Override
     public void messageReceived(IoSession session, Object message) throws Exception {
-        System.out.println(message);
-        session.close(true);
         System.out.println("messageReceived");
+        System.out.println(message);
     }
 
     @Override
@@ -34,11 +31,12 @@ public class ServerHandler extends IoHandlerAdapter {
 
     @Override
     public void sessionOpened(IoSession session) throws Exception {
-        System.out.println("sessionOpened");
+
     }
 
     @Override
     public void sessionCreated(IoSession session) throws Exception {
+        session.write("1111");
         System.out.println("sessionCreated");
     }
 }

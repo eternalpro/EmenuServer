@@ -55,6 +55,6 @@ public class ServerInstance {
     }
 
     public static void main(String[] args) throws IOException {
-        ServerInstance.getInstance(80).start();
+        ServerInstance.getInstance(8899).start();
     }
 }

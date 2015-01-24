@@ -18,7 +18,7 @@ public class PrintTest {
     @Test
     public void printBaoSong() throws IOException {
         Socket client = new java.net.Socket();
-        client.connect(new InetSocketAddress("192.168.123.100", 9100), 5000); // 创建一个 socket
+        client.connect(new InetSocketAddress("192.168.31.200", 9100), 5000); // 创建一个 socket
         OutputStream output = client.getOutputStream();// 创建输入输出数据流
         output.write(new byte[]{0x1B, 0x32}); // 默认行间距
         // 大标题
