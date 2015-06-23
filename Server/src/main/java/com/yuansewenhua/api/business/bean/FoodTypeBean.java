@@ -3,7 +3,7 @@ package com.yuansewenhua.api.business.bean;
 /**
  * Created by gefangshuai on 2015/6/23.
  */
-public class DrinkTypeBean {
+public class FoodTypeBean {
     private int id;
     private String title;
 
@@ -23,10 +23,10 @@ public class DrinkTypeBean {
         this.title = title;
     }
 
-    public DrinkTypeBean() {
+    public FoodTypeBean() {
     }
 
-    public DrinkTypeBean(int id, String title) {
+    public FoodTypeBean(int id, String title) {
         this.id = id;
         this.title = title;
     }

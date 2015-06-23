@@ -1,9 +1,5 @@
 package com.yuansewenhua.api.business.bean;
 
-import com.yuansewenhua.business.drinks.model.Drinks;
-import com.yuansewenhua.utils.AppUtils;
-
-import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -119,25 +115,6 @@ public class DrinkBean {
         this.priceAndUnits = priceAndUnits;
     }
 
-    public static List<DrinkBean> copy(List<Drinks> drinks) {
-        List<DrinkBean> drinkBeans = new ArrayList<>();
-        for (Drinks drink : drinks) {
-            DrinkBean drinkBean = new DrinkBean(
-                    drink.getInt("id"),
-                    drink.getStr("name"),
-                    drink.getStr("smallimagepath"),
-                    drink.getStr("bigimagepath"),
-                    drink.getBoolean("cancold"),
-                    drink.getBoolean("canhot"),
-                    drink.getBoolean("havesugar"),
-                    Integer.parseInt(drink.getStr("clickcount")),
-                    drink.getStr("typetitle"),
-                    AppUtils.getPriceAndUnit(drink.getStr("price"), drink.getStr("sellunit"))
-            );
-            drinkBeans.add(drinkBean);
-        }
-        return drinkBeans;
-    }
 
 
 }

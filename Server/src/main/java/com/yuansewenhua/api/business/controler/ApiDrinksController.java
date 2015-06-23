@@ -2,14 +2,11 @@ package com.yuansewenhua.api.business.controler;
 
 import com.jfinal.core.ActionKey;
 import com.jfinal.ext.route.ControllerBind;
-import com.jfinal.plugin.activerecord.DbKit;
 import com.yuansewenhua.api.business.bean.DrinkBean;
 import com.yuansewenhua.api.business.bean.DrinkTypeBean;
 import com.yuansewenhua.api.business.service.ApiDrinksService;
 import com.yuansewenhua.business.drinks.model.Drinks;
-import com.yuansewenhua.business.drinks.model.DrinksType;
 import net.wincn.core.BaseController;
-import net.wincn.core.DBKit;
 
 import java.util.List;
 

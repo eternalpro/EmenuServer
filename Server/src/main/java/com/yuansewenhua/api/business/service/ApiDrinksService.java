@@ -3,6 +3,7 @@ package com.yuansewenhua.api.business.service;
 import com.jfinal.plugin.activerecord.Page;
 import com.yuansewenhua.api.business.bean.DrinkBean;
 import com.yuansewenhua.api.business.bean.DrinkTypeBean;
+import com.yuansewenhua.api.utils.BeanUtils;
 import com.yuansewenhua.business.drinks.model.Drinks;
 import com.yuansewenhua.business.drinks.model.DrinksType;
 import net.wincn.core.DBKit;
@@ -18,7 +19,7 @@ public class ApiDrinksService {
 
     public List<DrinkTypeBean> getDrinkTypeBeans() {
         List<DrinksType> drinksTypes = DrinksType.dbKit.search(new HashMap<String, Object>(), DBKit.ASC);
-        return DrinkTypeBean.copy(drinksTypes);
+        return BeanUtils.copyDrinkTypeBeans(drinksTypes);
 
     }
 
@@ -26,7 +27,7 @@ public class ApiDrinksService {
         Map<String, Object> params = new HashMap<>();
         params.put("drinkstypeid", type);
         Page<Drinks> drinksPage =  Drinks.dbKit.search(page, 9, params, DBKit.ASC);
-        List<DrinkBean> drinkBeans = DrinkBean.copy(drinksPage.getList());
+        List<DrinkBean> drinkBeans = BeanUtils.copyDrinkBeans(drinksPage.getList());
         return drinkBeans;
     }
 }
