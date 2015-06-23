@@ -10,6 +10,8 @@ import org.yaml.snakeyaml.constructor.Constructor;
 
 import java.io.IOException;
 import java.io.InputStream;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Properties;
 
 public class AppUtils {
@@ -88,4 +90,16 @@ public class AppUtils {
         return sort.equals("desc") ? "asc" : "desc";
     }
 
+    public static List<String> getPriceAndUnit(String priceStr, String unitStr) {
+        String[] priceArr = priceStr.split(",");
+        String[] unitArr = unitStr.split(",");
+
+        List<String> priceAndUnits = new ArrayList<>();
+
+        for (int i = 0; i < priceArr.length; i++) {
+            String pAu = priceArr[i] + "/" + unitArr[i];
+            priceAndUnits.add(pAu);
+        }
+        return priceAndUnits;
+    }
 }

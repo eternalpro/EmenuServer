@@ -54,7 +54,6 @@ public class PrintTest {
         output.write(new byte[]{0x0A});
         output.write("4. 麻辣鸡丝      份数：1  单价：58元".getBytes("GBK"));
 
-
         // 页尾
         output.write(new byte[]{0x0A});
         output.write(new byte[]{0x0A});
