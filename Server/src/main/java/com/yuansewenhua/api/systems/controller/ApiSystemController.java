@@ -8,12 +8,16 @@ import com.yuansewenhua.business.settings.systems.model.SystemInfo;
 /**
  * Created by fangshuai on 2014-12-03-0003.
  */
-@ControllerBind(controllerKey = "/system")
+@ControllerBind(controllerKey = "/api/system")
 public class ApiSystemController extends Controller{
     public static Order dao = new Order();
 
     public void key(){
         String key = getPara();
-        renderText(SystemInfo.dao.findById(key).getStr("value"));
+        try {
+            renderText(SystemInfo.dao.findByKey(key).getStr("value"));
+        } catch (Exception e) {
+            renderText("无描述信息！");
+        }
     }
 }
