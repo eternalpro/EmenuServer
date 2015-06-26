@@ -12,6 +12,7 @@ import com.yuansewenhua.business.drinks.model.Drinks;
 import com.yuansewenhua.business.foods.model.Food;
 import com.yuansewenhua.business.foods.model.FoodsType;
 import net.wincn.core.BaseController;
+import org.springframework.util.Assert;
 
 import java.util.List;
 
@@ -30,8 +31,10 @@ public class ApiFoodsController extends BaseController<Food> {
 
     @ActionKey("/api/foods")
     public void getFoods(){
-        int typeId = getParaToInt(0);
-        int page = getParaToInt(1);
+        Integer typeId = getParaToInt(0);
+        Integer page = getParaToInt(1);
+        Assert.notNull(typeId, "食物的类别ID不能为空！");
+        Assert.notNull(page, "页码不能够为空！");
         List<FoodBean> foodBeans = foodService.getFoodBeans(typeId, page);
         renderJson(foodBeans);
     }

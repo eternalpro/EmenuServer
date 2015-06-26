@@ -32,14 +32,13 @@ public class AppConfig extends JFinalConfig {
 		me.setBaseViewPath("/WEB-INF/views/");
 
         // 设置错误页面
-		me.setError404View("/WEB-INF/views/error/404.jsp");
-		me.setError500View("/WEB-INF/views/error/500.jsp");
-
+		me.setError404View("/error/404.jsp");
+		me.setError500View("/error/500.jsp");
 		/**
 		 * 设置未授权
 		 */
-		me.setErrorView(401, "/WEB-INF/views/error/unauthorized.jsp");
-		me.setErrorView(403, "/WEB-INF/views/error/forbid.jsp");
+		//me.setErrorView(401, "/WEB-INF/views/error/unauthorized.jsp");
+		//me.setErrorView(403, "/WEB-INF/views/error/forbid.jsp");
 
 		// 开启debug模式
 		me.setDevMode(true);
