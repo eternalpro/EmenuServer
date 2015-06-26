@@ -57,15 +57,12 @@ public class AdminFoodsController extends BaseController<Food> {
         String largepath = largeFile == null ? "/resources/img/no-cover.jpg" : "/" + "upload" + "/" + PIC_DIR + "/" + largeFile.getFileName();
         Food food = getModel(Food.class);
 
-        if(food.getBoolean("issu") == null)
-            food.set("issu", false);
-
-        if(food.getBoolean("isliang") == null)
-            food.set("isliang", false);
-
-
-        if(food.getBoolean("isqingzhen") == null)
-            food.set("isqingzhen", false);
+//        if(food.getBoolean("issu") == null)
+//            food.set("issu", false);
+//        if(food.getBoolean("isliang") == null)
+//            food.set("isliang", false);
+//        if(food.getBoolean("isqingzhen") == null)
+//            food.set("isqingzhen", false);
 
         FoodsType type = FoodsType.dao.findById(food.getInt("foodstypeid"));
         food.set("typetitle", type.getStr("title"));

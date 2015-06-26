@@ -58,12 +58,12 @@ public class AdminDrinksController extends BaseController<Drinks> {
         String largepath = largeFile == null ? "/resources/img/no-cover.jpg" : "/" + "upload" + "/" + PIC_DIR + "/" + largeFile.getFileName();
         Drinks drinks = getModel(Drinks.class);
 
-        if (drinks.getBoolean("havesugar") == null)
-            drinks.set("havesugar", false);
-        if (drinks.getBoolean("cancold") == null)
-            drinks.set("cancold", false);
-        if (drinks.getBoolean("canhot") == null)
-            drinks.set("canhot", false);
+//        if (drinks.getBoolean("havesugar") == null)
+//            drinks.set("havesugar", false);
+//        if (drinks.getBoolean("cancold") == null)
+//            drinks.set("cancold", false);
+//        if (drinks.getBoolean("canhot") == null)
+//            drinks.set("canhot", false);
 
         String[] prices = getParaValues("prices");
         String[] sellunits = getParaValues("sellunits");

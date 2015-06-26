@@ -6,6 +6,7 @@ import com.alibaba.druid.wall.WallFilter;
 import com.jfinal.config.*;
 import com.jfinal.ext.plugin.tablebind.AutoTableBindPlugin;
 import com.jfinal.ext.route.AutoBindRoutes;
+import com.jfinal.plugin.activerecord.dialect.MysqlDialect;
 import com.jfinal.plugin.activerecord.dialect.PostgreSqlDialect;
 import com.jfinal.plugin.druid.DruidPlugin;
 import com.jfinal.render.ViewType;
@@ -66,13 +67,13 @@ public class AppConfig extends JFinalConfig {
 		DruidPlugin dPlugin = new DruidPlugin(appProperties.getProperty("jdbc.url"), appProperties.getProperty("jdbc.username"), appProperties.getProperty("jdbc.password"), appProperties.getProperty("jdbc.driver"));
 		dPlugin.addFilter(new StatFilter());
 		WallFilter wall = new WallFilter();
-		wall.setDbType(JdbcConstants.POSTGRESQL);
+		wall.setDbType(JdbcConstants.MYSQL);
 		dPlugin.addFilter(wall);
 		me.add(dPlugin);
 
 		// 添加自动绑定model与表插件
 		AutoTableBindPlugin autoTableBindPlugin = new AutoTableBindPlugin(dPlugin);
-        autoTableBindPlugin.setDialect(new PostgreSqlDialect());
+        autoTableBindPlugin.setDialect(new MysqlDialect());
         autoTableBindPlugin.setShowSql(true);
 		me.add(autoTableBindPlugin);
 

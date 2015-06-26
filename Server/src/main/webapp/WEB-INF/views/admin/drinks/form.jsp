@@ -89,21 +89,21 @@
 
                     <div class="checkbox">
                         <label>
-                            <input type="checkbox" name="drinks.canhot" value="true"
-                                   <c:if test="${drinks.canhot}">checked </c:if> > <span class="text-danger">可加热</span>
+                            <input type="checkbox" name="drinks.canhot" value="t"
+                                   <c:if test="${drinks.canhot eq 't'}">checked </c:if> > <span class="text-danger">可加热</span>
                         </label>
                     </div>
                     <div class="checkbox">
                         <label>
-                            <input type="checkbox" name="drinks.cancold" value="true"
-                                   <c:if test="${drinks.cancold}">checked </c:if> > <span
+                            <input type="checkbox" name="drinks.cancold" value="t"
+                                   <c:if test="${drinks.cancold eq 't'}">checked </c:if> > <span
                                 class="text-primary">冰镇</span>
                         </label>
                     </div>
                     <div class="checkbox">
                         <label>
-                            <input type="checkbox" name="drinks.havesugar" value="true"
-                                   <c:if test="${drinks.havesugar}">checked </c:if>
+                            <input type="checkbox" name="drinks.havesugar" value="t"
+                                   <c:if test="${drinks.havesugar eq 't'}">checked </c:if>
                                    <c:if test="${empty(drinks)}">checked</c:if> >
                             <span class="text-primary">含糖</span>
                         </label>

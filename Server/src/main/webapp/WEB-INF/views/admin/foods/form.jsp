@@ -69,22 +69,22 @@
 
                     <div class="checkbox">
                         <label>
-                            <input type="checkbox" name="food.issu" value="true"
-                                   <c:if test="${food.issu}">checked </c:if> > <span class="text-danger">素菜</span>
+                            <input type="checkbox" name="food.issu" value="t"
+                                   <c:if test="${food.issu eq 't'}">checked </c:if> > <span class="text-danger">素菜</span>
                         </label>
                     </div>
 
                     <div class="checkbox">
                         <label>
-                            <input type="checkbox" name="food.isqingzhen" value="true"
-                                   <c:if test="${food.isqingzhen}">checked </c:if> > <span
+                            <input type="checkbox" name="food.isqingzhen" value="t"
+                                   <c:if test="${food.isqingzhen eq 't'}">checked </c:if> > <span
                                 class="text-primary">清真</span>
                         </label>
                     </div>
                     <div class="checkbox">
                         <label>
-                            <input type="checkbox" name="food.isliang" value="true"
-                                   <c:if test="${food.isliang}">checked </c:if> > <span
+                            <input type="checkbox" name="food.isliang" value="t"
+                                   <c:if test="${food.isliang eq 't'}">checked </c:if> > <span
                                 class="text-default">凉菜</span>
                         </label>
                     </div>

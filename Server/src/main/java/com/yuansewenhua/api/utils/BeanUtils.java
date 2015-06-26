@@ -67,10 +67,10 @@ public class BeanUtils {
                 food.getStr("flavour"),
                 food.getStr("yongliao"),
                 food.getStr("memo"),
-                food.getBoolean("isqingzhen"),
-                food.getBoolean("issu"),
-                food.getBoolean("isliang"),
-                Integer.parseInt(food.getStr("clickcount")),
+                food.getStr("isqingzhen").equalsIgnoreCase("t"),
+                food.getStr("issu").equalsIgnoreCase("t"),
+                food.getStr("isliang").equalsIgnoreCase("t"),
+                    Integer.parseInt(food.getStr("clickcount")),
                 food.getStr("typetitle"),
                 food.getStr("price")
             );

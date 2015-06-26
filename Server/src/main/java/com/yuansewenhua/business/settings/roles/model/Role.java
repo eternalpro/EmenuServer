@@ -20,7 +20,7 @@ public class Role extends Model<Role>{
      * @return
      */
     public static boolean isEnable(String rolename) {
-        return dao.findFirst("select * from roles where name = ?", rolename).getBoolean("isenable");
+        return dao.findFirst("select * from roles where name = ?", rolename).getStr("isenable").equalsIgnoreCase("t");
     }
 
     public static List<Role> listAll() {
