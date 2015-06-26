@@ -28,6 +28,6 @@ public class Role extends Model<Role>{
     }
 
     public static List<Role> listValid(){
-        return dao.find("select * from roles where isenable=true order by id desc");
+        return dao.find("select * from roles where isenable='t' order by id desc");
     }
 }

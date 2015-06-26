@@ -35,10 +35,10 @@ public class BeanUtils {
                 drink.getStr("name"),
                 drink.getStr("smallimagepath"),
                 drink.getStr("bigimagepath"),
-                drink.getBoolean("cancold"),
-                drink.getBoolean("canhot"),
-                drink.getBoolean("havesugar"),
-                Integer.parseInt(drink.getStr("clickcount")),
+                drink.getStr("cancold").equalsIgnoreCase("t"),
+                drink.getStr("canhot").equalsIgnoreCase("t"),
+                drink.getStr("havesugar").equalsIgnoreCase("t"),
+                    Integer.parseInt(drink.getStr("clickcount")),
                 drink.getStr("typetitle"),
                 AppUtils.getPriceAndUnit(drink.getStr("price"), drink.getStr("sellunit"))
             );
@@ -69,7 +69,7 @@ public class BeanUtils {
                 food.getStr("memo"),
                 food.getStr("isqingzhen").equalsIgnoreCase("t"),
                 food.getStr("issu").equalsIgnoreCase("t"),
-                food.getStr("isliang").equalsIgnoreCase("t"),
+                    food.getStr("isliang").equalsIgnoreCase("t"),
                     Integer.parseInt(food.getStr("clickcount")),
                 food.getStr("typetitle"),
                 food.getStr("price")
