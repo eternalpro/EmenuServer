@@ -9,7 +9,10 @@ import com.yuansewenhua.business.drinks.model.DrinksType;
 import com.yuansewenhua.business.foods.model.Food;
 import com.yuansewenhua.business.foods.model.FoodsType;
 import com.yuansewenhua.utils.AppUtils;
+import org.apache.commons.lang3.StringUtils;
 
+import java.io.UnsupportedEncodingException;
+import java.net.URLEncoder;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -27,20 +30,20 @@ public class BeanUtils {
         return drinkTypeBeans;
     }
 
-    public static List<DrinkBean> copyDrinkBeans(List<Drinks> drinks) {
+    public static List<DrinkBean> copyDrinkBeans(List<Drinks> drinks) throws UnsupportedEncodingException {
         List<DrinkBean> drinkBeans = new ArrayList<>();
         for (Drinks drink : drinks) {
             DrinkBean drinkBean = new DrinkBean(
-                drink.getInt("id"),
-                drink.getStr("name"),
-                drink.getStr("smallimagepath"),
-                drink.getStr("bigimagepath"),
-                drink.getStr("cancold").equalsIgnoreCase("t"),
-                drink.getStr("canhot").equalsIgnoreCase("t"),
-                drink.getStr("havesugar").equalsIgnoreCase("t"),
+                    drink.getInt("id"),
+                    drink.getStr("name"),
+                    URLEncoder.encode(drink.getStr("smallimagepath"), "utf-8").replace("%2F", "/"),
+                    URLEncoder.encode(drink.getStr("bigimagepath"), "utf-8").replace("%2F", "/"),
+                    drink.getStr("cancold").equalsIgnoreCase("t"),
+                    drink.getStr("canhot").equalsIgnoreCase("t"),
+                    drink.getStr("havesugar").equalsIgnoreCase("t"),
                     Integer.parseInt(drink.getStr("clickcount")),
-                drink.getStr("typetitle"),
-                AppUtils.getPriceAndUnit(drink.getStr("price"), drink.getStr("sellunit"))
+                    drink.getStr("typetitle"),
+                    AppUtils.getPriceAndUnit(drink.getStr("price"), drink.getStr("sellunit"))
             );
             drinkBeans.add(drinkBean);
         }
@@ -56,23 +59,23 @@ public class BeanUtils {
         return foodTypeBeans;
     }
 
-    public static List<FoodBean> copyFoodBeans(List<Food> foods) {
+    public static List<FoodBean> copyFoodBeans(List<Food> foods) throws UnsupportedEncodingException {
         List<FoodBean> foodBeans = new ArrayList<>();
         for (Food food : foods) {
             FoodBean foodBean = new FoodBean(
-                food.getInt("id"),
-                food.getStr("name"),
-                food.getStr("smallimagepath"),
-                food.getStr("bigimagepath"),
-                food.getStr("flavour"),
-                food.getStr("yongliao"),
-                food.getStr("memo"),
-                food.getStr("isqingzhen").equalsIgnoreCase("t"),
-                food.getStr("issu").equalsIgnoreCase("t"),
+                    food.getInt("id"),
+                    food.getStr("name"),
+                    URLEncoder.encode(food.getStr("smallimagepath"), "utf-8").replace("%2F", "/"),
+                    URLEncoder.encode(food.getStr("bigimagepath"), "utf-8").replace("%2F", "/"),
+                    food.getStr("flavour"),
+                    food.getStr("yongliao"),
+                    food.getStr("memo"),
+                    food.getStr("isqingzhen").equalsIgnoreCase("t"),
+                    food.getStr("issu").equalsIgnoreCase("t"),
                     food.getStr("isliang").equalsIgnoreCase("t"),
                     Integer.parseInt(food.getStr("clickcount")),
-                food.getStr("typetitle"),
-                food.getStr("price")
+                    food.getStr("typetitle"),
+                    food.getStr("price")
             );
             foodBeans.add(foodBean);
         }
