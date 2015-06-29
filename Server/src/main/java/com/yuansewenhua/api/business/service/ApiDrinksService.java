@@ -8,6 +8,7 @@ import com.yuansewenhua.business.drinks.model.Drinks;
 import com.yuansewenhua.business.drinks.model.DrinksType;
 import net.wincn.core.DBKit;
 
+import java.io.UnsupportedEncodingException;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -23,7 +24,7 @@ public class ApiDrinksService {
 
     }
 
-    public List<DrinkBean> getDrinkBeans(int type, int page) {
+    public List<DrinkBean> getDrinkBeans(int type, int page) throws UnsupportedEncodingException {
         Map<String, Object> params = new HashMap<>();
         params.put("drinkstypeid", type);
         Page<Drinks> drinksPage =  Drinks.dbKit.search(page, 9, params, DBKit.ASC);

@@ -8,6 +8,7 @@ import com.yuansewenhua.api.business.service.ApiDrinksService;
 import com.yuansewenhua.business.drinks.model.Drinks;
 import net.wincn.core.BaseController;
 
+import java.io.UnsupportedEncodingException;
 import java.util.List;
 
 /**
@@ -24,7 +25,7 @@ public class ApiDrinksController extends BaseController<Drinks> {
     }
 
     @ActionKey("/api/drinks")
-    public void getDrinks(){
+    public void getDrinks() throws UnsupportedEncodingException {
         int typeId = getParaToInt(0);
         int page = getParaToInt(1);
         List<DrinkBean> drinkBeans = drinksService.getDrinkBeans(typeId, page);

@@ -14,6 +14,7 @@ import com.yuansewenhua.business.foods.model.FoodsType;
 import net.wincn.core.BaseController;
 import org.springframework.util.Assert;
 
+import java.io.UnsupportedEncodingException;
 import java.util.List;
 
 /**
@@ -30,7 +31,7 @@ public class ApiFoodsController extends BaseController<Food> {
     }
 
     @ActionKey("/api/foods")
-    public void getFoods(){
+    public void getFoods() throws UnsupportedEncodingException {
         Integer typeId = getParaToInt(0);
         Integer page = getParaToInt(1);
         Assert.notNull(typeId, "食物的类别ID不能为空！");
