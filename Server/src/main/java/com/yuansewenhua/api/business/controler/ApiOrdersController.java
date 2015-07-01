@@ -18,10 +18,20 @@ import java.util.List;
 public class ApiOrdersController extends Controller {
     private ApiOrderService orderService = new ApiOrderService();
 
+    /**
+     * 获取订单列表
+     */
     public void list(){
         String pad = getPara();
         Assert.notNull(pad, "pad is not allow null!");
         List<OrderBean> orderBeans = orderService.getNoFinishedByPad(pad);
         renderJson(orderBeans);
+    }
+
+    /**
+     * 添加订单
+     */
+    public void add(){
+
     }
 }

@@ -17,12 +17,12 @@ public class FoodBean {
     private boolean isliang = false;  // 是否凉菜
     private int clickcount = 0; //点击次数
     private String type;    // 类别名称
-    private String price;   //价格
+    private double price;   //价格
 
     public FoodBean() {
     }
 
-    public FoodBean(int id, String name, String smallImagePath, String bigImagePath, String flavour, String yongliao, String memo, boolean isqingzhen, boolean issu, boolean isliang, int clickcount, String type, String price) {
+    public FoodBean(int id, String name, String smallImagePath, String bigImagePath, String flavour, String yongliao, String memo, boolean isqingzhen, boolean issu, boolean isliang, int clickcount, String type, double price) {
         this.id = id;
         this.name = name;
         this.smallImagePath = smallImagePath;
@@ -134,11 +134,11 @@ public class FoodBean {
         this.type = type;
     }
 
-    public String getPrice() {
+    public double getPrice() {
         return price;
     }
 
-    public void setPrice(String price) {
+    public void setPrice(double price) {
         this.price = price;
     }
 }

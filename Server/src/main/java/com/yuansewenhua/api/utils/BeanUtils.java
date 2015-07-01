@@ -7,10 +7,9 @@ import com.yuansewenhua.business.foods.model.Food;
 import com.yuansewenhua.business.foods.model.FoodsType;
 import com.yuansewenhua.business.orders.model.Order;
 import com.yuansewenhua.business.orders.model.OrderItem;
-import com.yuansewenhua.utils.AppUtils;
-import org.apache.commons.lang3.StringUtils;
 
 import java.io.UnsupportedEncodingException;
+import java.math.BigDecimal;
 import java.net.URLEncoder;
 import java.util.ArrayList;
 import java.util.List;
@@ -37,14 +36,14 @@ public class BeanUtils {
                     drink.getStr("name"),
                     URLEncoder.encode(drink.getStr("smallimagepath"), "utf-8").replace("%2F", "/"),
                     URLEncoder.encode(drink.getStr("bigimagepath"), "utf-8").replace("%2F", "/"),
-                    drink.getStr("cancold").equalsIgnoreCase("t"),
-                    drink.getStr("canhot").equalsIgnoreCase("t"),
-                    drink.getStr("havesugar").equalsIgnoreCase("t"),
-                    Integer.parseInt(drink.getStr("clickcount")),
+                    "t".equalsIgnoreCase(drink.getStr("cancold")),
+                    "t".equalsIgnoreCase(drink.getStr("canhot")),
+                    "t".equalsIgnoreCase(drink.getStr("havesugar")),
+                    drink.getInt("clickcount"),
                     drink.getStr("typetitle"),
                     drink.getStr("sellunit"),
                     drink.getDouble("price")
-                    );
+            );
             drinkBeans.add(drinkBean);
         }
         return drinkBeans;
@@ -70,12 +69,12 @@ public class BeanUtils {
                     food.getStr("flavour"),
                     food.getStr("yongliao"),
                     food.getStr("memo"),
-                    food.getStr("isqingzhen").equalsIgnoreCase("t"),
-                    food.getStr("issu").equalsIgnoreCase("t"),
-                    food.getStr("isliang").equalsIgnoreCase("t"),
-                    Integer.parseInt(food.getStr("clickcount")),
+                    "t".equalsIgnoreCase(food.getStr("isqingzhen")),
+                    "t".equalsIgnoreCase(food.getStr("issu")),
+                    "t".equalsIgnoreCase(food.getStr("isliang")),
+                    food.getInt("clickcount"),
                     food.getStr("typetitle"),
-                    food.getStr("price")
+                    food.getDouble("price")
             );
             foodBeans.add(foodBean);
         }
@@ -85,6 +84,7 @@ public class BeanUtils {
 
     /**
      * 复制order对象值
+     *
      * @param orders
      * @return
      */
