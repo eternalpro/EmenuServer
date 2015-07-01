@@ -4,6 +4,8 @@ import com.jfinal.ext.plugin.tablebind.TableBind;
 import com.jfinal.plugin.activerecord.Model;
 import net.wincn.core.DBKit;
 
+import java.util.List;
+
 /**
  * Created by fangshuai on 2014-11-11-0011.
  */
@@ -11,4 +13,18 @@ import net.wincn.core.DBKit;
 public class Order extends Model<Order>{
     public static Order dao = new Order();
     public static DBKit<Order> dbKit = new DBKit(dao);
+
+    private List<OrderItem> orderItems;
+
+    public List<OrderItem> getOrderItems() {
+        return orderItems;
+    }
+
+    public void setOrderItems(List<OrderItem> orderItems) {
+        this.orderItems = orderItems;
+    }
+
+    public List<Order> findNoFinishedByPad(String pad) {
+        return dao.find("select * from orders t where t.fromwhichpad = ? and t.status <> '2'", pad);
+    }
 }

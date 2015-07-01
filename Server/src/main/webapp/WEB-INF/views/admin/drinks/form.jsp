@@ -34,55 +34,25 @@
                                             inputPlaceholder="输入酒水名称,2~10个字符"
                                             inputValue="${drinks.name}"/>
 
-                <c:choose>
-                    <c:when test="${!empty(drinks)}">
-                        <c:set var="prices" value="${fn:split(drinks.price, ',')}"/>
-                        <c:set var="sellunits" value="${fn:split(drinks.sellunit, ',')}"/>
-                        <c:forEach var="price" items="${prices}" varStatus="i">
-                            <div class="row">
-                                <div class="form-group col-xs-5">
-                                    <label>价格：</label>
-                                    <input type="text" class="form-control {required: true, decimal: 2}"
-                                           name="prices"
-                                           placeholder="保留2位小数"
-                                           value="${price}">
-                                </div>
-                                <div class="form-group col-xs-4">
-                                    <label>单位：</label>
-                                    <input type="text" class="form-control"
-                                           name="sellunits"
-                                           value="${sellunits[i.index]}" placeholder="默认“瓶”">
-                                </div>
-                                <a class="btn btn-default add-price-item" style="margin-top: 25px"><i
-                                        class="fa fa-plus"></i></a>
-                                <a class="btn btn-default remove-price-item" style="margin-top: 25px"><i
-                                        class="fa fa-minus"></i></a>
-                            </div>
-                        </c:forEach>
-                    </c:when>
-                    <c:otherwise>
                         <div class="row">
                             <div class="form-group col-xs-5">
                                 <label>价格：</label>
                                 <input type="text" class="form-control {required: true, decimal: 2}"
-                                       name="prices"
+                                       name="drinks.price"
                                        placeholder="保留2位小数"
                                        value="${drinks.price}">
                             </div>
                             <div class="form-group col-xs-4">
                                 <label>单位：</label>
                                 <input type="text" class="form-control" placeholder="默认“瓶”"
-                                       name="sellunits"
+                                       name="drinks.sellunit"
                                        value="${drinks.sellunit}">
                             </div>
-                            <a class="btn btn-default add-price-item" style="margin-top: 25px"><i
-                                    class="fa fa-plus"></i></a>
-                            <a class="btn btn-default remove-price-item" style="margin-top: 25px"><i
-                                    class="fa fa-minus"></i></a>
+                            <%--<a class="btn btn-default add-price-item" style="margin-top: 25px"><i--%>
+                                    <%--class="fa fa-plus"></i></a>--%>
+                            <%--<a class="btn btn-default remove-price-item" style="margin-top: 25px"><i--%>
+                                    <%--class="fa fa-minus"></i></a>--%>
                         </div>
-                    </c:otherwise>
-                </c:choose>
-
 
                 <div class="form-group">
                     <label>其它属性(请根据此酒水特征勾选相关属性)：</label>

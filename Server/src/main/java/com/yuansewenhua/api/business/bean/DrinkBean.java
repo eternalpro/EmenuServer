@@ -16,7 +16,8 @@ public class DrinkBean {
     private boolean haveSugar = false;  // 是否加糖
     private int clickcount = 0; //点击次数
     private String type;    // 类别名称
-    private List<String> priceAndUnits; // 价格及单位
+    private String unit; // 单位
+    private double price;   // 单价
 
     public int getId() {
         return id;
@@ -90,20 +91,28 @@ public class DrinkBean {
         this.type = type;
     }
 
-    public List<String> getPriceAndUnits() {
-        return priceAndUnits;
+    public String getUnit() {
+        return unit;
     }
 
-    public void setPriceAndUnits(List<String> priceAndUnits) {
-        this.priceAndUnits = priceAndUnits;
+    public void setUnit(String unit) {
+        this.unit = unit;
+    }
+
+    public double getPrice() {
+        return price;
+    }
+
+    public void setPrice(double price) {
+        this.price = price;
     }
 
     public DrinkBean() {
     }
 
 
-    public DrinkBean(int id, String name, String smallImagePath, String bigImagePath, boolean cancold, boolean canhot, boolean haveSugar, int clickcount, String type, List<String> priceAndUnits) {
-        this.id  = id;
+    public DrinkBean(int id, String name, String smallImagePath, String bigImagePath, boolean cancold, boolean canhot, boolean haveSugar, int clickcount, String type, String unit, double price) {
+        this.id = id;
         this.name = name;
         this.smallImagePath = smallImagePath;
         this.bigImagePath = bigImagePath;
@@ -112,9 +121,7 @@ public class DrinkBean {
         this.haveSugar = haveSugar;
         this.clickcount = clickcount;
         this.type = type;
-        this.priceAndUnits = priceAndUnits;
+        this.unit = unit;
+        this.price = price;
     }
-
-
-
 }

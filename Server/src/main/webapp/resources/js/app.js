@@ -108,6 +108,9 @@
                     } else {
                         $.fn.notify({type: 'error', text: data, delay: 3000})
                     }
+                },
+                error: function(data){
+                    alert(data.responseText)
                 }
             });
         }

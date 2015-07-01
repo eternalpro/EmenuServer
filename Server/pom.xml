@@ -45,6 +45,12 @@
             <artifactId>wfinal-core</artifactId>
             <version>${wfinal.version}</version>
         </dependency>
+        <!--<dependency>
+            <groupId>com.lowagie</groupId>
+            <artifactId>itext</artifactId>
+            <version>2.1.7</version>
+        </dependency>-->
+
     </dependencies>
 
     <build>
@@ -71,7 +77,7 @@
                         </systemProperty>
                     </systemProperties>
                     <stopKey>emenu</stopKey>
-                    <stopPort>7433</stopPort>
+                    <stopPort>7533</stopPort>
                 </configuration>
             </plugin>
 

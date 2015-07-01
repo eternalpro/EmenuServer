@@ -1,13 +1,11 @@
 package com.yuansewenhua.api.utils;
 
-import com.yuansewenhua.api.business.bean.DrinkBean;
-import com.yuansewenhua.api.business.bean.DrinkTypeBean;
-import com.yuansewenhua.api.business.bean.FoodBean;
-import com.yuansewenhua.api.business.bean.FoodTypeBean;
+import com.yuansewenhua.api.business.bean.*;
 import com.yuansewenhua.business.drinks.model.Drinks;
 import com.yuansewenhua.business.drinks.model.DrinksType;
 import com.yuansewenhua.business.foods.model.Food;
 import com.yuansewenhua.business.foods.model.FoodsType;
+import com.yuansewenhua.business.orders.model.Order;
 import com.yuansewenhua.utils.AppUtils;
 import org.apache.commons.lang3.StringUtils;
 
@@ -43,8 +41,9 @@ public class BeanUtils {
                     drink.getStr("havesugar").equalsIgnoreCase("t"),
                     Integer.parseInt(drink.getStr("clickcount")),
                     drink.getStr("typetitle"),
-                    AppUtils.getPriceAndUnit(drink.getStr("price"), drink.getStr("sellunit"))
-            );
+                    drink.getStr("sellunit"),
+                    drink.getDouble("price")
+                    );
             drinkBeans.add(drinkBean);
         }
         return drinkBeans;
@@ -83,4 +82,17 @@ public class BeanUtils {
     }
 
 
+    /**
+     * 复制order对象值
+     * @param orders
+     * @return
+     */
+    public static List<OrderBean> copyOrderTypeBeans(List<Order> orders) {
+        List<OrderBean> orderBeans = new ArrayList<>();
+        for (Order order : orders) {
+            OrderBean orderBean = new OrderBean();
+            orderBeans.add(orderBean);
+        }
+        return orderBeans;
+    }
 }

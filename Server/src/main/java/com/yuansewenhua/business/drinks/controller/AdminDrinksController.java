@@ -65,20 +65,20 @@ public class AdminDrinksController extends BaseController<Drinks> {
 //        if (drinks.getBoolean("canhot") == null)
 //            drinks.set("canhot", false);
 
-        String[] prices = getParaValues("prices");
-        String[] sellunits = getParaValues("sellunits");
+//        String[] prices = getParaValues("prices");
+//        String[] sellunits = getParaValues("sellunits");
+//
+//        drinks.set("price", StringUtils.join(prices, ","));
 
-        drinks.set("price", StringUtils.join(prices, ","));
-
-        String su = "";
-        for (int i = 0; i < prices.length; i++) {
-            String str = "瓶";
-            if (StringUtils.isNoneBlank(sellunits[i]))
-                str = sellunits[i];
-            su = su + str + ",";
-        }
-        su = su.substring(0, su.length() - 1);
-        drinks.set("sellunit", su);
+//        String su = "";
+//        for (int i = 0; i < prices.length; i++) {
+//            String str = "瓶";
+//            if (StringUtils.isNoneBlank(sellunits[i]))
+//                str = sellunits[i];
+//            su = su + str + ",";
+//        }
+//        su = su.substring(0, su.length() - 1);
+//        drinks.set("sellunit", su);
 
         DrinksType type = DrinksType.dao.findById(drinks.getInt("drinkstypeid"));
         drinks.set("typetitle", type.getStr("title"));
