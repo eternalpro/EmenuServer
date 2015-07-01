@@ -16,8 +16,17 @@ public class OrderBean {
     private OrderStatusEnum status = OrderStatusEnum.UNPAY;
     private List<GoodsForOrder> goodsForOrders; // 订单里所有的条目信息
 
+    public OrderBean() {
+    }
 
-
+    public OrderBean(Date createTime, String tableNumber, String fromWhichPad, String waiterName, int peopleNumber, OrderStatusEnum status) {
+        this.createTime = createTime;
+        this.tableNumber = tableNumber;
+        this.fromWhichPad = fromWhichPad;
+        this.waiterName = waiterName;
+        this.peopleNumber = peopleNumber;
+        this.status = status;
+    }
 
     public Date getCreateTime() {
         return createTime;

@@ -13,6 +13,6 @@ public class MainMethod {
 
         p1.doSomething("aaa");
         p2.doSomething();
-
+        String[] strs = new String[]{"aaa", "bbb"};
     }
 }

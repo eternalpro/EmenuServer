@@ -6,6 +6,7 @@ import com.yuansewenhua.business.drinks.model.DrinksType;
 import com.yuansewenhua.business.foods.model.Food;
 import com.yuansewenhua.business.foods.model.FoodsType;
 import com.yuansewenhua.business.orders.model.Order;
+import com.yuansewenhua.business.orders.model.OrderItem;
 import com.yuansewenhua.utils.AppUtils;
 import org.apache.commons.lang3.StringUtils;
 
@@ -90,7 +91,29 @@ public class BeanUtils {
     public static List<OrderBean> copyOrderTypeBeans(List<Order> orders) {
         List<OrderBean> orderBeans = new ArrayList<>();
         for (Order order : orders) {
-            OrderBean orderBean = new OrderBean();
+            OrderBean orderBean = new OrderBean(
+                    order.getDate("createtime"),
+                    order.getStr("tablenumber"),
+                    order.getStr("fromwhichpad"),
+                    order.getStr("waitername"),
+                    order.getInt("peoplenumber"),
+                    OrderStatusEnum.valueOf(order.getStr("status"))
+            );
+            List<GoodsForOrder> goodsForOrders = new ArrayList<>();
+            orderBean.setGoodsForOrders(goodsForOrders);
+
+            for (OrderItem orderItem : order.getOrderItems()) {
+                GoodsForOrder goodsForOrder = new GoodsForOrder();
+                goodsForOrder.setGoodsName(orderItem.getStr("name"));
+                goodsForOrder.setMid(orderItem.getInt("productid"));
+                goodsForOrder.setCount(orderItem.getInt("count"));
+                goodsForOrder.setPrice(orderItem.getDouble("price"));
+                goodsForOrder.setType(GoodsEnum.valueOf(orderItem.getStr("type")));
+                goodsForOrder.setUnit(orderItem.getStr("sellunit"));
+                goodsForOrder.setStatus(orderItem.getInt("status"));
+                goodsForOrders.add(goodsForOrder);
+            }
+
             orderBeans.add(orderBean);
         }
         return orderBeans;

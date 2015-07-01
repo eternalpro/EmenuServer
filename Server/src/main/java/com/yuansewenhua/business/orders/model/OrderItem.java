@@ -17,4 +17,5 @@ public class OrderItem extends Model<OrderItem>{
     public List<OrderItem> listByOrder(int orderId) {
         return dao.find("select * from orderitems t where t.orderid = ?", orderId);
     }
+
 }

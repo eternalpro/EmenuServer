@@ -15,8 +15,10 @@ public class GoodsForOrder {
     private int count = 0;
     //该商品的状态（0：正常；1：追加；-1：取消）
     private int status = 0;
-    //单价: 格式：20/瓶
-    private String price;
+    //单价:
+    private double price = 0;
+    // 单位
+    private String unit;
 
     public long getMid() {
         return mid;
@@ -30,12 +32,20 @@ public class GoodsForOrder {
         return goodsName;
     }
 
-    public String getPrice() {
+    public double getPrice() {
         return price;
     }
 
-    public void setPrice(String price) {
+    public void setPrice(double price) {
         this.price = price;
+    }
+
+    public String getUnit() {
+        return unit;
+    }
+
+    public void setUnit(String unit) {
+        this.unit = unit;
     }
 
     public void setGoodsName(String goodsName) {
