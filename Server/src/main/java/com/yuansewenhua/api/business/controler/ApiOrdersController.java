@@ -2,10 +2,9 @@ package com.yuansewenhua.api.business.controler;
 
 import com.jfinal.core.Controller;
 import com.jfinal.ext.route.ControllerBind;
-import com.yuansewenhua.api.business.bean.DrinkBean;
 import com.yuansewenhua.api.business.bean.OrderBean;
 import com.yuansewenhua.api.business.service.ApiOrderService;
-import com.yuansewenhua.business.orders.model.Order;
+import com.yuansewenhua.api.exception.ObjectSaveFailException;
 import org.springframework.util.Assert;
 
 import java.util.List;
@@ -21,7 +20,7 @@ public class ApiOrdersController extends Controller {
     /**
      * 获取订单列表
      */
-    public void list(){
+    public void list() {
         String pad = getPara();
         Assert.notNull(pad, "pad is not allow null!");
         List<OrderBean> orderBeans = orderService.getNoFinishedByPad(pad);
@@ -31,7 +30,14 @@ public class ApiOrdersController extends Controller {
     /**
      * 添加订单
      */
-    public void add(){
-
+    public void add() {
+        try {
+            String json = getParaMap().values().iterator().next()[0];
+            orderService.saveOrder(json);
+            renderText("true");
+        } catch (ObjectSaveFailException | Exception e) {
+            e.printStackTrace();
+            renderText(e.getMessage());
+        }
     }
 }
