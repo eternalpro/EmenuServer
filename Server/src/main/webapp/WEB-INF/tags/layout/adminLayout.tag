@@ -31,8 +31,8 @@
         </div>
         <div class="row">
             <div class="col-lg-12">
-                <h1 class="page-header  animated bounce" id="xiaoshou"><i
-                        class="fa ${faIcon} fa-fw"></i> ${title}</h1>
+                <h3 class="page-header  animated bounce" id="xiaoshou"><i
+                        class="fa ${faIcon} fa-fw"></i> ${title}</h3>
             </div>
         </div>
         <jsp:invoke fragment="main"/>
