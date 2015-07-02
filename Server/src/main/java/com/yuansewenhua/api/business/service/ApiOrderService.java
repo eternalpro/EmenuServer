@@ -37,33 +37,42 @@ public class ApiOrderService {
 
         Order order = new Order();
         order.set("createtime", new Date());
-        order.set("status", orderBean.getStatus());
+        order.set("status", orderBean.getStatus().toString());
         order.set("tablenumber", orderBean.getTableNumber());
         order.set("fromwhichpad", orderBean.getFromWhichPad());
         order.set("waitername", orderBean.getWaiterName());
         order.set("peoplenumber", orderBean.getPeopleNumber());
         double pricecount = 0;
-        if (order.save()) {
-            for (GoodsForOrder goodsForOrder : orderBean.getGoodsForOrders()) {
-                OrderItem orderItem = new OrderItem();
-                orderItem.set("name", goodsForOrder.getGoodsName());
-                orderItem.set("orderid", order.get("id"));
-                orderItem.set("productid", goodsForOrder.getMid());
-                orderItem.set("count", goodsForOrder.getCount());
-                orderItem.set("type", goodsForOrder.getType());
-                orderItem.set("status", goodsForOrder.getStatus());
-                orderItem.set("price", goodsForOrder.getPrice());
-                if (orderItem.save()) {
-                    pricecount += goodsForOrder.getPrice() + goodsForOrder.getCount();
+        try {
+            try {
+                if (order.save()) {
+                    for (GoodsForOrder goodsForOrder : orderBean.getGoodsForOrders()) {
+                        OrderItem orderItem = new OrderItem();
+                        orderItem.set("name", goodsForOrder.getGoodsName());
+                        orderItem.set("orderid", order.get("id"));
+                        orderItem.set("productid", goodsForOrder.getMid());
+                        orderItem.set("count", goodsForOrder.getCount());
+                        orderItem.set("type", goodsForOrder.getType().toString());
+                        orderItem.set("status", goodsForOrder.getStatus());
+                        orderItem.set("price", goodsForOrder.getPrice());
+                        orderItem.set("sellunit", goodsForOrder.getUnit());
+                        if (orderItem.save()) {
+                            pricecount += goodsForOrder.getPrice() + goodsForOrder.getCount();
+                        } else {
+                            throw new ObjectSaveFailException("[" + goodsForOrder.getGoodsName() + "] 订单条目保存失败！");
+                        }
+                    }
+                    order.set("pricecount", pricecount);
+                    order.update(); // 更新总价信息
                 } else {
-                    throw new ObjectSaveFailException("[" + goodsForOrder.getGoodsName() + "] 订单条目保存失败！");
+                    throw new ObjectSaveFailException("订单信息保存失败！");
                 }
-
+            } catch (Exception e) {
+                order.delete();
+                throw new ObjectSaveFailException(e.getMessage());
             }
-            order.set("pricecount", pricecount);
-            order.update(); // 更新总价信息
-        } else {
-            throw new ObjectSaveFailException("订单信息保存失败！");
+        } catch (Exception e) {
+            throw new ObjectSaveFailException(e.getMessage());
         }
     }
 

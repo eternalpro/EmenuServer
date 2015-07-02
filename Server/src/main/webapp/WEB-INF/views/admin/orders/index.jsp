@@ -37,10 +37,12 @@
                                         </a>
                                     </th>
                                     <th>桌号</th>
+                                    <th>人数</th>
                                     <th>金额</th>
-                                    <th>状态</th>
                                     <th>下单时间</th>
                                     <th>结账时间</th>
+                                    <th>服务员</th>
+                                    <th>状态</th>
                                     <th>操作</th>
                                 </tr>
                                 </thead>
@@ -49,17 +51,20 @@
                                     <tr>
                                         <td>${i.index + 1}</td>
                                         <td>${record.tablenumber}</td>
-                                        <td>${record.pricecount}</td>
-                                        <td>${record.status}</td>
+                                        <td>${record.peoplenumber} 人</td>
+                                        <td>${record.pricecount} 元</td>
                                         <td>
-                                            ${record.createdate}
-                                            ${record.createtime}
+                                            <fmt:formatDate value="${record.createtime}" pattern="yyyy-MM-dd HH:ss:mm"/>
                                         </td>
                                         <td>
                                             ${record.paydate}${record.paytime}
                                         </td>
                                         <td>
-                                            <a class="btn btn-primary btn-sm" href="#" title="订单记录总数：5"> 查看详情 <span class="badge">4</span></a>
+                                            ${record.waitername}
+                                        </td>
+                                        <td><widget:orderStatus status="${record.status}"/> </td>
+                                        <td>
+                                            <a class="btn btn-primary btn-sm" href="#" title="订单记录总数：5"> 详情 <span class="badge">4</span></a>
                                             <a class="btn btn-default btn-sm" href="#"><i class="fa fa-print"></i> 打印</a>
                                         </td>
                                     </tr>

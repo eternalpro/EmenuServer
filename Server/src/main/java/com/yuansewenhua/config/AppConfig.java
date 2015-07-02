@@ -8,6 +8,8 @@ import com.jfinal.ext.plugin.tablebind.AutoTableBindPlugin;
 import com.jfinal.ext.route.AutoBindRoutes;
 import com.jfinal.plugin.activerecord.dialect.MysqlDialect;
 import com.jfinal.plugin.activerecord.dialect.PostgreSqlDialect;
+import com.jfinal.plugin.activerecord.tx.TxByActionMethods;
+import com.jfinal.plugin.activerecord.tx.TxByRegex;
 import com.jfinal.plugin.druid.DruidPlugin;
 import com.jfinal.render.ViewType;
 import com.yuansewenhua.permission.interceptor.AdminInterceptor;
@@ -88,7 +90,9 @@ public class AppConfig extends JFinalConfig {
      */
 	@Override
 	public void configInterceptor(Interceptors me) {
+        me.add(new TxByRegex(".*save.*"));
         me.add(new AdminInterceptor());
+        me.add(new TxByActionMethods("save", "update", "add"));
 //        me.add(new UserInterceptor());
     }
 
