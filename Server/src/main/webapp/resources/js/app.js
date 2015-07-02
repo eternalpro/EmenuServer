@@ -8,7 +8,7 @@
         var url = $this.data('url');
         if (url.indexOf('?') > 0) {  // 包含?
             location.href = url + '&sort=' + sort;
-        }else{
+        } else {
             location.href = url + '?sort=' + sort;
         }
     });
@@ -109,7 +109,7 @@
                         $.fn.notify({type: 'error', text: data, delay: 3000})
                     }
                 },
-                error: function(data){
+                error: function (data) {
                     alert(data.responseText)
                 }
             });
@@ -221,6 +221,34 @@
                 });
             }
         });
-    }
+    };
+    $.fn.toggleSide = {
+        v: 0,
+        fun: {
+            hideSide: function () {
+                $('#sideIcon').removeClass('fa fa-angle-double-left').addClass('fa fa-angle-double-right');
+                $('div.sidebar a>span.stitle').hide();
+                $('.sidebar').css('width', 70);
+                $('#page-wrapper').animate({'margin-left': '70px'}, 300);
+                $.fn.toggleSide.v = 1;
+            },
+            showSide: function () {
+                $('#sideIcon').removeClass('fa fa-angle-double-right').addClass('fa fa-angle-double-left');
+                $('#page-wrapper').animate({'margin-left': '200px'}, 300, function () {
+                    $('.sidebar').css('width', 200);
+                    $('div.sidebar a>span.stitle').show();
+                });
+                $.fn.toggleSide.v = 0;
+            }
+        },
+        toggle: function () {
+            if ($.fn.toggleSide.v == 0) { // 使关闭
+                $.fn.toggleSide.fun.hideSide();
+            } else {      // 使敞开
+                $.fn.toggleSide.fun.showSide();
+            }
+        }
+    };
+
 
 })(jQuery);

@@ -24,7 +24,8 @@
                                     <c:when test="${subMenuCurrent}">
                                         <!-- 下级菜单包含当前菜单，箭头方向向下，下级菜单高亮 -->
                                         <a <c:if test="${currentMenu eq menu.flag}"> class="active" </c:if>
-                                                href="${ctx}${menu.url}"><i class="${menu.faIcon}"></i> ${menu.title}
+                                                href="${ctx}${menu.url}"><i class="${menu.faIcon}"></i>
+                                                <span class="stitle">${menu.title}</span>
                                             <span class="fa pull-right fa-angle-down"></span> </a>
                                         <ul class="nav nav-second-level collapse in" aria-expanded="true">
                                             <c:forEach items="${menu.subMenus}" var="subMenu">
@@ -32,7 +33,7 @@
                                                     <a <c:if
                                                             test="${currentMenu eq subMenu.flag}"> class="active" </c:if>
                                                             href="${ctx}${subMenu.url}"><i
-                                                            class="${subMenu.faIcon}"></i> ${subMenu.title}</a>
+                                                            class="${subMenu.faIcon}"></i> <span class="stitle">${subMenu.title}</span></a>
                                                 </li>
                                             </c:forEach>
                                         </ul>
@@ -40,14 +41,17 @@
                                     <c:otherwise>
                                         <!-- 当前菜单不在下级菜单中 -->
                                         <a <c:if test="${currentMenu eq menu.flag}"> class="active" </c:if>
-                                                href="${ctx}${menu.url}"><i class="${menu.faIcon}"></i> ${menu.title}
+                                                href="${ctx}${menu.url}"><i class="${menu.faIcon}"></i>
+                                            <span class="stitle">${menu.title}</span>
                                             <span class="fa pull-right fa-angle-down"></span> </a>
 
                                         <ul class="nav nav-second-level">
                                             <c:forEach items="${menu.subMenus}" var="subMenu">
                                                 <li>
-                                                    <a href="${ctx}${subMenu.url}"><i
-                                                            class="${subMenu.faIcon}"></i> ${subMenu.title}</a>
+                                                    <a href="${ctx}${subMenu.url}">
+                                                        <i class="${subMenu.faIcon}"></i>
+                                                        <span class="stitle">${subMenu.title}</span>
+                                                    </a>
                                                 </li>
                                             </c:forEach>
                                         </ul>
@@ -57,7 +61,10 @@
                             <c:otherwise>
                                 <!-- 没有下级菜单 -->
                                 <a <c:if test="${currentMenu eq menu.flag}"> class="active" </c:if>
-                                        href="${ctx}${menu.url}"><i class="${menu.faIcon}"></i> ${menu.title} </a>
+                                        href="${ctx}${menu.url}"><i class="${menu.faIcon}"></i>
+                                    <span class="stitle">${menu.title}</span>
+
+                                </a>
 
                             </c:otherwise>
                         </c:choose>

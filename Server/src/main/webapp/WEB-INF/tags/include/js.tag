@@ -60,42 +60,8 @@
     </c:if>
 
     $('#sideSwitch').on('click' ,function(){
-        var toggle = $.cookie('sidestatus');
-        toggle = toggle == 'true'?'false':'true';
-        $.cookie('sidestatus', toggle);
-        toggleSide();
+        $.fn.toggleSide.toggle();
     });
 
-    toggleSide();
-    function toggleSide(){
-        var toggle = $.cookie('sidestatus');
-        if(toggle == 'true'){ // 使关闭
-            hideSide();
-        }else{      // 使敞开
-            showSide();
-        }
-
-    }
-    function hideSide(){
-        $('#sideIcon').removeClass('fa fa-angle-double-left').addClass('fa fa-angle-double-right');
-        $('div.sidebar').hide();
-        $('#page-wrapper').animate({'margin-left': '0px'}, 300);
-    }
-    function showSide() {
-        $('#sideIcon').removeClass('fa fa-angle-double-right').addClass('fa fa-angle-double-left');
-        $('#page-wrapper').animate({'margin-left': '250px'}, 300, function(){
-            $('div.sidebar').show();
-        });
-    }
-    $('#page-wrapper').mouseleave(function(e){
-        if($.cookie('sidestatus') == 'true' && e.pageX <=10){
-            showSide();
-        }
-    });
-    $('#page-wrapper').mouseenter(function(e){
-        if($.cookie('sidestatus') == 'true'){
-            hideSide();
-        }
-    });
 
 </script>

@@ -9,14 +9,14 @@ body {
     margin-top: 70px;
 }
 .sidebar .nav-second-level li a {
-    font-size: 16px;
+    font-size: 14px;
 }
 .navbar-brand {
-    font-size: 28px;
+    font-size: 24px;
 }
 .nav>li>a {
     padding: 15px;
-    font-size: 18px;
+    font-size: 16px;
     color: #777;
 }
 

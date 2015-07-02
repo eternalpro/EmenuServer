@@ -8,16 +8,19 @@
         <div class="row">
             <div class="col-md-12">
                 <div class="well">
-                    <div class="row pad30-r pad10-t">
-                        <form class="form-inline pull-right" role="form" action="${ctx}/admin/foods/${foodstypeid}">
-                            <label class="control-label">起止日期：</label>
-                            <div class="input-group" id="datepicker">
-                                <input type="text" class="form-control datetimepicker" name="start" />
-                                <span class="input-group-addon">-</span>
-                                <input type="text" class="form-control datetimepicker" name="end" />
-                            </div>
-                            <button class="btn btn-primary"><i class="fa fa-search"></i></button>
-                        </form>
+                    <div class="row">
+                        <div class="col-lg-12 pull-right">
+                            <form class="form-inline pull-right" role="form" action="${ctx}/admin/foods/${foodstypeid}">
+                                <label class="control-label">起止日期：</label>
+
+                                <div class="input-group" id="datepicker">
+                                    <input type="text" class="form-control datetimepicker" name="start"/>
+                                    <span class="input-group-addon">-</span>
+                                    <input type="text" class="form-control datetimepicker" name="end"/>
+                                </div>
+                                <button class="btn btn-primary"><i class="fa fa-search"></i></button>
+                            </form>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -32,7 +35,8 @@
                                 <thead>
                                 <tr>
                                     <th>序号
-                                        <a href="#" data-toggle="sort" data-sort="${sort}" data-url="${ctx}/admin/orders">
+                                        <a href="#" data-toggle="sort" data-sort="${sort}"
+                                           data-url="${ctx}/admin/orders">
                                             <i class="fa fa-sort-numeric-${sort} hander"></i>
                                         </a>
                                     </th>
@@ -57,15 +61,17 @@
                                             <fmt:formatDate value="${record.createtime}" pattern="yyyy-MM-dd HH:ss:mm"/>
                                         </td>
                                         <td>
-                                            ${record.paydate}${record.paytime}
+                                                ${record.paydate}${record.paytime}
                                         </td>
                                         <td>
-                                            ${record.waitername}
+                                                ${record.waitername}
                                         </td>
-                                        <td><widget:orderStatus status="${record.status}"/> </td>
+                                        <td><widget:orderStatus status="${record.status}"/></td>
                                         <td>
-                                            <a class="btn btn-primary btn-sm" href="#" title="订单记录总数：5"> 详情 <span class="badge">4</span></a>
-                                            <a class="btn btn-default btn-sm" href="#"><i class="fa fa-print"></i> 打印</a>
+                                            <a class="btn btn-primary btn-xs" href="#" title="订单记录总数：5"> 详情 <span
+                                                    class="badge">4</span></a>
+                                            <a class="btn btn-default btn-xs" href="#"><i class="fa fa-print"></i>
+                                                打印</a>
                                         </td>
                                     </tr>
                                 </c:forEach>
@@ -82,7 +88,7 @@
         <script src="${ctx}/resources/js/bootstrap-datepicker.js"></script>
         <script src="${ctx}/resources/js/locales/bootstrap-datepicker.zh-CN.js"></script>
         <script>
-            (function(){
+            (function () {
                 $('input.datetimepicker').datepicker({
                     format: "yyyy-mm-dd",
                     language: "zh-CN",

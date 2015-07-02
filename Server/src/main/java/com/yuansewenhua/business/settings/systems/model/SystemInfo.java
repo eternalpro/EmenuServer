@@ -15,6 +15,6 @@ public class SystemInfo extends Model<SystemInfo>{
     public static DBKit<SystemInfo> dbKit = new DBKit<>(dao);
 
     public SystemInfo findByKey(String key) {
-        return dao.findFirst("select * from system where key = ?", key);
+        return dao.findFirst("select * from system t where t.key = ?", key);
     }
 }
