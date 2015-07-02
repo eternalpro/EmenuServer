@@ -128,7 +128,6 @@
                                             <c:if test="${food.isliang}">
                                                 <p class="margin15-b"><span class="label label-default">凉菜</span></p>
                                             </c:if>
-
                                         </td>
                                     </tr>
                                 </c:forEach>
@@ -137,7 +136,6 @@
                         </div>
                     </div>
                 </div>
-
             </div>
             <widget:adminPagination page="${pageRecords}"/>
 

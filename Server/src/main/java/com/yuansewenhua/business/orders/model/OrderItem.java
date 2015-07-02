@@ -15,7 +15,7 @@ public class OrderItem extends Model<OrderItem>{
     public static DBKit<OrderItem> dbKit = new DBKit(dao);
 
     public List<OrderItem> listByOrder(int orderId) {
-        return dao.find("select * from orderitems t where t.orderid = ?", orderId);
+        return dao.find("select * from orderitems t where t.orderid = ? and t.status != -1", orderId);
     }
 
 }

@@ -1,7 +1,7 @@
 <%@tag pageEncoding="UTF-8" %>
 <%@ include file="../../taglibs.jsp" %>
 <%@ attribute name="status" type="java.lang.String" description="订单状态" %>
-<div style="margin-top: 5px;">
+<div>
     <c:choose>
         <c:when test="${status eq 'UNPAY'}">
             <span class="label label-danger">未付款</span>

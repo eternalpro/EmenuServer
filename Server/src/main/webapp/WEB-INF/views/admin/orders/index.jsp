@@ -31,47 +31,55 @@
                     </div>
                     <div class="panel-body">
                         <div class="table-responsive">
-                            <table class="table table-hover">
-                                <thead>
-                                <tr>
-                                    <th>序号
-                                        <a href="#" data-toggle="sort" data-sort="${sort}"
-                                           data-url="${ctx}/admin/orders">
-                                            <i class="fa fa-sort-numeric-${sort} hander"></i>
-                                        </a>
-                                    </th>
-                                    <th>桌号</th>
-                                    <th>人数</th>
-                                    <th>金额</th>
-                                    <th>下单时间</th>
-                                    <th>结账时间</th>
-                                    <th>服务员</th>
-                                    <th>状态</th>
-                                    <th>操作</th>
-                                </tr>
-                                </thead>
+                            <table width="100%">
+
                                 <tbody>
                                 <c:forEach items="${records}" var="record" varStatus="i">
                                     <tr>
-                                        <td>${i.index + 1}</td>
-                                        <td>${record.tablenumber}</td>
-                                        <td>${record.peoplenumber} 人</td>
-                                        <td>${record.pricecount} 元</td>
-                                        <td>
-                                            <fmt:formatDate value="${record.createtime}" pattern="yyyy-MM-dd HH:ss:mm"/>
-                                        </td>
-                                        <td>
-                                                ${record.paydate}${record.paytime}
-                                        </td>
-                                        <td>
-                                                ${record.waitername}
-                                        </td>
-                                        <td><widget:orderStatus status="${record.status}"/></td>
-                                        <td>
-                                            <a class="btn btn-primary btn-xs" href="#" title="订单记录总数：5"> 详情 <span
-                                                    class="badge">4</span></a>
-                                            <a class="btn btn-default btn-xs" href="#"><i class="fa fa-print"></i>
-                                                打印</a>
+                                        <td colspan="9">
+                                            <div class="panel panel-default">
+                                                <div class="panel-heading">
+                                                    <table style="width: 100%; font-size: 12px;">
+                                                        <tr>
+                                                            <td width="100"><strong>桌号: </strong>${record.tablenumber}</td>
+                                                            <td width="150">
+                                                                <strong>服务员: </strong>
+                                                                    ${record.waitername}
+                                                            </td>
+                                                            <td width="80"><strong>人数: </strong>${record.peoplenumber} 人</td>
+                                                            <td width="150"><strong>消费金额: </strong>${record.pricecount} 元</td>
+                                                            <td width="200">
+                                                                <strong>下单时间: </strong>
+                                                                <fmt:formatDate value="${record.createtime}"
+                                                                                pattern="yyyy-MM-dd HH:ss:mm"/>
+                                                            </td>
+                                                            <td width="200">
+                                                                <strong>结账时间: </strong>
+                                                                    ${record.paytime}
+                                                            </td>
+                                                            <td width="50"><widget:orderStatus status="${record.status}"/></td>
+                                                            <td width="50">
+                                                                <a class="btn btn-primary btn-xs" href="#"><i
+                                                                        class="fa fa-print"></i>
+                                                                    打印
+                                                                </a>
+                                                            </td>
+                                                        </tr>
+                                                    </table>
+                                                </div>
+                                                <div class="panel-body">
+                                                    <table class="table">
+                                                        <c:forEach items="${record.orderItems}" var="item" varStatus="i">
+                                                            <tr>
+                                                                <td><strong>名称: </strong>${item.name}</td>
+                                                                <td><strong>数量: </strong>${item.count}</td>
+                                                                <td><strong>单价: </strong>${item.price}</td>
+                                                            </tr>
+                                                        </c:forEach>
+
+                                                    </table>
+                                                </div>
+                                            </div>
                                         </td>
                                     </tr>
                                 </c:forEach>
@@ -80,8 +88,8 @@
                         </div>
                     </div>
                 </div>
-
             </div>
+            <widget:adminPagination page="${pageRecords}"/>
         </div>
     </jsp:attribute>
     <jsp:attribute name="js">

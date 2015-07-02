@@ -57,7 +57,7 @@ public class ApiOrderService {
                         orderItem.set("price", goodsForOrder.getPrice());
                         orderItem.set("sellunit", goodsForOrder.getUnit());
                         if (orderItem.save()) {
-                            pricecount += goodsForOrder.getPrice() + goodsForOrder.getCount();
+                            pricecount += goodsForOrder.getPrice() * goodsForOrder.getCount();
                         } else {
                             throw new ObjectSaveFailException("[" + goodsForOrder.getGoodsName() + "] 订单条目保存失败！");
                         }
