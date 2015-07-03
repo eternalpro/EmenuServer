@@ -27,4 +27,12 @@ public class Order extends Model<Order>{
     public List<Order> findNoFinishedByPad(String pad) {
         return dao.find("select * from orders t where t.fromwhichpad = ? and t.status <> '2'", pad);
     }
+
+    public List<Order> findNoFinished(){
+        return dao.find("select * from orders t where t.status <> '2'");
+    }
+
+    public Order findByOrderNo(String orderNo) {
+        return dao.findFirst("select * from orders t where t.orderno = ?", orderNo);
+    }
 }

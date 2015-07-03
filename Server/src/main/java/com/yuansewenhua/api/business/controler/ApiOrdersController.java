@@ -3,14 +3,15 @@ package com.yuansewenhua.api.business.controler;
 import com.jfinal.aop.Before;
 import com.jfinal.core.Controller;
 import com.jfinal.ext.route.ControllerBind;
-import com.jfinal.plugin.activerecord.tx.Tx;
 import com.yuansewenhua.api.business.bean.OrderBean;
 import com.yuansewenhua.api.business.service.ApiOrderService;
+import com.yuansewenhua.api.business.validator.OrderCURDValidator;
 import com.yuansewenhua.api.exception.ObjectSaveFailException;
-import org.apache.commons.io.FileUtils;
+import com.yuansewenhua.api.utils.JsonUtils;
+import org.apache.commons.lang3.StringUtils;
+import org.springframework.core.annotation.Order;
 import org.springframework.util.Assert;
 
-import java.io.File;
 import java.util.List;
 
 /**
@@ -26,22 +27,39 @@ public class ApiOrdersController extends Controller {
      */
     public void list() {
         String pad = getPara();
-        Assert.notNull(pad, "pad is not allow null!");
-        List<OrderBean> orderBeans = orderService.getNoFinishedByPad(pad);
+        List<OrderBean> orderBeans = StringUtils.isNoneBlank(pad) ?
+                orderService.getNoFinishedByPad(pad) : orderService.getNoFinished();
         renderJson(orderBeans);
     }
 
     /**
      * 添加订单
      */
+    @Before(OrderCURDValidator.class)
     public void add() {
         try {
-            String json = getParaMap().values().iterator().next()[0];
+            String json = JsonUtils.getJsonFromController(this);
             orderService.saveOrder(json);
             renderText("true");
         } catch (ObjectSaveFailException | Exception e) {
             e.printStackTrace();
             renderText(e.getMessage());
         }
+    }
+
+    @Before(OrderCURDValidator.class)
+    public void append() {
+        try {
+            String json = JsonUtils.getJsonFromController(this);
+            orderService.appendOrder(json);
+            renderText("true");
+        } catch (ObjectSaveFailException | Exception e) {
+            e.printStackTrace();
+            renderText(e.getMessage());
+        }
+    }
+
+    public void deleteitem(){
+
     }
 }

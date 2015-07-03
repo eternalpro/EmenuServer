@@ -8,6 +8,7 @@ import java.util.List;
  * Created by gefangshuai on 2015/7/1.
  */
 public class OrderBean {
+    private String orderNo;            // 订单编号
     private Date createTime;        // 创建日期
     private String tableNumber;     // 桌号
     private String fromWhichPad;    // 来自哪个终端(pad 唯一标识)
@@ -19,13 +20,22 @@ public class OrderBean {
     public OrderBean() {
     }
 
-    public OrderBean(Date createTime, String tableNumber, String fromWhichPad, String waiterName, int peopleNumber, OrderStatusEnum status) {
+    public OrderBean(String orderNo, Date createTime, String tableNumber, String fromWhichPad, String waiterName, int peopleNumber, OrderStatusEnum status) {
+        this.orderNo = orderNo;
         this.createTime = createTime;
         this.tableNumber = tableNumber;
         this.fromWhichPad = fromWhichPad;
         this.waiterName = waiterName;
         this.peopleNumber = peopleNumber;
         this.status = status;
+    }
+
+    public String getOrderNo() {
+        return orderNo;
+    }
+
+    public void setOrderNo(String orderNo) {
+        this.orderNo = orderNo;
     }
 
     public Date getCreateTime() {

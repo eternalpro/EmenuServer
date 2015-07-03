@@ -12,6 +12,7 @@ import java.io.UnsupportedEncodingException;
 import java.math.BigDecimal;
 import java.net.URLEncoder;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -88,10 +89,11 @@ public class BeanUtils {
      * @param orders
      * @return
      */
-    public static List<OrderBean> copyOrderTypeBeans(List<Order> orders) {
+    public static List<OrderBean> copyOrderBeans(List<Order> orders) {
         List<OrderBean> orderBeans = new ArrayList<>();
         for (Order order : orders) {
             OrderBean orderBean = new OrderBean(
+                    order.getStr("orderno"),
                     order.getDate("createtime"),
                     order.getStr("tablenumber"),
                     order.getStr("fromwhichpad"),
@@ -117,5 +119,40 @@ public class BeanUtils {
             orderBeans.add(orderBean);
         }
         return orderBeans;
+    }
+
+    /**
+     * 复制OrderBean对象到Order
+     * @param orderBean
+     * @return
+     */
+    public static Order copyOrder(OrderBean orderBean) {
+        Order order = new Order();
+        order.set("createtime", new Date());
+        order.set("status", orderBean.getStatus().toString());
+        order.set("tablenumber", orderBean.getTableNumber());
+        order.set("fromwhichpad", orderBean.getFromWhichPad());
+        order.set("waitername", orderBean.getWaiterName());
+        order.set("peoplenumber", orderBean.getPeopleNumber());
+        return order;
+    }
+
+    /**
+     * 复制GoodsForOrder对象
+     * @param orderId
+     * @param goodsForOrder
+     * @return
+     */
+    public static OrderItem copyOrderItem(int orderId, GoodsForOrder goodsForOrder) {
+        OrderItem orderItem = new OrderItem();
+        orderItem.set("name", goodsForOrder.getGoodsName());
+        orderItem.set("orderid", orderId);
+        orderItem.set("productid", goodsForOrder.getMid());
+        orderItem.set("count", goodsForOrder.getCount());
+        orderItem.set("type", goodsForOrder.getType().toString());
+        orderItem.set("status", goodsForOrder.getStatus());
+        orderItem.set("price", goodsForOrder.getPrice());
+        orderItem.set("sellunit", goodsForOrder.getUnit());
+        return orderItem;
     }
 }
