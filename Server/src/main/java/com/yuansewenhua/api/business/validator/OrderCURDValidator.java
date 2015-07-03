@@ -14,7 +14,6 @@ public class OrderCURDValidator extends Validator{
         String json = JsonUtils.getJsonFromController(c);
         if(StringUtils.isBlank(json))
             c.renderText("json is not allow null!");
-
     }
 
     @Override

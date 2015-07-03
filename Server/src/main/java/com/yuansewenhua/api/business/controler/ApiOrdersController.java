@@ -1,15 +1,12 @@
 package com.yuansewenhua.api.business.controler;
 
-import com.jfinal.aop.Before;
 import com.jfinal.core.Controller;
 import com.jfinal.ext.route.ControllerBind;
 import com.yuansewenhua.api.business.bean.OrderBean;
 import com.yuansewenhua.api.business.service.ApiOrderService;
-import com.yuansewenhua.api.business.validator.OrderCURDValidator;
 import com.yuansewenhua.api.exception.ObjectSaveFailException;
 import com.yuansewenhua.api.utils.JsonUtils;
 import org.apache.commons.lang3.StringUtils;
-import org.springframework.core.annotation.Order;
 import org.springframework.util.Assert;
 
 import java.util.List;
@@ -35,31 +32,23 @@ public class ApiOrdersController extends Controller {
     /**
      * 添加订单
      */
-    @Before(OrderCURDValidator.class)
-    public void add() {
-        try {
-            String json = JsonUtils.getJsonFromController(this);
-            orderService.saveOrder(json);
-            renderText("true");
-        } catch (ObjectSaveFailException | Exception e) {
-            e.printStackTrace();
-            renderText(e.getMessage());
-        }
+    public void add() throws ObjectSaveFailException {
+        String json = JsonUtils.getJsonFromController(this);
+        Assert.hasText(json, "json is not allow null");
+        orderService.saveOrder(json);
+        renderText("true");
+
     }
 
-    @Before(OrderCURDValidator.class)
-    public void append() {
-        try {
-            String json = JsonUtils.getJsonFromController(this);
-            orderService.appendOrder(json);
-            renderText("true");
-        } catch (ObjectSaveFailException | Exception e) {
-            e.printStackTrace();
-            renderText(e.getMessage());
-        }
+    public void append() throws ObjectSaveFailException {
+        String json = JsonUtils.getJsonFromController(this);
+        Assert.hasText(json, "json is not allow null");
+        orderService.appendOrder(json);
+        renderText("true");
+
     }
 
-    public void deleteitem(){
+    public void deleteitem() {
 
     }
 }

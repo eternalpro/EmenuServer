@@ -129,6 +129,7 @@ public class BeanUtils {
     public static Order copyOrder(OrderBean orderBean) {
         Order order = new Order();
         order.set("createtime", new Date());
+        order.set("orderno", orderBean.getOrderNo());
         order.set("status", orderBean.getStatus().toString());
         order.set("tablenumber", orderBean.getTableNumber());
         order.set("fromwhichpad", orderBean.getFromWhichPad());

@@ -39,25 +39,33 @@
                                         <td colspan="9">
                                             <div class="panel panel-default">
                                                 <div class="panel-heading">
-                                                    <table style="width: 100%; font-size: 12px;">
+                                                    <table style="width: 100%; font-size: 12px; ">
                                                         <tr>
-                                                            <td width="100"><strong>桌号: </strong>${record.tablenumber}</td>
+                                                            <td width="180"><strong>订单编号: </strong><a href="#"
+                                                                                                      class="toggle-detail">${record.orderno}</a>
+                                                            </td>
+                                                            <td width="60"><strong>桌号: </strong>${record.tablenumber}
+                                                            </td>
                                                             <td width="150">
                                                                 <strong>服务员: </strong>
                                                                     ${record.waitername}
                                                             </td>
-                                                            <td width="80"><strong>人数: </strong>${record.peoplenumber} 人</td>
-                                                            <td width="150"><strong>消费金额: </strong>${record.pricecount} 元</td>
-                                                            <td width="200">
+                                                            <td width="60"><strong>人数: </strong>${record.peoplenumber}
+                                                            </td>
+                                                            <td width="150"><strong>消费金额: </strong>${record.pricecount}
+                                                                元
+                                                            </td>
+                                                            <td width="220">
                                                                 <strong>下单时间: </strong>
                                                                 <fmt:formatDate value="${record.createtime}"
                                                                                 pattern="yyyy-MM-dd HH:ss:mm"/>
                                                             </td>
-                                                            <td width="200">
+                                                            <td width="220">
                                                                 <strong>结账时间: </strong>
                                                                     ${record.paytime}
                                                             </td>
-                                                            <td width="50"><widget:orderStatus status="${record.status}"/></td>
+                                                            <td width="50"><widget:orderStatus
+                                                                    status="${record.status}"/></td>
                                                             <td width="50">
                                                                 <a class="btn btn-primary btn-xs" href="#"><i
                                                                         class="fa fa-print"></i>
@@ -67,17 +75,26 @@
                                                         </tr>
                                                     </table>
                                                 </div>
-                                                <div class="panel-body">
-                                                    <table class="table">
-                                                        <c:forEach items="${record.orderItems}" var="item" varStatus="i">
-                                                            <tr>
-                                                                <td><strong>名称: </strong>${item.name}</td>
-                                                                <td><strong>数量: </strong>${item.count}</td>
-                                                                <td><strong>单价: </strong>${item.price}</td>
-                                                            </tr>
-                                                        </c:forEach>
+                                                <div class="panel-body" style="display: none;">
+                                                    <c:forEach items="${record.orderItems}" var="item" varStatus="i">
+                                                        <div class="col-sm-6 col-md-3">
+                                                            <div class="thumbnail">
+                                                                <img src="${ctx}${item.imagePath}">
+                                                                <div class="caption">
+                                                                    <p>
+                                                                        <widget:productType type="${item.type}"/>
+                                                                        ${item.name}
+                                                                    </p>
 
-                                                    </table>
+                                                                    <p>
+                                                                        <strong>数量: </strong>${item.count}
+                                                                        <strong>单价: </strong><span
+                                                                            class="text-danger">${item.price}</span> 元
+                                                                    </p>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </c:forEach>
                                                 </div>
                                             </div>
                                         </td>
@@ -103,6 +120,12 @@
                     autoclose: true,
                     todayBtn: true
                 });
+
+                $('a.toggle-detail').on('click', function (e) {
+                    e.preventDefault();
+                    var $this = $(this);
+                    $this.closest('.panel-heading').siblings('.panel-body').slideToggle(300);
+                })
             })();
         </script>
     </jsp:attribute>

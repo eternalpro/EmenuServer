@@ -22,7 +22,7 @@ public class ApiOrderService {
      * @param orders
      * @return
      */
-    private List<OrderBean> copyOrders(List<Order> orders) {
+    private List<OrderBean> copyOrderBeans(List<Order> orders) {
         for (Order order : orders) {
             List<OrderItem> orderItems = OrderItem.dao.listByOrder(order.getInt("id"));
             order.setOrderItems(orderItems);
@@ -32,12 +32,12 @@ public class ApiOrderService {
 
     public List<OrderBean> getNoFinishedByPad(String pad) {
         List<Order> orders = Order.dao.findNoFinishedByPad(pad);
-        return copyOrders(orders);
+        return copyOrderBeans(orders);
     }
 
     public List<OrderBean> getNoFinished() {
         List<Order> orders = Order.dao.findNoFinished();
-        return copyOrders(orders);
+        return copyOrderBeans(orders);
 
     }
 

@@ -7,11 +7,11 @@ import com.jfinal.config.*;
 import com.jfinal.ext.plugin.tablebind.AutoTableBindPlugin;
 import com.jfinal.ext.route.AutoBindRoutes;
 import com.jfinal.plugin.activerecord.dialect.MysqlDialect;
-import com.jfinal.plugin.activerecord.dialect.PostgreSqlDialect;
 import com.jfinal.plugin.activerecord.tx.TxByActionMethods;
 import com.jfinal.plugin.activerecord.tx.TxByRegex;
 import com.jfinal.plugin.druid.DruidPlugin;
 import com.jfinal.render.ViewType;
+import com.yuansewenhua.api.interceptor.ExceptionInterceptor;
 import com.yuansewenhua.permission.interceptor.AdminInterceptor;
 import net.wincn.core.AutoTableInfoPlugin;
 
@@ -36,7 +36,7 @@ public class AppConfig extends JFinalConfig {
 
         // 设置错误页面
 		me.setError404View("/error/404.jsp");
-		me.setError500View("/error/500.jsp");
+		//me.setError500View("/error/500.jsp");
 		/**
 		 * 设置未授权
 		 */
@@ -91,9 +91,10 @@ public class AppConfig extends JFinalConfig {
 	@Override
 	public void configInterceptor(Interceptors me) {
         me.add(new TxByRegex(".*save.*"));
-        me.add(new AdminInterceptor());
         me.add(new TxByActionMethods("save", "update", "add"));
 //        me.add(new UserInterceptor());
+        me.add(new AdminInterceptor());
+        me.add(new ExceptionInterceptor());
     }
 
 	@Override

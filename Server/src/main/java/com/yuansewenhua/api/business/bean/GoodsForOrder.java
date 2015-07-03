@@ -13,7 +13,7 @@ public class GoodsForOrder {
     private GoodsEnum type;
     //该商品的数量
     private int count = 0;
-    //该商品的状态（0：正常；1：追加；-1：取消）
+    //该商品的状态（0：正常；1：追加）
     private int status = 0;
     //单价:
     private double price = 0;
