@@ -15,6 +15,7 @@ public class ExceptionInterceptor implements Interceptor {
             try {
                 ai.invoke();
             } catch (Exception e) {
+                e.printStackTrace();
                 String errorMsg = e.getClass().getName() + ": " + e.getMessage();
                 ai.getController().renderError(500, RenderFactory.me().getTextRender(errorMsg));
             }

@@ -27,7 +27,7 @@
             <div class="col-md-12">
                 <div class="panel panel-default">
                     <div class="panel-heading">
-                        <i class="fa fa-list fa-fw"></i> 菜品分类
+                        <i class="fa fa-list fa-fw"></i> 订单列表
                     </div>
                     <div class="panel-body">
                         <div class="table-responsive">
@@ -79,11 +79,14 @@
                                                     <c:forEach items="${record.orderItems}" var="item" varStatus="i">
                                                         <div class="col-sm-6 col-md-3">
                                                             <div class="thumbnail">
-                                                                <img src="${ctx}${item.imagePath}">
+                                                                <img src="${ctx}${item.imagePath}" style="height: 150px;">
                                                                 <div class="caption">
                                                                     <p>
                                                                         <widget:productType type="${item.type}"/>
                                                                         ${item.name}
+                                                                        <c:if test="${item.status eq 1}">
+                                                                        <span class="label label-success">+</span>
+                                                                        </c:if>
                                                                     </p>
 
                                                                     <p>

@@ -73,13 +73,12 @@ public class ApiOrderService {
     /**
      * 保存订单信息
      *
-     * @param json
+     * @param orderBean
      * @throws ObjectSaveFailException
      */
-    public void saveOrder(String json) throws ObjectSaveFailException {
-
-        OrderBean orderBean = JsonUtils.getObjectFromJson(json, OrderBean.class);
+    public void saveOrder(OrderBean orderBean) throws ObjectSaveFailException {
         Order order = BeanUtils.copyOrder(orderBean);
+
         try {
             try {
                 if (order.save()) {
@@ -101,19 +100,31 @@ public class ApiOrderService {
         }
     }
 
-    public void appendOrder(String json) throws ObjectSaveFailException {
+    public void appendOrder(String json, Order appendOrder, OrderBean orderBean) throws ObjectSaveFailException {
         try {
-            OrderAppendBean orderAppendBean = JsonUtils.getObjectFromJson(json, OrderAppendBean.class);
-            Order order = Order.dao.findByOrderNo(orderAppendBean.getOrderNo());
-            if (order == null)
-                throw new ObjectSaveFailException("此订单信息不存在！");
-            OrderItem orderItem = BeanUtils.copyOrderItem(order.getInt("id"), orderAppendBean.getGoodsForOrder());
-            saveOrderItem(orderItem);
-            updateOrder(order);
+            for (GoodsForOrder goodsForOrder : orderBean.getGoodsForOrders()) {
+                OrderItem orderItem = BeanUtils.copyOrderItem(appendOrder.getInt("id"), goodsForOrder);
+                orderItem.set("status", OrderItem.STATUS_APPEND);
+                saveOrderItem(orderItem);
+            }
+            updateOrder(appendOrder);
         } catch (Exception e) {
             throw new ObjectSaveFailException(e.getMessage());
         }
     }
 
-
+    /**
+     * 保存或追加订单
+     * @param json
+     * @throws ObjectSaveFailException
+     */
+    public void saveOrAppendOrder(String json) throws ObjectSaveFailException {
+        OrderBean orderBean = JsonUtils.getObjectFromJson(json, OrderBean.class);
+        Order appendOrder = Order.dao.findAppendOrder(orderBean.getTableNumber());
+        if (appendOrder != null) { // 追加
+            appendOrder(json, appendOrder, orderBean);
+        }else{  //新增
+            saveOrder(orderBean);
+        }
+    }
 }

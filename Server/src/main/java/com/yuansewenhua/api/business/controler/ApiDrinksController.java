@@ -31,6 +31,9 @@ public class ApiDrinksController extends BaseController<Drinks> {
         List<DrinkBean> drinkBeans = drinksService.getDrinkBeans(typeId, page);
         renderJson(drinkBeans);
     }
+
+
+
     @Override
     protected boolean doAfterGetModel(Drinks model) {
         return false;
