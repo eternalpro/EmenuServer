@@ -84,16 +84,21 @@ public class AdminDrinksController extends BaseController<Drinks> {
         drinks.set("typetitle", type.getStr("title"));
 
         Integer id = drinks.getInt("id");
-        if (id != null && id != 0) { // 更新操作
-            if (smallFile != null) drinks.set("smallimagepath", smallpath);
-            if (largeFile != null) drinks.set("bigimagepath", largepath);
-            drinks.update();
-        } else {  // 添加
-            drinks.set("smallimagepath", smallpath);
-            drinks.set("bigimagepath", largepath);
-            drinks.save();
+
+        if (Drinks.dao.findExistByName(drinks.getStr("name"), id) != null) {
+            renderText("名称已存在！");
+        }else {
+            if (id != null && id != 0) { // 更新操作
+                if (smallFile != null) drinks.set("smallimagepath", smallpath);
+                if (largeFile != null) drinks.set("bigimagepath", largepath);
+                drinks.update();
+            } else {  // 添加
+                drinks.set("smallimagepath", smallpath);
+                drinks.set("bigimagepath", largepath);
+                drinks.save();
+            }
+            renderText("success");
         }
-        renderText("success");
     }
 
     public void delete() {

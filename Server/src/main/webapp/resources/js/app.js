@@ -31,7 +31,7 @@
                             callback: function () {
                                 location.reload();
                             },
-                            delay: 1000
+                            delay: 50
                         });
                     } else {
                         $.fn.notify({type: 'error', text: data, delay: 1000})
@@ -95,7 +95,7 @@
         SubmitForm: function (options) {
             $(options.selector).ajaxForm({
                 success: function (data) {
-                    $('#adminModalLg').modal('hide');
+
                     if (data == 'success') {
                         $.fn.notify({
                             type: 'success',
@@ -105,6 +105,7 @@
                             },
                             delay: 50
                         });
+                        $('#adminModalLg').modal('hide');
                     } else {
                         $.fn.notify({type: 'error', text: data, delay: 3000})
                     }

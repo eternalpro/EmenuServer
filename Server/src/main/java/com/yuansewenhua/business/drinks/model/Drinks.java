@@ -12,4 +12,9 @@ public class Drinks extends Model<Drinks> {
     public static Drinks dao = new Drinks();
     public static DBKit<Drinks> dbKit = new DBKit(dao);
 
+    public Drinks findExistByName(String name, Integer id) {
+        if(id == null)
+            id = 0;
+        return dao.findFirst("select * from drinks where name = ? and id != ?", name, id);
+    }
 }
