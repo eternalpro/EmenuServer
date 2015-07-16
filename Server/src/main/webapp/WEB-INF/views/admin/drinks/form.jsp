@@ -44,14 +44,16 @@
                             </div>
                             <div class="form-group col-xs-4">
                                 <label>单位：</label>
-                                <input type="text" class="form-control" placeholder="默认“瓶”"
-                                       name="drinks.sellunit"
-                                       value="${drinks.sellunit}">
+                                <select name="drinks.sellunit" class="form-control">
+                                    <option <c:if test="${drinks.sellunit eq '瓶'}">selected</c:if>>瓶</option>
+                                    <option <c:if test="${drinks.sellunit eq '听'}">selected</c:if>>听</option>
+                                    <option <c:if test="${drinks.sellunit eq '打'}">selected</c:if>>打</option>
+                                    <option <c:if test="${drinks.sellunit eq '扎'}">selected</c:if>>扎</option>
+                                    <option <c:if test="${drinks.sellunit eq '杯'}">selected</c:if>>杯</option>
+                                    <option <c:if test="${drinks.sellunit eq '壶'}">selected</c:if>>壶</option>
+                                    <option <c:if test="${drinks.sellunit eq '盎司'}">selected</c:if>>盎司</option>
+                                </select>
                             </div>
-                            <%--<a class="btn btn-default add-price-item" style="margin-top: 25px"><i--%>
-                                    <%--class="fa fa-plus"></i></a>--%>
-                            <%--<a class="btn btn-default remove-price-item" style="margin-top: 25px"><i--%>
-                                    <%--class="fa fa-minus"></i></a>--%>
                         </div>
 
                 <div class="form-group">

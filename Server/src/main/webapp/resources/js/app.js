@@ -103,7 +103,7 @@
                             callback: function () {
                                 location.reload();
                             },
-                            delay: 1000
+                            delay: 50
                         });
                     } else {
                         $.fn.notify({type: 'error', text: data, delay: 3000})

@@ -102,33 +102,27 @@
                                                 |
                                                 <a href="${ctx}/admin/drinks/delete/${drinks.id}" class="link-danger"
                                                    data-toggle="delete" data-confirm="确定删除记录吗？">删除</a>
-                                                |
-                                                <a href="${ctx}/admin/drinks/modifytype/${drinks.id}" id="modifyType">修改分类</a>
                                             </div>
                                         </td>
                                         <td>
                                             <strong class="text-primary">${drinks.typetitle}</strong>
                                         </td>
                                         <td>
-                                            <c:set var="prices" value="${fn:split(drinks.price, ',')}"/>
-                                            <c:set var="sellunits" value="${fn:split(drinks.sellunit, ',')}"/>
-                                            <c:forEach var="price" items="${prices}" varStatus="i">
                                                 <p class="margin15-b">
                                                     <span class="label label-primary">
-                                                        ${price}元/${sellunits[i.index]}
+                                                        ${drinks.price}元/${drinks.sellunit}
                                                     </span>
                                                 </p>
-                                            </c:forEach>
                                         </td>
                                         <td class="text-success">${drinks.clickcount} 次</td>
                                         <td style="">
-                                            <c:if test="${drinks.canhot}">
+                                            <c:if test="${drinks.canhot eq 't'}">
                                                 <p class="margin15-b"><span class="label label-danger">可加热</span></p>
                                             </c:if>
-                                            <c:if test="${drinks.cancold}">
+                                            <c:if test="${drinks.cancold eq 't'}">
                                                 <p class="margin15-b"><span class="label label-info">可冰镇</span></p>
                                             </c:if>
-                                            <c:if test="${drinks.havesugar}">
+                                            <c:if test="${drinks.havesugar eq 't'}">
                                                 <p class="margin15-b"><span class="label label-success">含糖</span></p>
                                             </c:if>
                                         </td>

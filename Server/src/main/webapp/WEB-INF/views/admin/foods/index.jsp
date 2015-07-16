@@ -103,9 +103,7 @@
                                                    data-toggle="modal" data-target="#adminModalLg">编辑</a>
                                                 |
                                                 <a href="${ctx}/admin/foods/delete/${food.id}" class="link-danger"
-                                                   data-toggle="delete" data-confirm="确定删除记录吗？">删除</a>
-                                                |
-                                                <a href="${ctx}/admin/foods/modifytype/${food.id}" id="modifyType">修改分类</a>
+
                                             </div>
                                         </td>
                                         <td>
