@@ -31,7 +31,7 @@
                                     <c:if test="${drinkstypeid eq type.id}">selected </c:if> >${type.title}</option>
                         </c:forEach>
                     </select>
-                    <a class="btn btn-primary" href="${ctx}/admin/drinks/form" id="addBtn" data-toggle="modal"
+                    <a class="btn btn-primary" href="${ctx}/admin/drinks/form?drinkstypeid=${drinkstypeid}" id="addBtn" data-toggle="modal"
                        data-target="#adminModalLg">
                         <i class="fa fa-plus"></i> 添加
                     </a>

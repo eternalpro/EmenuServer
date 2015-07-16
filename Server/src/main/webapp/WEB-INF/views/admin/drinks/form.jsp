@@ -21,7 +21,7 @@
                     <select class="form-control" id="typeSelect" name="drinks.drinkstypeid">
                         <c:forEach items="${drinksTypes}" var="type">
                             <option value="${type.id}"
-                                    <c:if test="${type.id eq drinks.drinkstypeid}">selected </c:if> >${type.title}</option>
+                                    <c:if test="${(!empty(drinks) && type.id eq drinks.drinkstypeid) || (empty(drinks) && type.id eq drinksType.id)}">selected </c:if> >${type.title}</option>
                         </c:forEach>
                     </select>
                 </div>

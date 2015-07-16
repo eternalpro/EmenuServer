@@ -68,7 +68,7 @@
                         </connector>
                     </connectors>
                     <webApp>
-                        <contextPath>/emenu</contextPath>
+                        <contextPath>/</contextPath>
                     </webApp>
                     <systemProperties>
                         <systemProperty>
