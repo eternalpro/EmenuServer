@@ -2,6 +2,7 @@
 <%@ include file="../../../taglibs.jsp" %>
 <html>
 <head>
+    <title>EMenu</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <include:css />
 </head>
