@@ -57,12 +57,12 @@
                                                textareaPlaceholder="输入菜品用料"
                                                textareaValue="${food.yongliao}"/>
 
-                <widget:adminFormGroupTextarea textareaId="memo"
+                <%--<widget:adminFormGroupTextarea textareaId="memo"
                                                textareaTitle="介绍"
                                                textareaClass="form-control"
                                                textareaName="food.memo"
                                                textareaPlaceholder=""
-                                               textareaValue="${food.memo}"/>
+                                               textareaValue="${food.memo}"/>--%>
 
                 <div class="form-group">
                     <label>其它属性(请根据此菜品特征勾选相关属性)：</label>
