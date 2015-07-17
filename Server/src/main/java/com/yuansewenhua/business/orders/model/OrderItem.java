@@ -28,7 +28,7 @@ public class OrderItem extends Model<OrderItem>{
      * @return
      */
     public OrderItem findOne(int orderId, long mid, GoodsEnum type) {
-        return dao.findFirst("select * from orderitems t where t.orderid = ? and t.productid = ? and t.type = ?", orderId, mid, type);
+        return dao.findFirst("select * from orderitems t where t.orderid = ? and t.productid = ? and t.type = ?", orderId, mid, type.toString());
     }
 
     public int getCount() {

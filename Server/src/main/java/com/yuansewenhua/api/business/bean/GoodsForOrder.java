@@ -5,7 +5,9 @@ package com.yuansewenhua.api.business.bean;
  * Created by youkou on 2015/6/22.
  */
 public class GoodsForOrder {
-    //ID
+    // itemId
+    private int itemId;
+    //product ID
     private int mid;
     //商品名称（中文）
     private String goodsName;
@@ -19,6 +21,14 @@ public class GoodsForOrder {
     private double price = 0;
     // 单位
     private String unit;
+
+    public int getItemId() {
+        return itemId;
+    }
+
+    public void setItemId(int itemId) {
+        this.itemId = itemId;
+    }
 
     public long getMid() {
         return mid;

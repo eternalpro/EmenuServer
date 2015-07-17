@@ -107,6 +107,7 @@ public class BeanUtils {
 
             for (OrderItem orderItem : order.getOrderItems()) {
                 GoodsForOrder goodsForOrder = new GoodsForOrder();
+                goodsForOrder.setItemId(orderItem.getInt("id"));
                 goodsForOrder.setGoodsName(orderItem.getStr("name"));
                 goodsForOrder.setMid(orderItem.getInt("productid"));
                 goodsForOrder.setCount(orderItem.getInt("count"));

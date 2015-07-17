@@ -47,9 +47,12 @@ public class ApiOrdersController extends Controller {
 
     }
 
+    /**
+     * 删除条目
+     */
     public void deleteitem() {
-        String json = JsonUtils.getJsonFromController(this);
-        Assert.hasText(json, "json is not allow null");
-        renderText(orderService.deleteItem(json) + "");
+        int id = getParaToInt(0);
+        int count = getParaToInt(1, 0);
+        renderText(orderService.deleteItem(id, count) + "");
     }
 }

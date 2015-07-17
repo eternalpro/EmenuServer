@@ -129,18 +129,15 @@ public class ApiOrderService {
 
     /**
      * 返回条目剩余的数量，如果返回值是0,则pad需要删除记录，
-     * @param json
      * @return
      */
-    public int deleteItem(String json) {
-        OrderAndItemBean orderAndItemBean = JsonUtils.getObjectFromJson(json, OrderAndItemBean.class);
-        Order order = Order.dao.findByOrderNo(orderAndItemBean.getOrderNo());
-        OrderItem orderItem = OrderItem.dao.findOne(order.getInt("id"), orderAndItemBean.getGoodsForOrder().getMid(), orderAndItemBean.getGoodsForOrder().getType());
-        if (orderItem.getCount() <= 1) {
+    public int deleteItem(int id, int count) {
+        OrderItem orderItem = OrderItem.dao.findById(id);
+        count = orderItem.getCount() - count;
+        if (count <= 0) {
             orderItem.delete();
             return 0;
         }else {
-            int count = orderItem.getCount() - 1;
             orderItem.set("count", count).update();
             return count;
         }
