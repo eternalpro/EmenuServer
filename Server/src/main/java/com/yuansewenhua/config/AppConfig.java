@@ -90,8 +90,8 @@ public class AppConfig extends JFinalConfig {
      */
 	@Override
 	public void configInterceptor(Interceptors me) {
-        me.add(new TxByRegex(".*save.*"));
-        me.add(new TxByActionMethods("save", "update", "add"));
+        //me.add(new TxByRegex(".*save.*"));
+        //me.add(new TxByActionMethods("save", "update", "add"));
 //        me.add(new UserInterceptor());
         me.add(new AdminInterceptor());
         me.add(new ExceptionInterceptor());

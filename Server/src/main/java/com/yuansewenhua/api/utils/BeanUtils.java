@@ -40,6 +40,7 @@ public class BeanUtils {
                     "t".equalsIgnoreCase(drink.getStr("cancold")),
                     "t".equalsIgnoreCase(drink.getStr("canhot")),
                     "t".equalsIgnoreCase(drink.getStr("havesugar")),
+                    "t".equalsIgnoreCase(drink.getStr("havealcohol")),
                     drink.getInt("clickcount"),
                     drink.getStr("typetitle"),
                     drink.getStr("sellunit"),

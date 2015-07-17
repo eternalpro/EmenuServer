@@ -2,14 +2,13 @@ package com.yuansewenhua.api.business.service;
 
 import com.yuansewenhua.api.business.bean.GoodsForOrder;
 import com.yuansewenhua.api.business.bean.OrderBean;
-import com.yuansewenhua.api.business.bean.server.OrderAppendBean;
+import com.yuansewenhua.api.business.bean.server.OrderAndItemBean;
 import com.yuansewenhua.api.exception.ObjectSaveFailException;
 import com.yuansewenhua.api.utils.BeanUtils;
 import com.yuansewenhua.api.utils.JsonUtils;
 import com.yuansewenhua.business.orders.model.Order;
 import com.yuansewenhua.business.orders.model.OrderItem;
 
-import java.util.Date;
 import java.util.List;
 
 /**
@@ -125,6 +124,25 @@ public class ApiOrderService {
             appendOrder(json, appendOrder, orderBean);
         }else{  //新增
             saveOrder(orderBean);
+        }
+    }
+
+    /**
+     * 返回条目剩余的数量，如果返回值是0,则pad需要删除记录，
+     * @param json
+     * @return
+     */
+    public int deleteItem(String json) {
+        OrderAndItemBean orderAndItemBean = JsonUtils.getObjectFromJson(json, OrderAndItemBean.class);
+        Order order = Order.dao.findByOrderNo(orderAndItemBean.getOrderNo());
+        OrderItem orderItem = OrderItem.dao.findOne(order.getInt("id"), orderAndItemBean.getGoodsForOrder().getMid(), orderAndItemBean.getGoodsForOrder().getType());
+        if (orderItem.getCount() <= 1) {
+            orderItem.delete();
+            return 0;
+        }else {
+            int count = orderItem.getCount() - 1;
+            orderItem.set("count", count).update();
+            return count;
         }
     }
 }

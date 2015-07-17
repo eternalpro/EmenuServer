@@ -42,13 +42,14 @@ public class ApiOrdersController extends Controller {
 
     public void append() throws ObjectSaveFailException {
         String json = JsonUtils.getJsonFromController(this);
-        Assert.hasText(json, "json is not allow null");
         orderService.saveOrAppendOrder(json);
         renderText("true");
 
     }
 
     public void deleteitem() {
-
+        String json = JsonUtils.getJsonFromController(this);
+        Assert.hasText(json, "json is not allow null");
+        renderText(orderService.deleteItem(json) + "");
     }
 }

@@ -125,6 +125,9 @@
                                             <c:if test="${drinks.havesugar eq 't'}">
                                                 <p class="margin15-b"><span class="label label-success">含糖</span></p>
                                             </c:if>
+                                            <c:if test="${drinks.havealcohol eq 't'}">
+                                                <p class="margin15-b"><span class="label label-primary">含酒精</span></p>
+                                            </c:if>
                                         </td>
                                     </tr>
                                 </c:forEach>

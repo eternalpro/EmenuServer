@@ -75,9 +75,15 @@
                     <div class="checkbox">
                         <label>
                             <input type="checkbox" name="drinks.havesugar" value="t"
-                                   <c:if test="${drinks.havesugar eq 't'}">checked </c:if>
-                                   <c:if test="${empty(drinks)}">checked</c:if> >
+                                   <c:if test="${drinks.havesugar eq 't'}">checked </c:if> >
                             <span class="text-primary">含糖</span>
+                        </label>
+                    </div>
+                    <div class="checkbox">
+                        <label>
+                            <input type="checkbox" name="drinks.havealcohol" value="t"
+                                   <c:if test="${drinks.havealcohol eq 't'}">checked </c:if> >
+                            <span class="text-primary">含酒精</span>
                         </label>
                     </div>
                 </div>

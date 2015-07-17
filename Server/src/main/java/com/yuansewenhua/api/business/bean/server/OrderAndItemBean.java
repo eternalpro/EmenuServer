@@ -6,7 +6,7 @@ import com.yuansewenhua.api.business.bean.GoodsForOrder;
  * 订单追加类
  * Created by gefangshuai on 2015/7/3.
  */
-public class OrderAppendBean {
+public class OrderAndItemBean {
     private String orderNo;
     private GoodsForOrder goodsForOrder;
 

@@ -2,6 +2,7 @@ package com.yuansewenhua.business.orders.model;
 
 import com.jfinal.ext.plugin.tablebind.TableBind;
 import com.jfinal.plugin.activerecord.Model;
+import com.yuansewenhua.api.business.bean.GoodsEnum;
 import net.wincn.core.DBKit;
 
 import java.util.List;
@@ -19,4 +20,18 @@ public class OrderItem extends Model<OrderItem>{
         return dao.find("select * from orderitems t where t.orderid = ? and t.status != -1", orderId);
     }
 
+    /**
+     * 根据订单编号、菜品id、菜品类型查询
+     * @param orderId
+     * @param mid
+     * @param type
+     * @return
+     */
+    public OrderItem findOne(int orderId, long mid, GoodsEnum type) {
+        return dao.findFirst("select * from orderitems t where t.orderid = ? and t.productid = ? and t.type = ?", orderId, mid, type);
+    }
+
+    public int getCount() {
+        return this.getInt("count");
+    }
 }

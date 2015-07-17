@@ -14,10 +14,20 @@ public class DrinkBean {
     private boolean cancold = false; // 是否冰镇
     private boolean canhot = false; // 是否加热
     private boolean haveSugar = false;  // 是否加糖
+    private boolean haveAlcohol = false; // 是否有酒精
     private int clickcount = 0; //点击次数
     private String type;    // 类别名称
     private String unit; // 单位
     private double price;   // 单价
+
+
+    public boolean isHaveAlcohol() {
+        return haveAlcohol;
+    }
+
+    public void setHaveAlcohol(boolean haveAlcohol) {
+        this.haveAlcohol = haveAlcohol;
+    }
 
     public int getId() {
         return id;
@@ -111,7 +121,7 @@ public class DrinkBean {
     }
 
 
-    public DrinkBean(int id, String name, String smallImagePath, String bigImagePath, boolean cancold, boolean canhot, boolean haveSugar, int clickcount, String type, String unit, double price) {
+    public DrinkBean(int id, String name, String smallImagePath, String bigImagePath, boolean cancold, boolean canhot, boolean haveSugar, boolean haveAlcohol, int clickcount, String type, String unit, double price) {
         this.id = id;
         this.name = name;
         this.smallImagePath = smallImagePath;
@@ -119,6 +129,7 @@ public class DrinkBean {
         this.cancold = cancold;
         this.canhot = canhot;
         this.haveSugar = haveSugar;
+        this.haveAlcohol = haveAlcohol;
         this.clickcount = clickcount;
         this.type = type;
         this.unit = unit;
