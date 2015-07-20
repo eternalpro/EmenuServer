@@ -39,6 +39,19 @@ public class ApiFoodsController extends BaseController<Food> {
         List<FoodBean> foodBeans = foodService.getFoodBeans(typeId, page);
         renderJson(foodBeans);
     }
+
+    /**
+     * 根据属性获得数据列表
+     * @throws UnsupportedEncodingException
+     */
+    public void attribute() throws UnsupportedEncodingException {
+        String attribute = getPara(0);
+        int page = getParaToInt(1);
+        List<FoodBean> foodBeans = foodService.getFoodBeans(attribute, page);
+        renderJson(foodBeans);
+    }
+
+
     @Override
     protected boolean doAfterGetModel(Food model) {
         return false;

@@ -32,6 +32,16 @@ public class ApiDrinksController extends BaseController<Drinks> {
         renderJson(drinkBeans);
     }
 
+    /**
+     * 根据属性获得数据列表
+     * @throws UnsupportedEncodingException
+     */
+    public void attribute() throws UnsupportedEncodingException {
+        String attribute = getPara(0);
+        int page = getParaToInt(1);
+        List<DrinkBean> drinkBeans = drinksService.getDrinkBeans(attribute, page);
+        renderJson(drinkBeans);
+    }
 
 
     @Override

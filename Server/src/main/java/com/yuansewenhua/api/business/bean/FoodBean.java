@@ -12,9 +12,7 @@ public class FoodBean {
     private String flavour;     // 口味
     private String yongliao; // 菜品用料
     private String memo;    // 明细
-    private boolean isqingzhen = false; // 是否清真
-    private boolean issu = false;  // 是否素菜
-    private boolean isliang = false;  // 是否凉菜
+    private String attribute;   // 属性
     private int clickcount = 0; //点击次数
     private String type;    // 类别名称
     private double price;   //价格
@@ -22,7 +20,7 @@ public class FoodBean {
     public FoodBean() {
     }
 
-    public FoodBean(int id, String name, String smallImagePath, String bigImagePath, String flavour, String yongliao, String memo, boolean isqingzhen, boolean issu, boolean isliang, int clickcount, String type, double price) {
+    public FoodBean(int id, String name, String smallImagePath, String bigImagePath, String flavour, String yongliao, String memo, String attribute, int clickcount, String type, double price) {
         this.id = id;
         this.name = name;
         this.smallImagePath = smallImagePath;
@@ -30,9 +28,7 @@ public class FoodBean {
         this.flavour = flavour;
         this.yongliao = yongliao;
         this.memo = memo;
-        this.isqingzhen = isqingzhen;
-        this.issu = issu;
-        this.isliang = isliang;
+        this.attribute = attribute;
         this.clickcount = clickcount;
         this.type = type;
         this.price = price;
@@ -94,28 +90,12 @@ public class FoodBean {
         this.memo = memo;
     }
 
-    public boolean isqingzhen() {
-        return isqingzhen;
+    public String getAttribute() {
+        return attribute;
     }
 
-    public void setIsqingzhen(boolean isqingzhen) {
-        this.isqingzhen = isqingzhen;
-    }
-
-    public boolean issu() {
-        return issu;
-    }
-
-    public void setIssu(boolean issu) {
-        this.issu = issu;
-    }
-
-    public boolean isliang() {
-        return isliang;
-    }
-
-    public void setIsliang(boolean isliang) {
-        this.isliang = isliang;
+    public void setAttribute(String attribute) {
+        this.attribute = attribute;
     }
 
     public int getClickcount() {

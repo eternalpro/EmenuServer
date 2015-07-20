@@ -37,10 +37,7 @@ public class BeanUtils {
                     drink.getStr("name"),
                     URLEncoder.encode(drink.getStr("smallimagepath"), "utf-8").replace("%2F", "/"),
                     URLEncoder.encode(drink.getStr("bigimagepath"), "utf-8").replace("%2F", "/"),
-                    "t".equalsIgnoreCase(drink.getStr("cancold")),
-                    "t".equalsIgnoreCase(drink.getStr("canhot")),
-                    "t".equalsIgnoreCase(drink.getStr("havesugar")),
-                    "t".equalsIgnoreCase(drink.getStr("havealcohol")),
+                    drink.getStr("attribute"),
                     drink.getInt("clickcount"),
                     drink.getStr("typetitle"),
                     drink.getStr("sellunit"),
@@ -71,14 +68,13 @@ public class BeanUtils {
                     food.getStr("flavour"),
                     food.getStr("yongliao"),
                     food.getStr("memo"),
-                    "t".equalsIgnoreCase(food.getStr("isqingzhen")),
-                    "t".equalsIgnoreCase(food.getStr("issu")),
-                    "t".equalsIgnoreCase(food.getStr("isliang")),
+                    food.getStr("attribute"),
                     food.getInt("clickcount"),
                     food.getStr("typetitle"),
                     food.getDouble("price")
             );
             foodBeans.add(foodBean);
+
         }
         return foodBeans;
     }

@@ -78,7 +78,6 @@
                                     <th width="80">价格</th>
                                     <th width="100">口味</th>
                                     <th width="100">用料</th>
-                                    <th width="100">介绍</th>
                                     <th width="80">点击量</th>
                                     <th width="80">属性</th>
                                 </tr>
@@ -113,7 +112,6 @@
                                         <td>${food.price} 元</td>
                                         <td>${food.flavour}</td>
                                         <td>${food.yongliao}</td>
-                                        <td>${food.memo}</td>
                                         <td class="text-success">${food.clickcount} 次</td>
                                         <td>
                                             <c:forEach items="${food.attribute}" var="attr">

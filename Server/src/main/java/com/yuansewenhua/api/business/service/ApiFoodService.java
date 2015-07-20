@@ -6,6 +6,7 @@ import com.yuansewenhua.api.business.bean.DrinkTypeBean;
 import com.yuansewenhua.api.business.bean.FoodBean;
 import com.yuansewenhua.api.business.bean.FoodTypeBean;
 import com.yuansewenhua.api.utils.BeanUtils;
+import com.yuansewenhua.business.GoodsAttributes;
 import com.yuansewenhua.business.drinks.model.Drinks;
 import com.yuansewenhua.business.drinks.model.DrinksType;
 import com.yuansewenhua.business.foods.model.Food;
@@ -31,6 +32,15 @@ public class ApiFoodService {
     public List<FoodBean> getFoodBeans(int type, int page) throws UnsupportedEncodingException {
         Map<String, Object> params = new HashMap<>();
         params.put("foodstypeid", type);
+        Page<Food> foodPage =  Food.dbKit.search(page, 9, params, DBKit.ASC);
+        List<FoodBean> foodBeans = BeanUtils.copyFoodBeans(foodPage.getList());
+        return foodBeans;
+    }
+
+    public List<FoodBean> getFoodBeans(String attribute, int page) throws UnsupportedEncodingException {
+        Map<String, Object> params = new HashMap<>();
+        String title = GoodsAttributes.FoodAttributesEnum.valueOf(attribute).getTitle();
+        params.put("attribute", title + ",");
         Page<Food> foodPage =  Food.dbKit.search(page, 9, params, DBKit.ASC);
         List<FoodBean> foodBeans = BeanUtils.copyFoodBeans(foodPage.getList());
         return foodBeans;
