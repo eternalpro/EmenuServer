@@ -1,8 +1,10 @@
 package com.yuansewenhua.business.drinks.controller;
 
+import com.google.common.base.Joiner;
 import com.jfinal.core.ActionKey;
 import com.jfinal.ext.route.ControllerBind;
 import com.jfinal.upload.UploadFile;
+import com.yuansewenhua.business.GoodsAttributes;
 import com.yuansewenhua.business.drinks.model.Drinks;
 import com.yuansewenhua.business.drinks.model.DrinksType;
 import net.wincn.core.BaseController;
@@ -35,6 +37,8 @@ public class AdminDrinksController extends BaseController<Drinks> {
         }
         form("drinks", Drinks.dao);
         List<DrinksType> drinksTypeList = DrinksType.dbKit.listRecord("desc");
+        GoodsAttributes.DrinksAttributesEnum[] drinksAttributesEnums = GoodsAttributes.DrinksAttributesEnum.values();
+        setAttr("drinksAttributesEnums", drinksAttributesEnums);
         setAttr("drinksTypes", drinksTypeList);
     }
 
@@ -57,6 +61,9 @@ public class AdminDrinksController extends BaseController<Drinks> {
         String smallpath = smallFile == null ? "/resources/img/no-cover.jpg" : "/" + "upload" + "/" + PIC_DIR + "/" + smallFile.getFileName();
         String largepath = largeFile == null ? "/resources/img/no-cover.jpg" : "/" + "upload" + "/" + PIC_DIR + "/" + largeFile.getFileName();
         Drinks drinks = getModel(Drinks.class);
+
+        String attribute = Joiner.on(",").join(getParaValues("attribute"));
+        drinks.set("attribute", attribute);
 
         DrinksType type = DrinksType.dao.findById(drinks.getInt("drinkstypeid"));
         drinks.set("typetitle", type.getStr("title"));

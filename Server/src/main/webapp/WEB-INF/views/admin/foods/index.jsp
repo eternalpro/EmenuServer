@@ -103,6 +103,7 @@
                                                    data-toggle="modal" data-target="#adminModalLg">编辑</a>
                                                 |
                                                 <a href="${ctx}/admin/foods/delete/${food.id}" class="link-danger"
+                                                   data-toggle="delete" data-confirm="确定删除记录吗？">删除</a>
 
                                             </div>
                                         </td>
@@ -115,17 +116,11 @@
                                         <td>${food.memo}</td>
                                         <td class="text-success">${food.clickcount} 次</td>
                                         <td>
-                                            <c:if test="${food.issu}">
-                                                <p class="margin15-b"><span class="label label-success">素菜</span></p>
-                                            </c:if>
-
-
-                                            <c:if test="${food.isqingzhen}">
-                                                <p class="margin15-b"><span class="label label-primary">清真</span></p>
-                                            </c:if>
-                                            <c:if test="${food.isliang}">
-                                                <p class="margin15-b"><span class="label label-default">凉菜</span></p>
-                                            </c:if>
+                                            <c:forEach items="${food.attribute}" var="attr">
+                                                <p class="margin15-b">
+                                                    <span class="label label-primary">${attr}</span>
+                                                </p>
+                                            </c:forEach>
                                         </td>
                                     </tr>
                                 </c:forEach>

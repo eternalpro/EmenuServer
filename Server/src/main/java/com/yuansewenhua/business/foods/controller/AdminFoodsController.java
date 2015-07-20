@@ -1,8 +1,10 @@
 package com.yuansewenhua.business.foods.controller;
 
+import com.google.common.base.Joiner;
 import com.jfinal.core.ActionKey;
 import com.jfinal.ext.route.ControllerBind;
 import com.jfinal.upload.UploadFile;
+import com.yuansewenhua.business.GoodsAttributes;
 import com.yuansewenhua.business.foods.model.Food;
 import com.yuansewenhua.business.foods.model.FoodsType;
 import net.wincn.core.BaseController;
@@ -34,6 +36,9 @@ public class AdminFoodsController extends BaseController<Food> {
         }
         form("food", Food.dao);
         List<FoodsType> foodsTypeList = FoodsType.dbKit.listRecord("desc");
+
+        GoodsAttributes.FoodAttributesEnum[] foodAttributesEnums = GoodsAttributes.FoodAttributesEnum.values();
+        setAttr("foodAttributesEnums", foodAttributesEnums);
         setAttr("foodsTypes", foodsTypeList);
     }
 
@@ -57,12 +62,8 @@ public class AdminFoodsController extends BaseController<Food> {
         String largepath = largeFile == null ? "/resources/img/no-cover.jpg" : "/" + "upload" + "/" + PIC_DIR + "/" + largeFile.getFileName();
         Food food = getModel(Food.class);
 
-//        if(food.getBoolean("issu") == null)
-//            food.set("issu", false);
-//        if(food.getBoolean("isliang") == null)
-//            food.set("isliang", false);
-//        if(food.getBoolean("isqingzhen") == null)
-//            food.set("isqingzhen", false);
+        String attribute = Joiner.on(",").join(getParaValues("attribute"));
+        food.set("attribute", attribute);
 
         FoodsType type = FoodsType.dao.findById(food.getInt("foodstypeid"));
         food.set("typetitle", type.getStr("title"));

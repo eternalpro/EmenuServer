@@ -11,16 +11,17 @@ import com.jfinal.render.RenderFactory;
 public class ExceptionInterceptor implements Interceptor {
     @Override
     public void intercept(ActionInvocation ai) {
-        if (ai.getActionKey().startsWith("/api")) {
+        //if (ai.getActionKey().startsWith("/api")) {
             try {
                 ai.invoke();
             } catch (Exception e) {
                 e.printStackTrace();
-                String errorMsg = e.getClass().getName() + ": " + e.getMessage();
-                ai.getController().renderError(500, RenderFactory.me().getTextRender(errorMsg));
+                String errorMsg = e.getMessage();
+                //ai.getController().renderError(500, RenderFactory.me().getTextRender(errorMsg));
+                ai.getController().renderText(500 + "错误: " + errorMsg);
             }
-        } else {
-            ai.invoke();
-        }
+//        } else {
+//            ai.invoke();
+//        }
     }
 }

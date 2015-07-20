@@ -67,27 +67,15 @@
                 <div class="form-group">
                     <label>其它属性(请根据此菜品特征勾选相关属性)：</label>
 
-                    <div class="checkbox">
-                        <label>
-                            <input type="checkbox" name="food.issu" value="t"
-                                   <c:if test="${food.issu eq 't'}">checked </c:if> > <span class="text-danger">素菜</span>
-                        </label>
-                    </div>
+                    <c:forEach items="${foodAttributesEnums}" var="attrs">
+                        <div class="checkbox">
+                            <label>
+                                <input type="checkbox" name="attribute" value="${attrs.title}"
+                                       <c:if test="${fn:contains(food.attribute, attrs.title)}">checked</c:if> > <span class="text-primary">${attrs.title}</span>
+                            </label>
+                        </div>
+                    </c:forEach>
 
-                    <div class="checkbox">
-                        <label>
-                            <input type="checkbox" name="food.isqingzhen" value="t"
-                                   <c:if test="${food.isqingzhen eq 't'}">checked </c:if> > <span
-                                class="text-primary">清真</span>
-                        </label>
-                    </div>
-                    <div class="checkbox">
-                        <label>
-                            <input type="checkbox" name="food.isliang" value="t"
-                                   <c:if test="${food.isliang eq 't'}">checked </c:if> > <span
-                                class="text-default">凉菜</span>
-                        </label>
-                    </div>
                 </div>
 
             </div>

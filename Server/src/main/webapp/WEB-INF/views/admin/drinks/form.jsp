@@ -59,33 +59,14 @@
                 <div class="form-group">
                     <label>其它属性(请根据此酒水特征勾选相关属性)：</label>
 
-                    <div class="checkbox">
-                        <label>
-                            <input type="checkbox" name="drinks.canhot" value="t"
-                                   <c:if test="${drinks.canhot eq 't'}">checked </c:if> > <span class="text-danger">可加热</span>
-                        </label>
-                    </div>
-                    <div class="checkbox">
-                        <label>
-                            <input type="checkbox" name="drinks.cancold" value="t"
-                                   <c:if test="${drinks.cancold eq 't'}">checked </c:if> > <span
-                                class="text-primary">冰镇</span>
-                        </label>
-                    </div>
-                    <div class="checkbox">
-                        <label>
-                            <input type="checkbox" name="drinks.havesugar" value="t"
-                                   <c:if test="${drinks.havesugar eq 't'}">checked </c:if> >
-                            <span class="text-primary">含糖</span>
-                        </label>
-                    </div>
-                    <div class="checkbox">
-                        <label>
-                            <input type="checkbox" name="drinks.havealcohol" value="t"
-                                   <c:if test="${drinks.havealcohol eq 't'}">checked </c:if> >
-                            <span class="text-primary">含酒精</span>
-                        </label>
-                    </div>
+                    <c:forEach items="${drinksAttributesEnums}" var="attrs">
+                        <div class="checkbox">
+                            <label>
+                                <input type="checkbox" name="attribute" value="${attrs.title}"
+                                       <c:if test="${fn:contains(drinks.attribute, attrs.title)}">checked</c:if> > <span class="text-primary">${attrs.title}</span>
+                            </label>
+                        </div>
+                    </c:forEach>
                 </div>
 
             </div>
