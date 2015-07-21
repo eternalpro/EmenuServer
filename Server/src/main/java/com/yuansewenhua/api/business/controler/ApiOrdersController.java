@@ -30,7 +30,7 @@ public class ApiOrdersController extends Controller {
     }
 
     /**
-     * 添加订单
+     * 新增或追加订单
      */
     public void add() throws ObjectSaveFailException {
         String json = JsonUtils.getJsonFromController(this);

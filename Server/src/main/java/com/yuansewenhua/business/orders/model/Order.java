@@ -25,22 +25,21 @@ public class Order extends Model<Order> {
     }
 
     public List<Order> findNoFinishedByPad(String pad) {
-        return dao.find("select * from orders t where t.fromwhichpad = ? and t.status <> '2'", pad);
+        return dao.find("select * from orders t where t.fromwhichpad = ? and t.status = 'UNPAY'", pad);
     }
 
     public List<Order> findNoFinished() {
-        return dao.find("select * from orders t where t.status <> '2'");
+        return dao.find("select * from orders t where t.= 'UNPAY'");
     }
 
     public Order findByOrderNo(String orderNo) {
         return dao.findFirst("select * from orders t where t.orderno = ?", orderNo);
     }
 
-    public Order findAppendOrder(String tablenumber) {
+
+
+    public List<Order> findNoFinishedByTableNumber(String tablenumber) {
         List<Order> orders = find("select * from orders t where t.tablenumber = ? and t.status = 'UNPAY'", tablenumber);
-        if (orders != null && orders.size() > 1) {
-            throw new RuntimeException(String.format("台号%s有多条未完结的订单，您的操作无法完成！", tablenumber));
-        }
-        return orders == null || orders.size() == 0 ? null : orders.get(0);
+        return orders;
     }
 }

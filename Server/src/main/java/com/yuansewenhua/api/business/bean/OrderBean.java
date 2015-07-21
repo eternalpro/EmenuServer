@@ -13,6 +13,7 @@ public class OrderBean {
     private String tableNumber;     // 桌号
     private String fromWhichPad;    // 来自哪个终端(pad 唯一标识)
     private String waiterName;      // 服务员名称
+    private boolean append = false; // 是否追加：true 追加；false 新增
     private int peopleNumber = 0;       // 食客人数
     private OrderStatusEnum status = OrderStatusEnum.UNPAY;
     private List<GoodsForOrder> goodsForOrders; // 订单里所有的条目信息
@@ -20,12 +21,13 @@ public class OrderBean {
     public OrderBean() {
     }
 
-    public OrderBean(String orderNo, Date createTime, String tableNumber, String fromWhichPad, String waiterName, int peopleNumber, OrderStatusEnum status) {
+    public OrderBean(String orderNo, Date createTime, String tableNumber, String fromWhichPad, String waiterName, boolean append, int peopleNumber, OrderStatusEnum status) {
         this.orderNo = orderNo;
         this.createTime = createTime;
         this.tableNumber = tableNumber;
         this.fromWhichPad = fromWhichPad;
         this.waiterName = waiterName;
+        this.append = append;
         this.peopleNumber = peopleNumber;
         this.status = status;
     }
@@ -92,5 +94,13 @@ public class OrderBean {
 
     public void setStatus(OrderStatusEnum status) {
         this.status = status;
+    }
+
+    public boolean isAppend() {
+        return append;
+    }
+
+    public void setAppend(boolean append) {
+        this.append = append;
     }
 }

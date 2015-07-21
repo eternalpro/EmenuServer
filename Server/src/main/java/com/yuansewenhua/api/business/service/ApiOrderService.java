@@ -77,7 +77,6 @@ public class ApiOrderService {
      */
     public void saveOrder(OrderBean orderBean) throws ObjectSaveFailException {
         Order order = BeanUtils.copyOrder(orderBean);
-
         try {
             try {
                 if (order.save()) {
@@ -119,12 +118,23 @@ public class ApiOrderService {
      */
     public void saveOrAppendOrder(String json) throws ObjectSaveFailException {
         OrderBean orderBean = JsonUtils.getObjectFromJson(json, OrderBean.class);
-        Order appendOrder = Order.dao.findAppendOrder(orderBean.getTableNumber());
-        if (appendOrder != null) { // 追加
+        if (orderBean.isAppend()) { // 追加
+            Order appendOrder = findAppendOrder(orderBean.getTableNumber());
             appendOrder(json, appendOrder, orderBean);
-        }else{  //新增
+        }else {  //新增
+            List<Order> orders = Order.dao.findNoFinishedByTableNumber(orderBean.getTableNumber());
+            if(orders!=null && orders.size() > 0)
+                throw new ObjectSaveFailException(String.format("台号%s有多条未完结的订单，您的操作无法完成！", orderBean.getTableNumber()));
             saveOrder(orderBean);
         }
+    }
+
+    private Order findAppendOrder(String tablenumber) throws ObjectSaveFailException {
+        List<Order> orders = Order.dao.findNoFinishedByTableNumber(tablenumber);
+        if (orders != null && orders.size() > 1) {
+            throw new ObjectSaveFailException(String.format("台号%s有多条未完结的订单，您的操作无法完成！", tablenumber));
+        }
+        return orders == null || orders.size() == 0 ? null : orders.get(0);
     }
 
     /**
