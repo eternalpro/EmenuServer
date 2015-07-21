@@ -11,7 +11,9 @@ public class GoodsAttributes {
     public enum FoodAttributesEnum {
         QINGZHEN("清真"),
         SU("素菜"),
-        LIANG("凉菜");
+        HUN("荤菜"),
+        LIANG("凉菜"),
+        RE("热菜");
 
         private String title;
 
@@ -27,7 +29,7 @@ public class GoodsAttributes {
     /**
      * 酒水属性
      */
-    public enum DrinksAttributesEnum{
+    public enum DrinksAttributesEnum {
         CANCOLD("冰镇"),
         CANHOT("可加热"),
         SUGAR("含糖"),

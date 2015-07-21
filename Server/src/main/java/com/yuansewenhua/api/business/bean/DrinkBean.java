@@ -15,6 +15,9 @@ public class DrinkBean {
     private String unit; // 单位
     private double price;   // 单价
 
+    public DrinkBean() {
+    }
+
     public DrinkBean(int id, String name, String smallImagePath, String bigImagePath, String attribute, int clickcount, String type, String unit, double price) {
         this.id = id;
         this.name = name;

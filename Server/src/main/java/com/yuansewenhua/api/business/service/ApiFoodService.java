@@ -12,6 +12,7 @@ import com.yuansewenhua.business.drinks.model.DrinksType;
 import com.yuansewenhua.business.foods.model.Food;
 import com.yuansewenhua.business.foods.model.FoodsType;
 import net.wincn.core.DBKit;
+import org.apache.commons.lang3.StringUtils;
 
 import java.io.UnsupportedEncodingException;
 import java.util.HashMap;
@@ -39,8 +40,10 @@ public class ApiFoodService {
 
     public List<FoodBean> getFoodBeans(String attribute, int page) throws UnsupportedEncodingException {
         Map<String, Object> params = new HashMap<>();
-        String title = GoodsAttributes.FoodAttributesEnum.valueOf(attribute).getTitle();
-        params.put("attribute", title + ",");
+        if(StringUtils.isNotBlank(attribute)) {
+            String title = GoodsAttributes.FoodAttributesEnum.valueOf(attribute).getTitle();
+            params.put("attribute", title + ",");
+        }
         Page<Food> foodPage =  Food.dbKit.search(page, 9, params, DBKit.ASC);
         List<FoodBean> foodBeans = BeanUtils.copyFoodBeans(foodPage.getList());
         return foodBeans;
