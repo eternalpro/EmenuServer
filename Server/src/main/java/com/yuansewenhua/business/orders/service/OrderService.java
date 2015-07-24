@@ -14,7 +14,7 @@ import java.util.List;
  */
 public class OrderService {
     public Page<Order> pageOrders(int pageNumber) {
-        Page<Order> orderPage = Order.dao.paginate(pageNumber, 10, "select * ", " from orders order by status desc");
+        Page<Order> orderPage = Order.dao.paginate(pageNumber, 10, "select * ", " from orders order by id desc");
         for (Order order : orderPage.getList()) {
             List<OrderItem> orderItems = OrderItem.dao.listByOrder(order.getInt("id"));
             for (OrderItem orderItem : orderItems) {

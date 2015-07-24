@@ -30,10 +30,6 @@ public class AdminOrderController extends BaseController<Order> {
 
     }
 
-    public static void main(String[] args) {
-        System.out.println(EncryptionKit.md5Encrypt("admin"));
-    }
-
     @Override
     protected boolean doAfterGetModel(Order model) {
         return true;

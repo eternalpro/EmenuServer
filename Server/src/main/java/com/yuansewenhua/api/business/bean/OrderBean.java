@@ -32,6 +32,16 @@ public class OrderBean {
         this.status = status;
     }
 
+    public OrderBean(String orderNo, Date createTime, String tableNumber, String fromWhichPad, String waiterName, int peopleNumber, OrderStatusEnum status) {
+        this.orderNo = orderNo;
+        this.createTime = createTime;
+        this.tableNumber = tableNumber;
+        this.fromWhichPad = fromWhichPad;
+        this.waiterName = waiterName;
+        this.peopleNumber = peopleNumber;
+        this.status = status;
+    }
+
     public String getOrderNo() {
         return orderNo;
     }

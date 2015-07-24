@@ -62,8 +62,13 @@ public class AdminFoodsController extends BaseController<Food> {
         String largepath = largeFile == null ? "/resources/img/no-cover.jpg" : "/" + "upload" + "/" + PIC_DIR + "/" + largeFile.getFileName();
         Food food = getModel(Food.class);
 
-        String attribute = Joiner.on(",").join(getParaValues("attribute"));
-        food.set("attribute", attribute);
+        String[] attributes = getParaValues("attribute");
+        if (attributes!=null) {
+            String attribute = Joiner.on(",").join(attributes);
+            food.set("attribute", attribute);
+        }else{
+            food.set("attribute", null);
+        }
 
         FoodsType type = FoodsType.dao.findById(food.getInt("foodstypeid"));
         food.set("typetitle", type.getStr("title"));
