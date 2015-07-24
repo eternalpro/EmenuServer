@@ -75,7 +75,7 @@
                                                         </tr>
                                                     </table>
                                                 </div>
-                                                <div class="panel-body" style="display: none;">
+                                                <div class="panel-body" <c:if test="${i.index > 0}"> style="display: none;"</c:if>>
                                                     <c:forEach items="${record.orderItems}" var="item" varStatus="i">
                                                         <div class="col-sm-6 col-md-3">
                                                             <div class="thumbnail">

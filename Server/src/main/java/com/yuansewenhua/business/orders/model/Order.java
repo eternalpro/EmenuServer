@@ -29,7 +29,7 @@ public class Order extends Model<Order> {
     }
 
     public List<Order> findNoFinished() {
-        return dao.find("select * from orders t where t.= 'UNPAY'");
+        return dao.find("select * from orders t where t.status= 'UNPAY'");
     }
 
     public Order findByOrderNo(String orderNo) {
