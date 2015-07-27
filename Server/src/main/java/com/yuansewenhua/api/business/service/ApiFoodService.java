@@ -42,7 +42,7 @@ public class ApiFoodService {
         Map<String, Object> params = new HashMap<>();
         if(StringUtils.isNotBlank(attribute)) {
             String title = GoodsAttributes.FoodAttributesEnum.valueOf(attribute).getTitle();
-            params.put("attribute", title + ",");
+            params.put("attribute", title);
         }
         Page<Food> foodPage =  Food.dbKit.search(page, 9, params, DBKit.ASC);
         List<FoodBean> foodBeans = BeanUtils.copyFoodBeans(foodPage.getList());
