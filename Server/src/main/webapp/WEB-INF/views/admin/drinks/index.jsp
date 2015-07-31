@@ -31,7 +31,8 @@
                                     <c:if test="${drinkstypeid eq type.id}">selected </c:if> >${type.title}</option>
                         </c:forEach>
                     </select>
-                    <a class="btn btn-primary" href="${ctx}/admin/drinks/form?drinkstypeid=${drinkstypeid}" id="addBtn" data-toggle="modal"
+                    <a class="btn btn-primary" href="${ctx}/admin/drinks/form?drinkstypeid=${drinkstypeid}" id="addBtn"
+                       data-toggle="modal"
                        data-target="#adminModalLg">
                         <i class="fa fa-plus"></i> 添加
                     </a>
@@ -77,6 +78,7 @@
                                     <th width="180">价格参数</th>
                                     <th width="100">点击量</th>
                                     <th width="120">属性</th>
+                                    <th width="60">操作</th>
                                 </tr>
                                 </thead>
                                 <tbody>
@@ -108,11 +110,11 @@
                                             <strong class="text-primary">${drinks.typetitle}</strong>
                                         </td>
                                         <td>
-                                                <p class="margin15-b">
+                                            <p class="margin15-b">
                                                     <span class="label label-primary">
                                                         ${drinks.price}元/${drinks.sellunit}
                                                     </span>
-                                                </p>
+                                            </p>
                                         </td>
                                         <td class="text-success">${drinks.clickcount} 次</td>
                                         <td>
@@ -121,6 +123,16 @@
                                                     <span class="label label-primary">${attr}</span>
                                                 </p>
                                             </c:forEach>
+                                        </td>
+                                        <td>
+                                            <c:if test="${drinks.isenable}">
+                                                <a href="/admin/drinks/clear/${drinks.id}-false" title="点击进行估清"
+                                                   class="btn btn-xs btn-primary btn-clear" data-toggle="action">估清</a>
+                                            </c:if>
+                                            <c:if test="${!drinks.isenable}">
+                                                <a href="/admin/drinks/clear/${drinks.id}-true" title="点击取消估清"
+                                                   class="btn btn-xs btn-danger btn-clear" data-toggle="action">已估清</a>
+                                            </c:if>
                                         </td>
                                     </tr>
                                 </c:forEach>
@@ -165,7 +177,6 @@
                         }
                     }
                 });
-
 
             })();
         </script>

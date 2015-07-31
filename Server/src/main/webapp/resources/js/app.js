@@ -41,6 +41,27 @@
         });
     });
 
+    // 普通操作
+    $('body').on('click', 'a[data-toggle="action"]', function (e) {
+        e.preventDefault();
+        var $this = $(this);
+        var url = $this.attr('href');
+        $.get(url, function (data) {
+            if (data == 'success') {
+                $.fn.notify({
+                    type: 'success',
+                    text: '操作成功！',
+                    callback: function () {
+                        location.reload();
+                    },
+                    delay: 50
+                });
+            } else {
+                $.fn.notify({type: 'error', text: data, delay: 1000})
+            }
+        });
+    });
+
     // 禁止modal缓存
     $('body').on('hidden.bs.modal', '.modal', function () {
         $(this).removeData('bs.modal');

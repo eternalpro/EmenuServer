@@ -5,6 +5,7 @@ import com.jfinal.core.ActionKey;
 import com.jfinal.ext.route.ControllerBind;
 import com.jfinal.upload.UploadFile;
 import com.yuansewenhua.business.GoodsAttributes;
+import com.yuansewenhua.business.drinks.model.Drinks;
 import com.yuansewenhua.business.foods.model.Food;
 import com.yuansewenhua.business.foods.model.FoodsType;
 import net.wincn.core.BaseController;
@@ -87,6 +88,14 @@ public class AdminFoodsController extends BaseController<Food> {
 
     public void delete() {
         delete(Food.dao, null);
+        renderText("success");
+    }
+
+    public void clear() {
+        Integer id = getParaToInt(0);
+        String isenable = getPara(1);
+        Food food = Food.dao.findById(id);
+        food.set("isenable", isenable).update();
         renderText("success");
     }
 

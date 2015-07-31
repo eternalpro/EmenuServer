@@ -80,6 +80,7 @@
                                     <th width="100">用料</th>
                                     <th width="80">点击量</th>
                                     <th width="80">属性</th>
+                                    <th width="60">操作</th>
                                 </tr>
                                 </thead>
                                 <tbody>
@@ -119,6 +120,16 @@
                                                     <span class="label label-primary">${attr}</span>
                                                 </p>
                                             </c:forEach>
+                                        </td>
+                                        <td>
+                                            <c:if test="${food.isenable}">
+                                                <a href="/admin/foods/clear/${food.id}-false" title="点击进行估清"
+                                                   class="btn btn-xs btn-primary btn-clear" data-toggle="action">估清</a>
+                                            </c:if>
+                                            <c:if test="${!food.isenable}">
+                                                <a href="/admin/foods/clear/${food.id}-true" title="点击取消估清"
+                                                   class="btn btn-xs btn-danger btn-clear" data-toggle="action">已估清</a>
+                                            </c:if>
                                         </td>
                                     </tr>
                                 </c:forEach>

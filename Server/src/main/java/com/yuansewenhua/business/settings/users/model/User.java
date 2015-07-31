@@ -31,4 +31,8 @@ public class User extends Model<User> {
     public List<User> listByRole(String rolename) {
         return dao.find("select * from users where rolename = ? order by id desc", rolename);
     }
+
+    public User findByUsername(String waiter) {
+        return null;
+    }
 }

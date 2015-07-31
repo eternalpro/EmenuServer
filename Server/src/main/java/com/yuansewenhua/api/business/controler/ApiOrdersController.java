@@ -6,6 +6,8 @@ import com.yuansewenhua.api.business.bean.OrderBean;
 import com.yuansewenhua.api.business.service.ApiOrderService;
 import com.yuansewenhua.api.exception.ObjectSaveFailException;
 import com.yuansewenhua.api.utils.JsonUtils;
+import com.yuansewenhua.business.settings.users.model.User;
+import com.yuansewenhua.utils.AppUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.util.Assert;
 
@@ -54,8 +56,11 @@ public class ApiOrdersController extends Controller {
         int id = getParaToInt(0);
         int count = getParaToInt(1, 0);
         String waiter = getPara("waiter");
-        String password = getPara("password");
-
-        renderText(orderService.deleteItem(id, count) + "");
+        String password = getPara("password", "");
+        User user = User.findUserByName(waiter);
+        if (user == null || !AppUtils.encode(password).equals(user.get("password")))
+            renderText("服务员名字或密码不正确！");
+        else
+            renderText(orderService.deleteItem(id, count) + "");
     }
 }

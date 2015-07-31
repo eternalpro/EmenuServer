@@ -8,7 +8,6 @@ import com.yuansewenhua.business.GoodsAttributes;
 import com.yuansewenhua.business.drinks.model.Drinks;
 import com.yuansewenhua.business.drinks.model.DrinksType;
 import net.wincn.core.BaseController;
-import org.apache.commons.lang3.StringUtils;
 
 import java.util.List;
 
@@ -91,6 +90,13 @@ public class AdminDrinksController extends BaseController<Drinks> {
         renderText("success");
     }
 
+    public void clear() {
+        Integer id = getParaToInt(0);
+        String isenable = getPara(1);
+        Drinks drinks = Drinks.dao.findById(id);
+        drinks.set("isenable", isenable).update();
+        renderText("success");
+    }
 
     @Override
     protected boolean doAfterGetModel(Drinks model) {
