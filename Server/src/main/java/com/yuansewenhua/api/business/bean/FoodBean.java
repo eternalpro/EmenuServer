@@ -16,11 +16,12 @@ public class FoodBean {
     private int clickcount = 0; //点击次数
     private String type;    // 类别名称
     private double price;   //价格
+    private String isenable; // 是否估清
 
     public FoodBean() {
     }
 
-    public FoodBean(int id, String name, String smallImagePath, String bigImagePath, String flavour, String yongliao, String memo, String attribute, int clickcount, String type, double price) {
+    public FoodBean(int id, String name, String smallImagePath, String bigImagePath, String flavour, String yongliao, String memo, String attribute, int clickcount, String type, double price, String isenable) {
         this.id = id;
         this.name = name;
         this.smallImagePath = smallImagePath;
@@ -32,6 +33,7 @@ public class FoodBean {
         this.clickcount = clickcount;
         this.type = type;
         this.price = price;
+        this.isenable = isenable;
     }
 
     public int getId() {
@@ -120,5 +122,13 @@ public class FoodBean {
 
     public void setPrice(double price) {
         this.price = price;
+    }
+
+    public String getIsenable() {
+        return isenable;
+    }
+
+    public void setIsenable(String isenable) {
+        this.isenable = isenable;
     }
 }

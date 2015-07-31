@@ -41,7 +41,8 @@ public class BeanUtils {
                     drink.getInt("clickcount"),
                     drink.getStr("typetitle"),
                     drink.getStr("sellunit"),
-                    drink.getDouble("price")
+                    drink.getDouble("price"),
+                    drink.getStr("isenable")
             );
             drinkBeans.add(drinkBean);
         }
@@ -71,7 +72,8 @@ public class BeanUtils {
                     food.getStr("attribute"),
                     food.getInt("clickcount"),
                     food.getStr("typetitle"),
-                    food.getDouble("price")
+                    food.getDouble("price"),
+                    food.getStr("isenable")
             );
             foodBeans.add(foodBean);
 

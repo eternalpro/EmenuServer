@@ -14,11 +14,12 @@ public class DrinkBean {
     private String type;    // 类别名称
     private String unit; // 单位
     private double price;   // 单价
+    private String isenable; // 是否估清
 
     public DrinkBean() {
     }
 
-    public DrinkBean(int id, String name, String smallImagePath, String bigImagePath, String attribute, int clickcount, String type, String unit, double price) {
+    public DrinkBean(int id, String name, String smallImagePath, String bigImagePath, String attribute, int clickcount, String type, String unit, double price, String isenable) {
         this.id = id;
         this.name = name;
         this.smallImagePath = smallImagePath;
@@ -28,6 +29,7 @@ public class DrinkBean {
         this.type = type;
         this.unit = unit;
         this.price = price;
+        this.isenable = isenable;
     }
 
     public int getId() {
@@ -100,5 +102,13 @@ public class DrinkBean {
 
     public void setPrice(double price) {
         this.price = price;
+    }
+
+    public String getIsenable() {
+        return isenable;
+    }
+
+    public void setIsenable(String isenable) {
+        this.isenable = isenable;
     }
 }

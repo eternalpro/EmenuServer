@@ -2,10 +2,14 @@ package com.yuansewenhua.api.business.controler;
 
 import com.jfinal.core.Controller;
 import com.jfinal.ext.route.ControllerBind;
+import com.yuansewenhua.api.business.bean.GoodsEnum;
 import com.yuansewenhua.api.business.bean.OrderBean;
 import com.yuansewenhua.api.business.service.ApiOrderService;
 import com.yuansewenhua.api.exception.ObjectSaveFailException;
 import com.yuansewenhua.api.utils.JsonUtils;
+import com.yuansewenhua.business.drinks.model.Drinks;
+import com.yuansewenhua.business.foods.model.Food;
+import com.yuansewenhua.business.foods.model.FoodsType;
 import com.yuansewenhua.business.settings.users.model.User;
 import com.yuansewenhua.utils.AppUtils;
 import org.apache.commons.lang3.StringUtils;
@@ -62,5 +66,17 @@ public class ApiOrdersController extends Controller {
             renderText("服务员名字或密码不正确！");
         else
             renderText(orderService.deleteItem(id, count) + "");
+    }
+
+    public void checkifClear() {
+        int id = getParaToInt(0);
+        GoodsEnum type = GoodsEnum.valueOf(getPara(1));
+        if (type == GoodsEnum.FOOD) {
+            Food food = Food.dao.findById(id);
+            renderText(food.getStr("isenable"));
+        }else {
+            Drinks drinks = Drinks.dao.findById("isenable");
+            renderText(drinks.getStr("isenable"));
+        }
     }
 }
