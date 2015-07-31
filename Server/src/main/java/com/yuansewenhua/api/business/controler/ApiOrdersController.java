@@ -53,6 +53,9 @@ public class ApiOrdersController extends Controller {
     public void deleteitem() {
         int id = getParaToInt(0);
         int count = getParaToInt(1, 0);
+        String waiter = getPara("waiter");
+        String password = getPara("password");
+
         renderText(orderService.deleteItem(id, count) + "");
     }
 }

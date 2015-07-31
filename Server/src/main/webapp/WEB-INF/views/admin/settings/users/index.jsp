@@ -53,6 +53,7 @@
                                                 <c:when test="${record.rolename eq 'Manager'}">店长</c:when>
                                                 <c:when test="${record.rolename eq 'Chef'}">厨师长</c:when>
                                                 <c:when test="${record.rolename eq 'CEO'}">董事长</c:when>
+                                                <c:when test="${record.rolename eq 'Waiter'}">服务员</c:when>
                                             </c:choose>
                                         </td>
                                         <td>
