@@ -4,6 +4,7 @@ import com.jfinal.ext.plugin.tablebind.TableBind;
 import com.jfinal.plugin.activerecord.Model;
 import net.wincn.core.DBKit;
 
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -42,4 +43,10 @@ public class Order extends Model<Order> {
         List<Order> orders = find("select * from orders t where t.tablenumber = ? and t.status = 'UNPAY'", tablenumber);
         return orders;
     }
+
+    public List<Order> getOrdersByTimeRange(Date timeSmall, Date timeBig) {
+        return find("select * from orders t where t.createtime between ? and ?", timeSmall, timeBig);
+    }
+
+
 }

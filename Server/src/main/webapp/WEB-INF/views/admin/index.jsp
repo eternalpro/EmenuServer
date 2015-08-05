@@ -11,23 +11,23 @@
                 <div class="panel-body">
                     <div class="row">
                         <div class="col-md-3">
-                            昨日销售业绩：10,300,100 元
+                            昨日销售业绩：<widget:formatMoney balance="${yesterdayResult}"/>
                         </div>
                         <div class="col-md-9">
                             <div class="progress">
-                                <div class="progress-bar progress-bar-success" role="progressbar" aria-valuenow="70"
-                                     aria-valuemin="0" aria-valuemax="100" style="width: 70%">
+                                <div class="progress-bar progress-bar-success" role="progressbar" aria-valuenow="${yesterdayResult}"
+                                     aria-valuemin="0" aria-valuemax="${todayResult + yesterdayResult}" style="width: ${yesterdayResult / (todayResult + yesterdayResult) * 100}%">
                                 </div>
                             </div>
                         </div>
 
                         <div class="col-md-3">
-                            今日销售业绩：5,300,100 元
+                            今日销售业绩：<widget:formatMoney balance="${todayResult}"/>
                         </div>
                         <div class="col-md-9">
                             <div class="progress">
-                                <div class="progress-bar progress-bar-danger" role="progressbar" aria-valuenow="40"
-                                     aria-valuemin="0" aria-valuemax="100" style="width: 40%">
+                                <div class="progress-bar progress-bar-danger" role="progressbar" aria-valuenow="${todayResult}"
+                                     aria-valuemin="0" aria-valuemax="${todayResult + yesterdayResult}" style="width: ${todayResult / (todayResult + yesterdayResult) * 100}%">
                                 </div>
                             </div>
                         </div>
@@ -40,7 +40,7 @@
                 <div class="panel-body">
                     <div class="row">
                         <div class="col-md-4">
-                            今日来访人数：12位
+                            今日来访人数：${visitorCount} 位
                         </div>
                         <div class="col-md-4">
                             翻台率：40%
@@ -59,34 +59,11 @@
                 </div>
                 <div class="panel-body">
                     <div class="row">
-                        <div class="col-md-2">
-                            小鸡炖蘑菇
-                        </div>
-                        <div class="col-md-2">
-                            西红柿炒鸡蛋
-                        </div>
-                        <div class="col-md-2">
-                            酸辣土豆丝
-                        </div>
-                        <div class="col-md-2">
-                            干煸豆角
-                        </div>
-                        <div class="col-md-2">
-                            干煸豆角
-                        </div>
-                        <div class="col-md-2">
-                            干煸豆角
-                        </div>
-                        <div class="col-md-2">
-                            干煸豆角
-                        </div>
-                        <div class="col-md-2">
-                            干煸豆角
-                        </div>
-
-                        <div class="col-md-2">
-                            干煸豆角
-                        </div>
+                        <c:forEach items="${clearFoods}" var="food">
+                            <div class="col-md-2">
+                                ${food.name}
+                            </div>
+                        </c:forEach>
                     </div>
                 </div>
             </div>
@@ -123,9 +100,9 @@
             $('#nianxiaoshou').highcharts({                   //图表展示容器，与div的id保持一致
                 hart: {
                     plotBackgroundColor: null,
-                    plotBorderWidth: 1,//null,
+                    plotBorderWidth: 1,
                     plotShadow: false
-                },title: {
+                }, title: {
                     text: '2014年销售百分比分析图'
                 },
                 tooltip: {
@@ -147,18 +124,7 @@
                 series: [{
                     type: 'pie',
                     name: '占总销售额',
-                    data: [
-                        ['酒水',   50.0],
-                        ['鲁菜',       20.0],
-                        {
-                            name: '川菜',
-                            y: 12.8,
-                            sliced: true,
-                            selected: true
-                        },
-                        ['粤菜',    20.0],
-                        ['主食',     10.0],
-                    ]
+                    data: ${yearSales}
                 }]
             });
 
@@ -173,7 +139,7 @@
                     x: -20
                 },
                 xAxis: {
-                    categories: ['1月', '2月', '3月', '4月', '5月', '6月','7月', '8月', '9月', '10月', '11月', '12月']
+                    categories: ['1月', '2月', '3月', '4月', '5月', '6月', '7月', '8月', '9月', '10月', '11月', '12月']
                 },
                 yAxis: {
                     title: {
@@ -203,7 +169,30 @@
                 }]
             });
             // 顶部提示
-            $.fn.notify({type: 'info', text: '还差XX元就可突破昨天的业绩！请努力！', delay: 2000});
+
+            var yesterdayResult = Number('${yesterdayResult}');
+            var todayResult = Number('${todayResult}');
+            if (yesterdayResult > todayResult) {
+                $.fn.notify({
+                    type: 'info',
+                    text: '还差 <strong>' + (yesterdayResult - todayResult) + '</strong> 元就可突破昨天的业绩！请努力！',
+                    delay: 4000
+                });
+            }
+            if (yesterdayResult < todayResult) {
+                $.fn.notify({
+                    type: 'error',
+                    text: '已突破昨天的业绩 <strong>' + (todayResult - yesterdayResult) + '</strong> 元！请勉励！',
+                    delay: 4000
+                });
+            }
+            if (yesterdayResult == todayResult) {
+                $.fn.notify({
+                    type: 'warning',
+                    text: '与昨天的业绩旗鼓相当，请继续努力！',
+                    delay: 4000
+                });
+            }
         })();
     </script>
     </jsp:attribute>

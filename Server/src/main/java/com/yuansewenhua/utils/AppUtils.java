@@ -12,6 +12,7 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 import java.util.Properties;
 
 public class AppUtils {
@@ -101,5 +102,23 @@ public class AppUtils {
             priceAndUnits.add(pAu);
         }
         return priceAndUnits;
+    }
+
+    /**
+     * 获取饼图所需要的数据
+     * @param map
+     * @return
+     */
+    public static String getPieStr(Map<String, Double> map) {
+        StringBuilder sb = new StringBuilder("[");
+        for (String key : map.keySet()) {
+            StringBuilder sbs = new StringBuilder("[");
+            sbs.append("'").append(key).append("'").append(",").append(map.get(key));
+            sbs.append("],");
+            sb.append(sbs);
+        }
+        sb.deleteCharAt(sb.length() - 1);
+        sb.append("]");
+        return sb.toString();
     }
 }

@@ -28,6 +28,20 @@
             <div class="col-md-12">
                 <div class="panel panel-default">
                     <div class="panel-heading">
+                        <i class="fa fa-list fa-fw"></i> 系统设置
+                    </div>
+                    <div class="panel-body">
+                        <form id="tableCountForm" class="form-inline" action="/admin/settings/systems/saveTableCount" method="post">
+                            <div class="form-group">
+                                <label for="tableCount">总台数：</label>
+                                <input type="text" value="${tableCount.value}" class="form-control" id="tableCount" name="tableCount">
+                            </div>
+                            <button type="submit" id="saveTableCountBtn" class="btn btn-primary">保存</button>
+                        </form>
+                    </div>
+                </div>
+                <div class="panel panel-default">
+                    <div class="panel-heading">
                         <i class="fa fa-list fa-fw"></i> 参数列表
                     </div>
                     <div class="panel-body">
@@ -76,6 +90,10 @@
                 $('#adminModalLg').on('hidden.bs.modal', function () {
                     // 关闭Dialog前移除编辑器
                     UM.getEditor('container').destroy();
+                });
+
+                $('#saveTableCountBtn').on('click', function () {
+                    App.SubmitForm({selector: '#tableCountForm'});
                 });
             })();
         </script>

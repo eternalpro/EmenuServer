@@ -75,7 +75,7 @@ public class ApiOrdersController extends Controller {
             Food food = Food.dao.findById(id);
             renderText(food.getStr("isenable"));
         }else {
-            Drinks drinks = Drinks.dao.findById("isenable");
+            Drinks drinks = Drinks.dao.findById(id);
             renderText(drinks.getStr("isenable"));
         }
     }

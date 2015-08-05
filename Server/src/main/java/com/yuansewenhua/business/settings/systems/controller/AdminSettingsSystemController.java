@@ -14,7 +14,9 @@ public class AdminSettingsSystemController extends BaseController<SystemInfo>{
 
     @ActionKey("/admin/settings/systems")
     public void index() {
-        list("key" ,SystemInfo.dbKit);
+        params.put("issystem", "false");
+        list("key", SystemInfo.dbKit);
+        setAttr("tableCount", SystemInfo.dao.findByKey(SystemInfo.TABLE_COUNT));
     }
 
     public void form() {
@@ -28,6 +30,22 @@ public class AdminSettingsSystemController extends BaseController<SystemInfo>{
 
     public void delete() {
         delete(SystemInfo.dao, null);
+        renderText("success");
+    }
+
+    public void saveTableCount() {
+        Integer tableCount = getParaToInt("tableCount");
+        SystemInfo systemInfo = SystemInfo.dao.findByKey(SystemInfo.TABLE_COUNT);
+        if (systemInfo == null) {
+            systemInfo = SystemInfo.newSystemSystemInfo();
+            systemInfo.set("key", SystemInfo.TABLE_COUNT);
+            systemInfo.set("value", tableCount);
+            systemInfo.save();
+        }else{
+            systemInfo.set("key", SystemInfo.TABLE_COUNT);
+            systemInfo.set("value", tableCount);
+            systemInfo.update();
+        }
         renderText("success");
     }
 

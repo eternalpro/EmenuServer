@@ -20,4 +20,8 @@ public class FoodsType extends Model<FoodsType>{
             return true;
         return false;
     }
+
+    public static List<FoodsType> findAll() {
+        return dao.find("select * from foodstype");
+    }
 }

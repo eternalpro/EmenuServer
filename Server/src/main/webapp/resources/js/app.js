@@ -189,7 +189,7 @@
             text: text,
             styling: 'bootstrap3',
             type: type,
-            width: '300px',
+            width: '400px',
             delay: delay,
             nonblock: {
                 nonblock: false

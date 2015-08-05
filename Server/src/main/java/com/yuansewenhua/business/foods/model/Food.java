@@ -4,6 +4,8 @@ import com.jfinal.ext.plugin.tablebind.TableBind;
 import com.jfinal.plugin.activerecord.Model;
 import net.wincn.core.DBKit;
 
+import java.util.List;
+
 /**
  * Created by fangshuai on 2014-11-04-0004.
  */
@@ -14,5 +16,9 @@ public class Food extends Model<Food> {
 
     public String getFoodsType() {
         return FoodsType.dao.findFirst("select * from foodstype where id = ?", get("foodstypeid")).getStr("title");
+    }
+
+    public static List<Food> getFoodsByIsenable(String isenable) {
+        return dao.find("select * from foods where isenable = ?", isenable);
     }
 }
