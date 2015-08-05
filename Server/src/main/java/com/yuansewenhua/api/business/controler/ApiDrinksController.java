@@ -20,6 +20,7 @@ public class ApiDrinksController extends BaseController<Drinks> {
     ApiDrinksService drinksService = new ApiDrinksService();
 
     public void types() {
+
         List<DrinkTypeBean> drinkTypeBeans = drinksService.getDrinkTypeBeans();
         renderJson(drinkTypeBeans);
     }

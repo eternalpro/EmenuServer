@@ -32,7 +32,8 @@ public class ApiFoodService {
 
     public List<FoodBean> getFoodBeans(int type, int page) throws UnsupportedEncodingException {
         Map<String, Object> params = new HashMap<>();
-        params.put("foodstypeid", type);
+        if(type != 0)
+            params.put("foodstypeid", type);
         Page<Food> foodPage =  Food.dbKit.search(page, 9, params, DBKit.ASC);
         List<FoodBean> foodBeans = BeanUtils.copyFoodBeans(foodPage.getList());
         return foodBeans;

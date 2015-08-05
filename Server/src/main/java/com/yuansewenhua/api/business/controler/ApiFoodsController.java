@@ -2,15 +2,11 @@ package com.yuansewenhua.api.business.controler;
 
 import com.jfinal.core.ActionKey;
 import com.jfinal.ext.route.ControllerBind;
-import com.yuansewenhua.api.business.bean.DrinkBean;
-import com.yuansewenhua.api.business.bean.DrinkTypeBean;
 import com.yuansewenhua.api.business.bean.FoodBean;
 import com.yuansewenhua.api.business.bean.FoodTypeBean;
-import com.yuansewenhua.api.business.service.ApiDrinksService;
 import com.yuansewenhua.api.business.service.ApiFoodService;
-import com.yuansewenhua.business.drinks.model.Drinks;
+import com.yuansewenhua.api.utils.HttpUtils;
 import com.yuansewenhua.business.foods.model.Food;
-import com.yuansewenhua.business.foods.model.FoodsType;
 import net.wincn.core.BaseController;
 import org.springframework.util.Assert;
 
@@ -26,15 +22,18 @@ public class ApiFoodsController extends BaseController<Food> {
     ApiFoodService foodService = new ApiFoodService();
 
     public void types() {
+        HttpUtils.setCORS(getResponse());
         List<FoodTypeBean> foodTypeBeans = foodService.getFoodTypeBeans();
         renderJson(foodTypeBeans);
     }
 
     @ActionKey("/api/foods")
     public void getFoods() throws UnsupportedEncodingException {
+        HttpUtils.setCORS(getResponse());
         Integer typeId = getParaToInt(0);
         Integer page = getParaToInt(1);
-        Assert.notNull(typeId, "食物的类别ID不能为空！");
+        if (typeId == null)
+            typeId = 0;
         Assert.notNull(page, "页码不能够为空！");
         List<FoodBean> foodBeans = foodService.getFoodBeans(typeId, page);
         renderJson(foodBeans);
@@ -42,6 +41,7 @@ public class ApiFoodsController extends BaseController<Food> {
 
     /**
      * 根据属性获得数据列表
+     *
      * @throws UnsupportedEncodingException
      */
     public void attribute() throws UnsupportedEncodingException {
