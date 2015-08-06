@@ -2,12 +2,13 @@ package com.yuansewenhua.business.orders.controller;
 
 import com.jfinal.core.ActionKey;
 import com.jfinal.ext.route.ControllerBind;
-import com.jfinal.kit.EncryptionKit;
 import com.jfinal.plugin.activerecord.Page;
+import com.yuansewenhua.api.business.bean.OrderStatusEnum;
 import com.yuansewenhua.business.orders.model.Order;
 import com.yuansewenhua.business.orders.service.OrderService;
 import net.wincn.core.BaseController;
-import org.springframework.util.Assert;
+
+import java.util.Date;
 
 /**
  * Created by fangshuai on 2014-11-11-0011.
@@ -19,7 +20,7 @@ public class AdminOrderController extends BaseController<Order> {
     @ActionKey("/admin/orders")
     public void index() {
         int pageNumber = getParaToInt("page", 1);
-        Page<Order> pageRecords =orderService.pageOrders(pageNumber);
+        Page<Order> pageRecords = orderService.pageOrders(pageNumber);
         setAttr("pageRecords", pageRecords);
         setAttr("records", pageRecords.getList());
     }
@@ -28,6 +29,15 @@ public class AdminOrderController extends BaseController<Order> {
         delete(Order.dao, null);
         renderText("success");
 
+    }
+
+    public void pay() {
+        int id = getParaToInt();
+        Order order = Order.dao.findById(id);
+        order.set("status", OrderStatusEnum.PAYED.name());
+        order.set("paytime", new Date());
+        order.update();
+        renderText("success");
     }
 
     @Override

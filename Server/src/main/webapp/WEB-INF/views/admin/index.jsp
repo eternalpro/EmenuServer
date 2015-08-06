@@ -11,23 +11,27 @@
                 <div class="panel-body">
                     <div class="row">
                         <div class="col-md-3">
-                            昨日销售业绩：<widget:formatMoney balance="${yesterdayResult}"/>
+                            昨日销售业绩：<widget:formatMoney balance="${yesterdayResult}"/> 元
                         </div>
                         <div class="col-md-9">
                             <div class="progress">
-                                <div class="progress-bar progress-bar-success" role="progressbar" aria-valuenow="${yesterdayResult}"
-                                     aria-valuemin="0" aria-valuemax="${todayResult + yesterdayResult}" style="width: ${yesterdayResult / (todayResult + yesterdayResult) * 100}%">
+                                <div class="progress-bar progress-bar-success" role="progressbar"
+                                     aria-valuenow="${yesterdayResult}"
+                                     aria-valuemin="0" aria-valuemax="${todayResult + yesterdayResult}"
+                                     style="width: ${yesterdayResult / (todayResult + yesterdayResult) * 100}%">
                                 </div>
                             </div>
                         </div>
 
                         <div class="col-md-3">
-                            今日销售业绩：<widget:formatMoney balance="${todayResult}"/>
+                            今日销售业绩：<widget:formatMoney balance="${todayResult}"/> 元
                         </div>
                         <div class="col-md-9">
                             <div class="progress">
-                                <div class="progress-bar progress-bar-danger" role="progressbar" aria-valuenow="${todayResult}"
-                                     aria-valuemin="0" aria-valuemax="${todayResult + yesterdayResult}" style="width: ${todayResult / (todayResult + yesterdayResult) * 100}%">
+                                <div class="progress-bar progress-bar-danger" role="progressbar"
+                                     aria-valuenow="${todayResult}"
+                                     aria-valuemin="0" aria-valuemax="${todayResult + yesterdayResult}"
+                                     style="width: ${todayResult / (todayResult + yesterdayResult) * 100}%">
                                 </div>
                             </div>
                         </div>
@@ -43,7 +47,7 @@
                             今日来访人数：${visitorCount} 位
                         </div>
                         <div class="col-md-4">
-                            翻台率：40%
+                            翻台率：<fmt:formatNumber value="${rateOfTableTurn}" type="percent"/>
                         </div>
                         <div class="col-md-4">
                             电子菜单连线：3/5
@@ -61,7 +65,7 @@
                     <div class="row">
                         <c:forEach items="${clearFoods}" var="food">
                             <div class="col-md-2">
-                                ${food.name}
+                                    ${food.name}
                             </div>
                         </c:forEach>
                     </div>
@@ -103,7 +107,7 @@
                     plotBorderWidth: 1,
                     plotShadow: false
                 }, title: {
-                    text: '2014年销售百分比分析图'
+                    text: new Date().getFullYear() + '年销售百分比分析图'
                 },
                 tooltip: {
                     pointFormat: '{series.name}: <b>{point.percentage:.1f}%</b>'
@@ -131,11 +135,11 @@
             // 月销售
             $('#yuexiaoshou').highcharts({
                 title: {
-                    text: '2014年度月销售业绩展示图',
-                    x: -20 //center
+                    text: new Date().getFullYear() + '年度月销售业绩展示图',
+                    x: -20
                 },
                 subtitle: {
-                    text: '展示2014年每月销售额度',
+                    text: '展示' + new Date().getFullYear() + '年每月销售额度',
                     x: -20
                 },
                 xAxis: {
@@ -143,7 +147,7 @@
                 },
                 yAxis: {
                     title: {
-                        text: '单位 (万元)'
+                        text: '单位 (元)'
                     },
                     plotLines: [{
                         value: 0,
@@ -152,7 +156,7 @@
                     }]
                 },
                 tooltip: {
-                    valueSuffix: '°C'
+                    valueSuffix: '元'
                 },
                 legend: {
                     layout: 'vertical',
@@ -162,14 +166,11 @@
                 },
                 series: [{
                     name: '总销售额',
-                    data: [7.0, 6.9, 9.5, 14.5, 18.2, 21.5, 25.2, 26.5, 23.3, 18.3, 13.9, 9.6]
-                }, {
-                    name: '净利润',
-                    data: [3.9, 4.2, 5.7, 8.5, 11.9, 15.2, 17.0, 16.6, 14.2, 10.3, 6.6, 4.8]
+                    data: ${monthSales}
                 }]
             });
-            // 顶部提示
 
+            // 顶部提示
             var yesterdayResult = Number('${yesterdayResult}');
             var todayResult = Number('${todayResult}');
             if (yesterdayResult > todayResult) {

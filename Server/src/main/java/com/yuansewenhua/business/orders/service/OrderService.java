@@ -2,16 +2,17 @@ package com.yuansewenhua.business.orders.service;
 
 import com.jfinal.plugin.activerecord.Page;
 import com.yuansewenhua.api.business.bean.GoodsEnum;
+import com.yuansewenhua.api.business.bean.OrderStatusEnum;
 import com.yuansewenhua.business.drinks.model.Drinks;
 import com.yuansewenhua.business.foods.model.Food;
 import com.yuansewenhua.business.foods.model.FoodsType;
 import com.yuansewenhua.business.orders.model.Order;
 import com.yuansewenhua.business.orders.model.OrderItem;
+import com.yuansewenhua.business.settings.systems.model.SystemInfo;
 
-import java.util.Calendar;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.math.BigDecimal;
+import java.math.RoundingMode;
+import java.util.*;
 
 /**
  * Created by gefangshuai on 2015/7/2.
@@ -50,7 +51,7 @@ public class OrderService {
         calendar2.set(Calendar.MINUTE, 59);   // 0分
         calendar2.set(Calendar.SECOND, 59);   // 0秒
 
-        List<Order> orders = Order.dao.getOrdersByTimeRange(calendar1.getTime(), calendar2.getTime());
+        List<Order> orders = Order.dao.getFinishedOrdersByTimeRange(calendar1.getTime(), calendar2.getTime());
         return orders;
     }
 
@@ -65,26 +66,25 @@ public class OrderService {
         calendar2.set(Calendar.MINUTE, 59);   // 0分
         calendar2.set(Calendar.SECOND, 59);   // 0秒
 
-        List<Order> orders = Order.dao.getOrdersByTimeRange(calendar1.getTime(), calendar2.getTime());
+        List<Order> orders = Order.dao.getFinishedOrdersByTimeRange(calendar1.getTime(), calendar2.getTime());
         return orders;
     }
 
     public double getYesterdayResult() {
 
+        return getResult(getYesterdayOrders());
+    }
+
+    private double getResult(List<Order> orders) {
         double allMoney = 0;
-        for (Order order : getYesterdayOrders()) {
+        for (Order order : orders) {
             allMoney += order.getDouble("pricecount");
         }
         return allMoney;
     }
 
     public double getTodayResult() {
-
-        double allMoney = 0;
-        for (Order order : getTodayOrders()) {
-            allMoney += order.getDouble("pricecount");
-        }
-        return allMoney;
+        return getResult(getTodayOrders());
     }
 
     public int getTodayVisitorCount() {
@@ -147,5 +147,55 @@ public class OrderService {
             count += orderItem.getDouble("price") * orderItem.getInt("count");
         }
         return count;
+    }
+
+    /**
+     * 计算翻台率
+     */
+    public double getRateOfTableTurn() {
+
+        List<Order> orders = getTodayOrders();
+        int i = 0;
+        for (Order order : orders) {
+            if (order.getStr("status").equals(OrderStatusEnum.FINISH.name())) {
+                i++;
+            }
+        }
+
+        int tableCount = Integer.parseInt(SystemInfo.dao.findByKey(SystemInfo.TABLE_COUNT).getStr("value"));
+
+        BigDecimal bigDecimal = BigDecimal.valueOf(i);
+        return bigDecimal.divide(BigDecimal.valueOf(tableCount), 2, RoundingMode.HALF_UP).doubleValue();
+    }
+
+    /**
+     * 计算每月销售额
+     */
+    public List<Double> getMonthSales() {
+        List<Double> doubles = new ArrayList<>();
+
+        for (int i = 0; i < 12; i++) {
+            Calendar calendar = Calendar.getInstance();
+            calendar.set(Calendar.MONTH, i);       // 1月
+            calendar.set(Calendar.DAY_OF_MONTH, calendar.getActualMinimum(Calendar.DAY_OF_MONTH));
+            calendar.set(Calendar.HOUR_OF_DAY, calendar.getActualMinimum(Calendar.HOUR_OF_DAY));
+            calendar.set(Calendar.MINUTE, calendar.getActualMinimum(Calendar.MINUTE));
+            calendar.set(Calendar.SECOND, calendar.getActualMinimum(Calendar.SECOND));
+            Date date1 = calendar.getTime();
+
+            calendar.set(Calendar.DAY_OF_MONTH, calendar.getActualMaximum(Calendar.DAY_OF_MONTH));
+            calendar.set(Calendar.HOUR_OF_DAY, calendar.getActualMaximum(Calendar.HOUR_OF_DAY));
+            calendar.set(Calendar.MINUTE, calendar.getActualMaximum(Calendar.MINUTE));
+            calendar.set(Calendar.SECOND, calendar.getActualMaximum(Calendar.SECOND));
+
+            Date date2 = calendar.getTime();
+            List<Order> orders = Order.dao.getFinishedOrdersByTimeRange(date1, date2);
+            doubles.add(getResult(orders));
+        }
+        return doubles;
+    }
+
+    public static void main(String[] args) {
+
     }
 }

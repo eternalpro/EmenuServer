@@ -121,4 +121,18 @@ public class AppUtils {
         sb.append("]");
         return sb.toString();
     }
+
+    /**
+     * 获取折线图所需要的数据
+     * @return
+     */
+    public static String getBrokenStr(List<Double> doubles) {
+        StringBuilder sb = new StringBuilder("[");
+        for (Double d : doubles) {
+            sb.append(d).append(",");
+        }
+        sb.deleteCharAt(sb.length() - 1);
+        sb.append("]");
+        return sb.toString();
+    }
 }

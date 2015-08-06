@@ -32,7 +32,6 @@
                     <div class="panel-body">
                         <div class="table-responsive">
                             <table width="100%">
-
                                 <tbody>
                                 <c:forEach items="${records}" var="record" varStatus="i">
                                     <tr>
@@ -62,12 +61,22 @@
                                                             </td>
                                                             <td width="220">
                                                                 <strong>结账时间: </strong>
-                                                                    ${record.paytime}
+                                                                <fmt:formatDate value="${record.paytime}" pattern="yyyy-MM-dd HH:mm:ss"/>
                                                             </td>
-                                                            <td width="50"><widget:orderStatus
-                                                                    status="${record.status}"/></td>
+                                                            <td width="60"><widget:orderStatus
+                                                                    status="${record.status}"/>
+                                                            </td>
+                                                            <c:if test="${record.status eq 'UNPAY'}">
+                                                                <td width="50">
+                                                                    <a href="${ctx}/admin/orders/pay/${record.id}"
+                                                                       class="btn btn-primary btn-xs"
+                                                                       data-toggle="confirm"
+                                                                       data-confirm="确认要对订单进行结账吗?">结账</a>
+                                                                </td>
+                                                            </c:if>
                                                             <td width="50">
-                                                                <a class="btn btn-primary btn-xs" href="#"><i
+
+                                                                <a class="btn btn-default btn-xs" href="#"><i
                                                                         class="fa fa-print"></i>
                                                                     打印
                                                                 </a>
@@ -75,17 +84,19 @@
                                                         </tr>
                                                     </table>
                                                 </div>
-                                                <div class="panel-body" <c:if test="${i.index > 0}"> style="display: none;"</c:if>>
+                                                <div class="panel-body" style="display: none;">
                                                     <c:forEach items="${record.orderItems}" var="item" varStatus="i">
                                                         <div class="col-sm-6 col-md-3">
                                                             <div class="thumbnail">
-                                                                <img src="${ctx}${item.imagePath}" style="height: 150px;">
+                                                                <img src="${ctx}${item.imagePath}"
+                                                                     style="height: 150px;">
+
                                                                 <div class="caption">
                                                                     <p>
                                                                         <widget:productType type="${item.type}"/>
-                                                                        ${item.name}
+                                                                            ${item.name}
                                                                         <c:if test="${item.status eq 1}">
-                                                                        <span class="label label-success">+</span>
+                                                                            <span class="label label-success">+</span>
                                                                         </c:if>
                                                                     </p>
 

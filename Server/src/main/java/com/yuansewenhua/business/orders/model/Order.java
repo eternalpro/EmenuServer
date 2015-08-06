@@ -44,8 +44,8 @@ public class Order extends Model<Order> {
         return orders;
     }
 
-    public List<Order> getOrdersByTimeRange(Date timeSmall, Date timeBig) {
-        return find("select * from orders t where t.createtime between ? and ?", timeSmall, timeBig);
+    public List<Order> getFinishedOrdersByTimeRange(Date timeSmall, Date timeBig) {
+        return find("select * from orders t where t.createtime between ? and ? and t.status = 'FINISH'", timeSmall, timeBig);
     }
 
 

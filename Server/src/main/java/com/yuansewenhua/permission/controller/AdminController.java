@@ -27,7 +27,9 @@ public class AdminController extends Controller {
         setAttr("todayResult", orderService.getTodayResult());
         setAttr("visitorCount", orderService.getTodayVisitorCount());
         setAttr("clearFoods", Food.getFoodsByIsenable("false"));
+        setAttr("rateOfTableTurn", orderService.getRateOfTableTurn());
         setAttr("yearSales", AppUtils.getPieStr(orderService.getYearSales()));
+        setAttr("monthSales", AppUtils.getBrokenStr(orderService.getMonthSales()));
     }
 
     @ClearInterceptor(ClearLayer.ALL)

@@ -13,14 +13,14 @@
         }
     });
     // 删除
-    $('body').on('click', 'a[data-toggle="delete"]', function (e) {
+    $('body').on('click', 'a[data-toggle="delete"],a[data-toggle="confirm"]', function (e) {
         e.preventDefault();
         var $this = $(this);
         var confirm_message = $this.data('confirm') ? $this.data('confirm') : '确定要删除记录吗？';
 
         $.fn.confirm({
             title: '确认',
-            text: '确认要删除记录吗？',
+            text: confirm_message,
             function: function () {
                 var url = $this.attr('href');
                 $.get(url, function (data) {
@@ -34,7 +34,7 @@
                             delay: 50
                         });
                     } else {
-                        $.fn.notify({type: 'error', text: data, delay: 1000})
+                        $.fn.notify({type: 'error', text: data, delay: 4000})
                     }
                 });
             }
