@@ -38,7 +38,7 @@ public class OrderService {
     }
 
 
-    private List<Order> getYesterdayOrders() {
+    public List<Order> getYesterdayOrders() {
         Calendar calendar1 = Calendar.getInstance();
         calendar1.add(Calendar.DAY_OF_MONTH, -1);    // 昨天
         calendar1.set(Calendar.HOUR_OF_DAY, 0);  // 0时
@@ -55,7 +55,7 @@ public class OrderService {
         return orders;
     }
 
-    private List<Order> getTodayOrders() {
+    public List<Order> getTodayOrders() {
         Calendar calendar1 = Calendar.getInstance();
         calendar1.set(Calendar.HOUR_OF_DAY, 0);  // 0时
         calendar1.set(Calendar.MINUTE, 0);   // 0分
@@ -67,6 +67,24 @@ public class OrderService {
         calendar2.set(Calendar.SECOND, 59);   // 0秒
 
         List<Order> orders = Order.dao.getFinishedOrdersByTimeRange(calendar1.getTime(), calendar2.getTime());
+        return orders;
+    }
+
+    private List<Order> getMonthOrders() {
+        Calendar calendar = Calendar.getInstance();
+        calendar.set(Calendar.DAY_OF_MONTH, calendar.getActualMinimum(Calendar.DAY_OF_MONTH));
+        calendar.set(Calendar.HOUR_OF_DAY, calendar.getActualMinimum(Calendar.HOUR_OF_DAY));
+        calendar.set(Calendar.MINUTE, calendar.getActualMinimum(Calendar.MINUTE));
+        calendar.set(Calendar.SECOND, calendar.getActualMinimum(Calendar.SECOND));
+        Date date1 = calendar.getTime();
+
+        calendar.set(Calendar.DAY_OF_MONTH, calendar.getActualMaximum(Calendar.DAY_OF_MONTH));
+        calendar.set(Calendar.HOUR_OF_DAY, calendar.getActualMaximum(Calendar.HOUR_OF_DAY));
+        calendar.set(Calendar.MINUTE, calendar.getActualMaximum(Calendar.MINUTE));
+        calendar.set(Calendar.SECOND, calendar.getActualMaximum(Calendar.SECOND));
+
+        Date date2 = calendar.getTime();
+        List<Order> orders = Order.dao.getFinishedOrdersByTimeRange(date1, date2);
         return orders;
     }
 
@@ -85,6 +103,10 @@ public class OrderService {
 
     public double getTodayResult() {
         return getResult(getTodayOrders());
+    }
+
+    public double getMonthResult() {
+        return getResult(getMonthOrders());
     }
 
     public int getTodayVisitorCount() {
@@ -197,5 +219,27 @@ public class OrderService {
 
     public static void main(String[] args) {
 
+    }
+
+
+    /**
+     * 获取本月最流行的菜品菜品
+     * @return
+     */
+    public List<Food> getMonthPopFoods(int count) {
+        Calendar calendar = Calendar.getInstance();
+        calendar.set(Calendar.DAY_OF_MONTH, calendar.getActualMinimum(Calendar.DAY_OF_MONTH));
+        calendar.set(Calendar.HOUR_OF_DAY, calendar.getActualMinimum(Calendar.HOUR_OF_DAY));
+        calendar.set(Calendar.MINUTE, calendar.getActualMinimum(Calendar.MINUTE));
+        calendar.set(Calendar.SECOND, calendar.getActualMinimum(Calendar.SECOND));
+        Date date1 = calendar.getTime();
+
+        calendar.set(Calendar.DAY_OF_MONTH, calendar.getActualMaximum(Calendar.DAY_OF_MONTH));
+        calendar.set(Calendar.HOUR_OF_DAY, calendar.getActualMaximum(Calendar.HOUR_OF_DAY));
+        calendar.set(Calendar.MINUTE, calendar.getActualMaximum(Calendar.MINUTE));
+        calendar.set(Calendar.SECOND, calendar.getActualMaximum(Calendar.SECOND));
+        Date date2 = calendar.getTime();
+
+        return Food.getPopFoods(count, date1, date2);
     }
 }

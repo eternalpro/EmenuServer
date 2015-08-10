@@ -2,6 +2,7 @@ package com.yuansewenhua.api.systems.controller;
 
 import com.jfinal.core.Controller;
 import com.jfinal.ext.route.ControllerBind;
+import com.yuansewenhua.api.utils.HttpUtils;
 import com.yuansewenhua.business.orders.model.Order;
 import com.yuansewenhua.business.settings.systems.model.SystemInfo;
 
@@ -11,6 +12,11 @@ import com.yuansewenhua.business.settings.systems.model.SystemInfo;
 @ControllerBind(controllerKey = "/api/system")
 public class ApiSystemController extends Controller{
     public static Order dao = new Order();
+
+    public void sayHello() {
+        HttpUtils.setCORS(getResponse());
+        renderText("success");
+    }
 
     public void key(){
         String key = getPara();

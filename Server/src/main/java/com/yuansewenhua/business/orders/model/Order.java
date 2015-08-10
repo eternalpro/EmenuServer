@@ -37,8 +37,6 @@ public class Order extends Model<Order> {
         return dao.findFirst("select * from orders t where t.orderno = ?", orderNo);
     }
 
-
-
     public List<Order> findNoFinishedByTableNumber(String tablenumber) {
         List<Order> orders = find("select * from orders t where t.tablenumber = ? and t.status = 'UNPAY'", tablenumber);
         return orders;
