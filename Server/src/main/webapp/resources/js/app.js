@@ -46,20 +46,24 @@
         e.preventDefault();
         var $this = $(this);
         var url = $this.attr('href');
-        $.get(url, function (data) {
-            if (data == 'success') {
-                $.fn.notify({
-                    type: 'success',
-                    text: '操作成功！',
-                    callback: function () {
-                        location.reload();
-                    },
-                    delay: 50
-                });
-            } else {
-                $.fn.notify({type: 'error', text: data, delay: 1000})
-            }
-        });
+        if(!$this.hasClass('disabled'))
+        {
+            $this.addClass('disabled');
+            $.get(url, function (data) {
+                if (data == 'success') {
+                    $.fn.notify({
+                        type: 'success',
+                        text: '操作成功！',
+                        callback: function () {
+                            location.reload();
+                        },
+                        delay: 50
+                    });
+                } else {
+                    $.fn.notify({type: 'error', text: data, delay: 1000})
+                }
+            });
+        }
     });
 
     // 禁止modal缓存

@@ -46,5 +46,17 @@ public class Order extends Model<Order> {
         return find("select * from orders t where t.createtime between ? and ? and t.status = 'FINISH'", timeSmall, timeBig);
     }
 
+    public List<OrderItem> getItems() {
+        return OrderItem.dao.find("select * from orderitems where orderid=?", getInt("id"));
+    }
 
+    public String getTableNumber() {
+        return getStr("tablenumber");
+    }
+    public int getPeopleNumber() {
+        return getInt("peoplenumber");
+    }
+    public double getPriceCount() {
+        return getDouble("pricecount");
+    }
 }

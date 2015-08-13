@@ -76,7 +76,7 @@
                                                             </c:if>
                                                             <td width="50">
 
-                                                                <a class="btn btn-default btn-xs" href="#"><i
+                                                                <a class="btn btn-default btn-xs" data-toggle="action" href="${ctx}/admin/orders/print/${record.id}"><i
                                                                         class="fa fa-print"></i>
                                                                     打印
                                                                 </a>

@@ -6,6 +6,7 @@ import com.jfinal.plugin.activerecord.Page;
 import com.yuansewenhua.api.business.bean.OrderStatusEnum;
 import com.yuansewenhua.business.orders.model.Order;
 import com.yuansewenhua.business.orders.service.OrderService;
+import com.yuansewenhua.print.PrintUtils;
 import net.wincn.core.BaseController;
 
 import java.util.Date;
@@ -37,6 +38,13 @@ public class AdminOrderController extends BaseController<Order> {
         order.set("status", OrderStatusEnum.PAYED.name());
         order.set("paytime", new Date());
         order.update();
+        renderText("success");
+    }
+
+    public void print(){
+        int id = getParaToInt();
+        Order order = Order.dao.findById(id);
+        PrintUtils.printFinish(order);
         renderText("success");
     }
 
