@@ -6,7 +6,7 @@
     </jsp:attribute>
     <jsp:attribute name="main">
         <div class="row">
-            <div class="col-md-12">
+            <%--<div class="col-md-12">
                 <div class="well">
                     <div class="row">
                         <div class="col-lg-12 pull-right">
@@ -23,7 +23,7 @@
                         </div>
                     </div>
                 </div>
-            </div>
+            </div>--%>
             <div class="col-md-12">
                 <div class="panel panel-default">
                     <div class="panel-heading">
@@ -40,18 +40,18 @@
                                                 <div class="panel-heading">
                                                     <table style="width: 100%; font-size: 12px; ">
                                                         <tr>
-                                                            <td width="180"><strong>订单编号: </strong><a href="#"
+                                                            <td width="150"><strong>编号: </strong><a href="#"
                                                                                                       class="toggle-detail">${record.orderno}</a>
                                                             </td>
-                                                            <td width="60"><strong>桌号: </strong>${record.tablenumber}
+                                                            <td width="60"><strong>台号: </strong>${record.tablenumber}
                                                             </td>
-                                                            <td width="150">
+                                                            <td width="120">
                                                                 <strong>服务员: </strong>
                                                                     ${record.waitername}
                                                             </td>
                                                             <td width="60"><strong>人数: </strong>${record.peoplenumber}
                                                             </td>
-                                                            <td width="150"><strong>消费金额: </strong>${record.pricecount}
+                                                            <td width="150"><strong>总金额: </strong>${record.pricecount}
                                                                 元
                                                             </td>
                                                             <td width="220">
@@ -61,24 +61,40 @@
                                                             </td>
                                                             <td width="220">
                                                                 <strong>结账时间: </strong>
-                                                                <fmt:formatDate value="${record.paytime}" pattern="yyyy-MM-dd HH:mm:ss"/>
+                                                                <fmt:formatDate value="${record.paytime}"
+                                                                                pattern="yyyy-MM-dd HH:mm:ss"/>
+                                                            </td>
+
+                                                            <td width="85">
+                                                                <div class="btn-group">
+                                                                    <c:if test="${record.status eq 'UNPAY'}">
+                                                                        <a href="${ctx}/admin/orders/pay/${record.id}"
+                                                                           class="btn btn-primary btn-sm" title="结账"
+                                                                           data-toggle="confirm"
+                                                                           data-confirm="确认要对订单进行结账吗?">
+                                                                            <span class="glyphicon glyphicon-jpy"></span>
+                                                                        </a>
+                                                                    </c:if>
+
+                                                                    <c:if test="${record.status eq 'UNPAY'}">
+                                                                        <a href="${ctx}/admin/orders/delete/${record.id}"
+                                                                           class="btn btn-danger btn-sm" title="删除"
+                                                                           data-toggle="confirm"
+                                                                           data-confirm="确认要删除整个订单吗，与此订单相关联的信息都将删除！">
+                                                                            <span class="glyphicon glyphicon-trash"></span>
+                                                                        </a>
+                                                                    </c:if>
+
+                                                                </div>
                                                             </td>
                                                             <td width="60"><widget:orderStatus
                                                                     status="${record.status}"/>
                                                             </td>
-                                                            <c:if test="${record.status eq 'UNPAY'}">
-                                                                <td width="50">
-                                                                    <a href="${ctx}/admin/orders/pay/${record.id}"
-                                                                       class="btn btn-primary btn-xs"
-                                                                       data-toggle="confirm"
-                                                                       data-confirm="确认要对订单进行结账吗?">结账</a>
-                                                                </td>
-                                                            </c:if>
-                                                            <td width="50">
-
-                                                                <a class="btn btn-default btn-xs" data-toggle="action" href="${ctx}/admin/orders/print/${record.id}"><i
-                                                                        class="fa fa-print"></i>
-                                                                    打印
+                                                            <td>
+                                                                <a class="btn btn-default btn-sm pull-right"
+                                                                   data-toggle="action" title="打印"
+                                                                   href="${ctx}/admin/orders/print/${record.id}">
+                                                                    <span class="glyphicon glyphicon-print"></span>
                                                                 </a>
                                                             </td>
                                                         </tr>

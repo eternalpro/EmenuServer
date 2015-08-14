@@ -5,11 +5,13 @@ import com.jfinal.ext.route.ControllerBind;
 import com.jfinal.plugin.activerecord.Page;
 import com.yuansewenhua.api.business.bean.OrderStatusEnum;
 import com.yuansewenhua.business.orders.model.Order;
+import com.yuansewenhua.business.orders.model.OrderItem;
 import com.yuansewenhua.business.orders.service.OrderService;
 import com.yuansewenhua.print.PrintUtils;
 import net.wincn.core.BaseController;
 
 import java.util.Date;
+import java.util.List;
 
 /**
  * Created by fangshuai on 2014-11-11-0011.
@@ -27,7 +29,12 @@ public class AdminOrderController extends BaseController<Order> {
     }
 
     public void delete() {
-        delete(Order.dao, null);
+        Order order = Order.dao.findById(getParaToInt());
+        List<OrderItem> orderItems = order.getItems();
+        for (OrderItem orderItem : orderItems) {
+            orderItem.delete();
+        }
+        order.delete();
         renderText("success");
 
     }

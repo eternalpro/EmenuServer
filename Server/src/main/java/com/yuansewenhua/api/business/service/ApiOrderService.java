@@ -146,6 +146,11 @@ public class ApiOrderService {
         count = orderItem.getCount() - count;
         if (count <= 0) {
             orderItem.delete();
+            Order order = Order.dao.findById(orderItem.getInt("id"));
+            List<OrderItem> remainItems = order.getItems();
+            if (remainItems == null || remainItems.size() == 0) {
+                order.delete();
+            }
             return 0;
         }else {
             orderItem.set("count", count).update();

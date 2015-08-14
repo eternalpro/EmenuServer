@@ -4,7 +4,7 @@
 <div>
     <c:choose>
         <c:when test="${status eq 'UNPAY'}">
-            <span class="label label-danger">未付款</span>
+            <span class="label label-warning">未付款</span>
         </c:when>
         <c:when test="${status eq 'PAYED'}">
             <span class="label label-primary">已付款</span>
