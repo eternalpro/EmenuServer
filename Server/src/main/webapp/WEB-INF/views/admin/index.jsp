@@ -50,7 +50,6 @@
                             翻台率：<fmt:formatNumber value="${rateOfTableTurn}" type="percent"/>
                         </div>
                         <div class="col-md-4">
-                            电子菜单连线：3/5
                         </div>
                     </div>
                 </div>

@@ -51,7 +51,7 @@ public class OrderService {
         calendar2.set(Calendar.MINUTE, 59);   // 0分
         calendar2.set(Calendar.SECOND, 59);   // 0秒
 
-        List<Order> orders = Order.dao.getFinishedOrdersByTimeRange(calendar1.getTime(), calendar2.getTime());
+        List<Order> orders = Order.dao.getPayedOrdersByTimeRange(calendar1.getTime(), calendar2.getTime());
         return orders;
     }
 
@@ -66,7 +66,7 @@ public class OrderService {
         calendar2.set(Calendar.MINUTE, 59);   // 0分
         calendar2.set(Calendar.SECOND, 59);   // 0秒
 
-        List<Order> orders = Order.dao.getFinishedOrdersByTimeRange(calendar1.getTime(), calendar2.getTime());
+        List<Order> orders = Order.dao.getPayedOrdersByTimeRange(calendar1.getTime(), calendar2.getTime());
         return orders;
     }
 
@@ -84,7 +84,7 @@ public class OrderService {
         calendar.set(Calendar.SECOND, calendar.getActualMaximum(Calendar.SECOND));
 
         Date date2 = calendar.getTime();
-        List<Order> orders = Order.dao.getFinishedOrdersByTimeRange(date1, date2);
+        List<Order> orders = Order.dao.getPayedOrdersByTimeRange(date1, date2);
         return orders;
     }
 
@@ -211,16 +211,11 @@ public class OrderService {
             calendar.set(Calendar.SECOND, calendar.getActualMaximum(Calendar.SECOND));
 
             Date date2 = calendar.getTime();
-            List<Order> orders = Order.dao.getFinishedOrdersByTimeRange(date1, date2);
+            List<Order> orders = Order.dao.getPayedOrdersByTimeRange(date1, date2);
             doubles.add(getResult(orders));
         }
         return doubles;
     }
-
-    public static void main(String[] args) {
-
-    }
-
 
     /**
      * 获取本月最流行的菜品菜品

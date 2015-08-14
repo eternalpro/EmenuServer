@@ -43,12 +43,12 @@ menus:
     faIcon: fa fa-edit fa-fw
     roles:
       - Manager
-  - title: 统计查询
-    url: /admin/statistics
-    flag: statistics
-    faIcon: fa fa-bar-chart-o fa-fw
-    roles:
-      - Manager
+#  - title: 统计查询
+#    url: /admin/statistics
+#    flag: statistics
+#    faIcon: fa fa-bar-chart-o fa-fw
+#    roles:
+#      - Manager
   - title: 系统设定
     flag: settings
     faIcon: fa fa-wrench fa-fw
