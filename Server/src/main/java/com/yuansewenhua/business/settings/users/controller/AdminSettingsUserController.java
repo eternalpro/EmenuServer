@@ -41,6 +41,13 @@ public class AdminSettingsUserController extends BaseController<User> {
 
     }
 
+    public void resetPassword(){
+        Integer id = getParaToInt();
+        User user = User.dao.findById(id);
+        user.set("password", AppUtils.encode("12345678"));
+        renderText("success");
+    }
+
     @Override
     protected boolean doAfterGetModel(User model) {
         Integer id = model.getInt("id");

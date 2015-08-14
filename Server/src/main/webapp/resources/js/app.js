@@ -31,7 +31,7 @@
                             callback: function () {
                                 location.reload();
                             },
-                            delay: 50
+                            delay: 150
                         });
                     } else {
                         $.fn.notify({type: 'error', text: data, delay: 4000})

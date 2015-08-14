@@ -33,14 +33,14 @@
                             <table class="table table-hover">
                                 <thead>
                                 <tr>
-                                    <th>序号
+                                    <th width="100">序号
                                         <a href="#" data-toggle="sort" data-sort="${sort}" data-url="${ctx}/admin/settings/users">
                                             <i class="fa fa-sort-numeric-${sort} hander"></i>
                                         </a>
                                     </th>
-                                    <th>用户名</th>
-                                    <th>角色</th>
-                                    <th>操作</th>
+                                    <th width="250">用户名</th>
+                                    <th width="250">角色</th>
+                                    <th width="100">操作</th>
                                 </tr>
                                 </thead>
                                 <tbody>
@@ -61,6 +61,8 @@
                                                data-toggle="modal" data-target="#adminModalLg">编辑</a>
                                             <a href="${ctx}/admin/settings/users/delete/${record.id}" class="btn btn-danger btn-sm"
                                                data-toggle="delete" data-confirm="确定删除记录吗？">删除</a>
+
+                                            <a href="${ctx}/admin/settings/users/resetPassword/${record.id}" data-toggle="confirm" data-confirm="确认要将此用户的密码重置为12345678吗?" class="btn btn-success">重置密码</a>
                                         </td>
                                     </tr>
                                 </c:forEach>
