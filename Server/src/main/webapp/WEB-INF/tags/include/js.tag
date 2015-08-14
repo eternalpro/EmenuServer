@@ -63,5 +63,5 @@
         $.fn.toggleSide.toggle();
     });
 
-
+    // Remove it (later)
 </script>

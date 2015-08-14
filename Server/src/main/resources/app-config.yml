@@ -59,6 +59,10 @@ menus:
         url: /admin/settings/users
         flag: users
         faIcon: fa fa-user fa-fw
+      - title: 台号管理
+        url: /admin/settings/tables
+        flag: tables
+        faIcon: fa fa-desktop fa-fw
       - title: 参数设置
         url: /admin/settings/systems
         flag: systems

@@ -16,7 +16,7 @@
 </footer>
 <c:if test="${modal}">
     <div class="modal fade" id="adminModalLg" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
-         aria-hidden="true" style="display: none;">
+         aria-hidden="true" style="display: none;" data-backdrop="true">
         <div class="modal-dialog ${modalclass}">
             <div class="modal-content" id="adminModalLgContent">
             </div>

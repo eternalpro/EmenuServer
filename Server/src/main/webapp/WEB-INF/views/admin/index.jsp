@@ -182,7 +182,7 @@
             if (yesterdayResult < todayResult) {
                 $.fn.notify({
                     type: 'error',
-                    text: '已突破昨天的业绩 <strong>' + (todayResult - yesterdayResult) + '</strong> 元！请勉励！',
+                    text: '已突破昨天的业绩 <strong>' + (todayResult - yesterdayResult) + '</strong> 元！请继续努力！',
                     delay: 4000
                 });
             }
