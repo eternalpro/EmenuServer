@@ -47,7 +47,6 @@
         return this.optional(element) || (decimal.test(value));
     }, $.validator.format("小数位数后必须是两位!"));
 
-    $('a').tooltip();
 
     <c:if test="${paged}">
     // 分页

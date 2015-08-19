@@ -1,7 +1,7 @@
 <%@tag pageEncoding="UTF-8"  %>
 <%@ include file="../../taglibs.jsp" %>
 <!-- Bootstrap Core CSS -->
-<link href="${ctx}/resources/css/bootstrap.min.css" rel="stylesheet">
+<link href="${ctx}/resources/css/bootstrap.css" rel="stylesheet">
 
 <!-- MetisMenu CSS -->
 <link href="${ctx}/resources/css/plugins/metisMenu/metisMenu.min.css" rel="stylesheet">
