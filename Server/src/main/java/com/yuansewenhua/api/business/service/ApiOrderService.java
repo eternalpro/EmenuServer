@@ -8,6 +8,8 @@ import com.yuansewenhua.api.utils.BeanUtils;
 import com.yuansewenhua.api.utils.JsonUtils;
 import com.yuansewenhua.business.orders.model.Order;
 import com.yuansewenhua.business.orders.model.OrderItem;
+import com.yuansewenhua.business.settings.users.model.User;
+import com.yuansewenhua.utils.AppUtils;
 
 import java.util.List;
 
@@ -122,6 +124,11 @@ public class ApiOrderService {
             Order appendOrder = findAppendOrder(orderBean.getTableNumber());
             appendOrder(json, appendOrder, orderBean);
         }else {  //新增
+            String waiter = orderBean.getWaiterName();
+            String password = orderBean.getPassword();
+            User user = User.findUserByName(waiter);
+            if (user == null || !AppUtils.encode(password).equals(user.get("password")))
+                throw new ObjectSaveFailException("服务员名字或密码不正确！");
             List<Order> orders = Order.dao.findNoFinishedByTableNumber(orderBean.getTableNumber());
             if(orders!=null && orders.size() > 0)
                 throw new ObjectSaveFailException(String.format("台号%s有多条未完结的订单，您的操作无法完成！", orderBean.getTableNumber()));

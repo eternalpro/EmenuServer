@@ -41,6 +41,8 @@ public class ApiOrdersController extends Controller {
     public void add() throws ObjectSaveFailException {
         String json = JsonUtils.getJsonFromController(this);
         Assert.hasText(json, "json is not allow null");
+        String waiter = getPara("waiter");
+        String password = getPara("password", "");
         orderService.saveOrAppendOrder(json);
         renderText("true");
 
@@ -48,6 +50,8 @@ public class ApiOrdersController extends Controller {
 
     public void append() throws ObjectSaveFailException {
         String json = JsonUtils.getJsonFromController(this);
+        String waiter = getPara("waiter");
+        String password = getPara("password", "");
         orderService.saveOrAppendOrder(json);
         renderText("true");
 

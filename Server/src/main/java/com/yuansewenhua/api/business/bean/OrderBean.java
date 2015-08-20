@@ -17,7 +17,7 @@ public class OrderBean {
     private int peopleNumber = 0;       // 食客人数
     private OrderStatusEnum status = OrderStatusEnum.UNPAY;
     private List<GoodsForOrder> goodsForOrders; // 订单里所有的条目信息
-
+    private String password;
     public OrderBean() {
     }
 
@@ -112,5 +112,13 @@ public class OrderBean {
 
     public void setAppend(boolean append) {
         this.append = append;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
     }
 }
