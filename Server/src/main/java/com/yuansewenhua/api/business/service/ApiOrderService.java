@@ -9,8 +9,10 @@ import com.yuansewenhua.api.utils.JsonUtils;
 import com.yuansewenhua.business.orders.model.Order;
 import com.yuansewenhua.business.orders.model.OrderItem;
 import com.yuansewenhua.business.settings.users.model.User;
+import com.yuansewenhua.print.PrintUtils;
 import com.yuansewenhua.utils.AppUtils;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -82,11 +84,14 @@ public class ApiOrderService {
         try {
             try {
                 if (order.save()) {
+                    List<OrderItem> orderItems = new ArrayList<>();
                     for (GoodsForOrder goodsForOrder : orderBean.getGoodsForOrders()) {
                         OrderItem orderItem = BeanUtils.copyOrderItem(order.getInt("id"), goodsForOrder);
                         saveOrderItem(orderItem);
+                        orderItems.add(orderItem);
                     }
                     updateOrder(order);
+                    PrintUtils.printSubmit(order);
                 } else {
                     throw new ObjectSaveFailException("订单信息保存失败！");
                 }
@@ -102,12 +107,15 @@ public class ApiOrderService {
 
     public void appendOrder(String json, Order appendOrder, OrderBean orderBean) throws ObjectSaveFailException {
         try {
+            List<OrderItem> orderItems = new ArrayList<>();
             for (GoodsForOrder goodsForOrder : orderBean.getGoodsForOrders()) {
                 OrderItem orderItem = BeanUtils.copyOrderItem(appendOrder.getInt("id"), goodsForOrder);
                 orderItem.set("status", OrderItem.STATUS_APPEND);
+                orderItems.add(orderItem);
                 saveOrderItem(orderItem);
             }
             updateOrder(appendOrder);
+            PrintUtils.printAdd(appendOrder, orderItems);
         } catch (Exception e) {
             throw new ObjectSaveFailException(e.getMessage());
         }

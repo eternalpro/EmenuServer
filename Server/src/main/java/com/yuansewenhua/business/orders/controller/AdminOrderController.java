@@ -51,7 +51,7 @@ public class AdminOrderController extends BaseController<Order> {
     public void print(){
         int id = getParaToInt();
         Order order = Order.dao.findById(id);
-        PrintUtils.printFinish(order);
+        PrintUtils.printAdd(order, order.getItems());
         renderText("success");
     }
 

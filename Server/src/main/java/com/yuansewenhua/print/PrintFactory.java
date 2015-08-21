@@ -1,11 +1,15 @@
 package com.yuansewenhua.print;
 
+import com.yuansewenhua.business.orders.model.Order;
+import com.yuansewenhua.business.orders.model.OrderItem;
+
 import java.io.IOException;
 import java.io.OutputStream;
 import java.net.InetSocketAddress;
 import java.net.Socket;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.List;
 
 /**
  * @author gefangshuai
@@ -86,6 +90,29 @@ public class PrintFactory {
     }
 
     /**
+     * 设置大标题
+     * TODO 大的“加”和“减”需要定义
+     *
+     * @param title
+     * @throws IOException
+     */
+    public void setTitle(String title, String bigTitle) throws IOException {
+        output.write(new byte[]{0x1B, 0x32}); // 默认行间距
+        // 大标题
+        output.write(new byte[]{0x1B, 0x45, 0x01}); // 加粗
+        output.write(new byte[]{0x1D, 0x21, 0x22}); // 字体大小
+        output.write(new byte[]{0x1B, 0x61, 0x01}); //居中对齐
+
+        output.write(title.getBytes("GBK"));    // 解决中文乱码问题
+        // TODO 大标题
+        output.write(" ".getBytes());
+        output.write(new byte[]{0x1D, 0x21, 0x24}); // 字体大小
+        output.write(bigTitle.getBytes("GBK"));
+        output.write(new byte[]{0x0A}); // 换行
+        output.write(new byte[]{0x0A}); // 换行
+    }
+
+    /**
      * 设置公司名称
      *
      * @throws IOException
@@ -109,6 +136,19 @@ public class PrintFactory {
         output.write(("台号： " + tableNumber + "    人数： " + count).getBytes("GBK"));    // 解决中文乱码问题
         output.write(new byte[]{0x0A}); // 换行
         output.write(new byte[]{0x0A}); // 换行
+    }
+
+    public void setOrders(Order order) throws IOException {
+        List<OrderItem> items = order.getItems();
+        for (int i=0; i< items.size(); i++) {
+            setItem((i + 1), items.get(i).getStr("name"), items.get(i).getInt("count"), items.get(i).getDouble("price"));
+        }
+    }
+
+    public void setOrders(List<OrderItem> items) throws IOException {
+        for (int i=0; i< items.size(); i++) {
+            setItem((i + 1), items.get(i).getStr("name"), items.get(i).getInt("count"), items.get(i).getDouble("price"));
+        }
     }
 
     /**
