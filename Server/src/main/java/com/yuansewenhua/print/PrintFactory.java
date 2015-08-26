@@ -51,23 +51,16 @@ public class PrintFactory {
 
     }
 
-    public void open() {
+    public void open() throws IOException {
         client = new java.net.Socket();
-        try {
-            client.connect(new InetSocketAddress(ip, port), 5000); // 创建一个 socket
-            output = client.getOutputStream();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+        client.connect(new InetSocketAddress(ip, port), 5000); // 创建一个 socket
+        output = client.getOutputStream();
+
     }
 
-    public void close() {
-        try {
-            output.close();
-            client.close();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+    public void close() throws IOException {
+        output.close();
+        client.close();
     }
 
     /**
@@ -140,13 +133,13 @@ public class PrintFactory {
 
     public void setOrders(Order order) throws IOException {
         List<OrderItem> items = order.getItems();
-        for (int i=0; i< items.size(); i++) {
+        for (int i = 0; i < items.size(); i++) {
             setItem((i + 1), items.get(i).getStr("name"), items.get(i).getInt("count"), items.get(i).getDouble("price"));
         }
     }
 
     public void setOrders(List<OrderItem> items) throws IOException {
-        for (int i=0; i< items.size(); i++) {
+        for (int i = 0; i < items.size(); i++) {
             setItem((i + 1), items.get(i).getStr("name"), items.get(i).getInt("count"), items.get(i).getDouble("price"));
         }
     }
@@ -164,13 +157,13 @@ public class PrintFactory {
         // 内容
         output.write(new byte[]{0x1B, 0x45, 0x00}); // 取消加粗
         output.write(new byte[]{0x1B, 0x61, 0x00}); //居左对齐
-        output.write(("  " + index + ". " + getName(name, 7) + "  数量：" + count + "  单价：" + price     + "元").getBytes("GBK"));
+        output.write(("  " + index + ". " + getName(name, 7) + "  数量：" + count + "  单价：" + price + "元").getBytes("GBK"));
         output.write(new byte[]{0x0A});
     }
 
     private String getName(String name, int length) {
         if (name.length() > length)
-            return name.substring(0, length-2) + "..";
+            return name.substring(0, length - 2) + "..";
         if (name.length() < length) {
             StringBuffer sb = new StringBuffer(name);
             for (int i = 0; i < length - name.length(); i++) {

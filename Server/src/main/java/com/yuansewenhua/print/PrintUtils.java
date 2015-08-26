@@ -16,10 +16,6 @@ import java.util.List;
  *         createDate: 2015/8/12.
  */
 public final class PrintUtils {
-
-
-
-
     /**
      * 结账单
      * @param order
@@ -35,10 +31,9 @@ public final class PrintUtils {
             printFactory.setPriceCount(order.getPriceCount());
             printFactory.setFooter();
             printFactory.finish();
+            printFactory.close();
         } catch (IOException e) {
             e.printStackTrace();
-        }finally {
-            printFactory.close();
         }
     }
 
@@ -46,60 +41,72 @@ public final class PrintUtils {
      * 报送单
      * @param order
      */
-    public static void printSubmit(Order order){
-        PrintFactory printFactory = PrintFactory.getInstance();
-        try {
-            printFactory.open();
-            printFactory.setTitle("报送单");
-            printFactory.setCompanyInfo();
-            printFactory.setTableInfo(order.getTableNumber(), order.getPeopleNumber());
-            printFactory.setOrders(order);
-            printFactory.setFooter();
-            printFactory.finish();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }finally {
-            printFactory.close();
-        }
+    public static void printSubmit(final Order order){
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                PrintFactory printFactory = PrintFactory.getInstance();
+                try {
+                    printFactory.open();
+                    printFactory.setTitle("报送单");
+                    printFactory.setCompanyInfo();
+                    printFactory.setTableInfo(order.getTableNumber(), order.getPeopleNumber());
+                    printFactory.setOrders(order);
+                    printFactory.setFooter();
+                    printFactory.finish();
+                    printFactory.close();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
+        }).start();
     }
 
     /**
      * 追加订单
      */
-    public static void printAdd(Order order, List<OrderItem> orderItems) {
-        PrintFactory printFactory = PrintFactory.getInstance();
-        try {
-            printFactory.open();
-            printFactory.setTitle("报送单", "加");
-            printFactory.setCompanyInfo();
-            printFactory.setTableInfo(order.getTableNumber(), order.getPeopleNumber());
-            printFactory.setOrders(orderItems);
-            printFactory.setFooter();
-            printFactory.finish();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }finally {
-            printFactory.close();
-        }
+    public static void printAdd(final Order order, final List<OrderItem> orderItems) {
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                PrintFactory printFactory = PrintFactory.getInstance();
+                try {
+                    printFactory.open();
+                    printFactory.setTitle("报送单", "加");
+                    printFactory.setCompanyInfo();
+                    printFactory.setTableInfo(order.getTableNumber(), order.getPeopleNumber());
+                    printFactory.setOrders(orderItems);
+                    printFactory.setFooter();
+                    printFactory.finish();
+                    printFactory.close();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
+        }).start();
     }
 
     /**
      * 删除订单
      */
-    public static void printDelete(Order order, List<OrderItem> orderItems) {
-        PrintFactory printFactory = PrintFactory.getInstance();
-        try {
-            printFactory.open();
-            printFactory.setTitle("报送单", "减");
-            printFactory.setCompanyInfo();
-            printFactory.setTableInfo(order.getTableNumber(), order.getPeopleNumber());
-            printFactory.setOrders(orderItems);
-            printFactory.setFooter();
-            printFactory.finish();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }finally {
-            printFactory.close();
-        }
+    public static void printDelete(final Order order, final OrderItem orderItem, final int count) {
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                PrintFactory printFactory = PrintFactory.getInstance();
+                try {
+                    printFactory.open();
+                    printFactory.setTitle("报送单", "减");
+                    printFactory.setCompanyInfo();
+                    printFactory.setTableInfo(order.getTableNumber(), order.getPeopleNumber());
+                    printFactory.setItem(1, orderItem.getStr("name"), count, orderItem.getDouble("price"));
+                    printFactory.setFooter();
+                    printFactory.finish();
+                    printFactory.close();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
+        }).start();
     }
 }

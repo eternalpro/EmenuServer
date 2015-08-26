@@ -63,4 +63,8 @@ public class Order extends Model<Order> {
     public double getPriceCount() {
         return getDouble("pricecount");
     }
+
+    public Order setTableNumber(String newTablenumber) {
+        return set("tablenumber", newTablenumber);
+    }
 }

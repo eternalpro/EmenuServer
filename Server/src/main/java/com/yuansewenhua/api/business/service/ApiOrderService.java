@@ -4,10 +4,12 @@ import com.yuansewenhua.api.business.bean.GoodsForOrder;
 import com.yuansewenhua.api.business.bean.OrderBean;
 import com.yuansewenhua.api.business.bean.server.OrderAndItemBean;
 import com.yuansewenhua.api.exception.ObjectSaveFailException;
+import com.yuansewenhua.api.exception.OperationFailException;
 import com.yuansewenhua.api.utils.BeanUtils;
 import com.yuansewenhua.api.utils.JsonUtils;
 import com.yuansewenhua.business.orders.model.Order;
 import com.yuansewenhua.business.orders.model.OrderItem;
+import com.yuansewenhua.business.settings.tables.model.Table;
 import com.yuansewenhua.business.settings.users.model.User;
 import com.yuansewenhua.print.PrintUtils;
 import com.yuansewenhua.utils.AppUtils;
@@ -91,7 +93,6 @@ public class ApiOrderService {
                         orderItems.add(orderItem);
                     }
                     updateOrder(order);
-                    PrintUtils.printSubmit(order);
                 } else {
                     throw new ObjectSaveFailException("订单信息保存失败！");
                 }
@@ -103,6 +104,7 @@ public class ApiOrderService {
         } catch (Exception e) {
             throw new ObjectSaveFailException(e.getMessage());
         }
+        PrintUtils.printSubmit(order);
     }
 
     public void appendOrder(String json, Order appendOrder, OrderBean orderBean) throws ObjectSaveFailException {
@@ -139,7 +141,7 @@ public class ApiOrderService {
                 throw new ObjectSaveFailException("服务员名字或密码不正确！");
             List<Order> orders = Order.dao.findNoFinishedByTableNumber(orderBean.getTableNumber());
             if(orders!=null && orders.size() > 0)
-                throw new ObjectSaveFailException(String.format("台号%s有多条未完结的订单，您的操作无法完成！", orderBean.getTableNumber()));
+                throw new ObjectSaveFailException(String.format("台号“%s”有多条未完结的订单，您的操作无法完成！", orderBean.getTableNumber()));
             saveOrder(orderBean);
         }
     }
@@ -147,7 +149,7 @@ public class ApiOrderService {
     private Order findAppendOrder(String tablenumber) throws ObjectSaveFailException {
         List<Order> orders = Order.dao.findNoFinishedByTableNumber(tablenumber);
         if (orders != null && orders.size() > 1) {
-            throw new ObjectSaveFailException(String.format("台号%s有多条未完结的订单，您的操作无法完成！", tablenumber));
+            throw new ObjectSaveFailException(String.format("台号“%s”有多条未完结的订单，您的操作无法完成！", tablenumber));
         }
         return orders == null || orders.size() == 0 ? null : orders.get(0);
     }
@@ -159,17 +161,34 @@ public class ApiOrderService {
     public int deleteItem(int id, int count) {
         OrderItem orderItem = OrderItem.dao.findById(id);
         count = orderItem.getCount() - count;
+        Order order = Order.dao.findById(orderItem.getInt("orderid"));
+
+        PrintUtils.printDelete(order, orderItem, count);
+
         if (count <= 0) {
-            Order order = Order.dao.findById(orderItem.getInt("orderid"));
+            orderItem.delete();
             List<OrderItem> remainItems = order.getItems();
             if (remainItems == null || remainItems.size() == 0) {
                 order.delete();
             }
-            orderItem.delete();
             return 0;
         }else {
             orderItem.set("count", count).update();
             return count;
+        }
+    }
+
+    /**
+     * 台号变更
+     * @param orderNo
+     * @param newTablenumber
+     */
+    public void changeTableNumber(String orderNo, String newTablenumber) {
+        Order order = Order.dao.findByOrderNo(orderNo);
+        if (Table.toNames(Table.dao.findUnused()).contains(newTablenumber)) {
+            order.setTableNumber(newTablenumber).update();
+        }else {
+            throw new OperationFailException("台号已被占用，请选择其他台号！");
         }
     }
 }
