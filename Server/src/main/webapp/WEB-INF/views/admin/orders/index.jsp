@@ -43,7 +43,8 @@
                                                             <td width="150"><strong>编号: </strong><a href="#"
                                                                                                       class="toggle-detail">${record.orderno}</a>
                                                             </td>
-                                                            <td width="60"><strong>台号: </strong>${record.tablenumber}
+                                                            <td width="60">
+                                                                <span class="label label-primary">${record.tablenumber}</span>
                                                             </td>
                                                             <td width="120">
                                                                 <strong>服务员: </strong>

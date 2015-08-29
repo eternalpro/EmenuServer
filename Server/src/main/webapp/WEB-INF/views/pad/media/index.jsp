@@ -9,9 +9,7 @@
 <img src="/resources/img/media.png" style="width: 100%; height: 100%;" id="img"/>
 <script>
     (function(){
-        document.querySelector('#img').addEventListener('click', function(){
-            alert('你点击了图片！');
-        })
+
     })();
 </script>
 </body>

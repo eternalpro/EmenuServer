@@ -159,11 +159,12 @@ public class ApiOrderService {
      * @return
      */
     public int deleteItem(int id, int count) {
+        int delteCount = count;
         OrderItem orderItem = OrderItem.dao.findById(id);
         count = orderItem.getCount() - count;
         Order order = Order.dao.findById(orderItem.getInt("orderid"));
 
-        PrintUtils.printDelete(order, orderItem, count);
+        PrintUtils.printDelete(order, orderItem, delteCount);
 
         if (count <= 0) {
             orderItem.delete();
