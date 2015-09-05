@@ -2,7 +2,6 @@ package com.yuansewenhua.api.business.service;
 
 import com.yuansewenhua.api.business.bean.GoodsForOrder;
 import com.yuansewenhua.api.business.bean.OrderBean;
-import com.yuansewenhua.api.business.bean.server.OrderAndItemBean;
 import com.yuansewenhua.api.exception.ObjectSaveFailException;
 import com.yuansewenhua.api.exception.OperationFailException;
 import com.yuansewenhua.api.utils.BeanUtils;
@@ -105,6 +104,7 @@ public class ApiOrderService {
             throw new ObjectSaveFailException(e.getMessage());
         }
         PrintUtils.printSubmit(order);
+        PrintUtils.printSubmit(order);
     }
 
     public void appendOrder(String json, Order appendOrder, OrderBean orderBean) throws ObjectSaveFailException {
@@ -117,6 +117,7 @@ public class ApiOrderService {
                 saveOrderItem(orderItem);
             }
             updateOrder(appendOrder);
+            PrintUtils.printAdd(appendOrder, orderItems);
             PrintUtils.printAdd(appendOrder, orderItems);
         } catch (Exception e) {
             throw new ObjectSaveFailException(e.getMessage());
@@ -164,6 +165,7 @@ public class ApiOrderService {
         count = orderItem.getCount() - count;
         Order order = Order.dao.findById(orderItem.getInt("orderid"));
 
+        PrintUtils.printDelete(order, orderItem, delteCount);
         PrintUtils.printDelete(order, orderItem, delteCount);
 
         if (count <= 0) {
